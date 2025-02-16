@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Project as PrismaProject, Tag } from "@prisma/client";
+import "./Projects.css";
 import {
   Button,
   FormControl,
@@ -11,17 +11,54 @@ import {
 } from "@mui/material";
 import ProjectCard from "../ProjectCard/ProjectCard";
 
-interface Project extends PrismaProject {
-  images: { filePath: string }[];
-  tags: Tag[];
+interface Tag {
+  id: string;
+  name: string;
+  createdAt: Date;
+  updatedAt: Date;
 }
 
-interface ProjectsClientProps {
-  projects: Project[];
-  tags: Tag[];
-}
+// Fake data à remplacer par strapi
+const tags = [
+  { id: "1", name: "React", createdAt: new Date(), updatedAt: new Date() },
+  { id: "2", name: "Node.js", createdAt: new Date(), updatedAt: new Date() },
+  { id: "3", name: "JavaScript", createdAt: new Date(), updatedAt: new Date() },
+  { id: "4", name: "TypeScript", createdAt: new Date(), updatedAt: new Date() },
+  { id: "5", name: "MongoDB", createdAt: new Date(), updatedAt: new Date() },
+  { id: "6", name: "GraphQL", createdAt: new Date(), updatedAt: new Date() },
+];
 
-function ProjectsClient({ projects, tags }: ProjectsClientProps) {
+const projects = [
+  {
+    id: "p1",
+    title: "Projet React",
+    description: "Une application React moderne avec hooks et context API.",
+    images: [{ filePath: "/images/cover-illustration.png" }],
+    tags: [tags[0], tags[2]],
+    features: ["Gestion des états avec Redux", "Optimisation des performances", "Tests unitaires"],
+    stack: [tags[0], tags[2]],
+  },
+  {
+    id: "p2",
+    title: "Projet Node.js",
+    description: "API REST robuste avec Express et MongoDB.",
+    images: [{ filePath: "/images/cover-illustration.png" }],
+    tags: [tags[1], tags[2], tags[5]],
+    features: ["Authentification JWT", "CRUD API", "Déploiement avec Docker"],
+    stack: [tags[1], tags[2], tags[5]],
+  },
+  {
+    id: "p3",
+    title: "Projet TypeScript",
+    description: "Projet full-stack utilisant TypeScript et GraphQL.",
+    images: [{ filePath: "/images/cover-illustration.png" }],
+    tags: [tags[3], tags[6]],
+    features: ["Type-safety", "Code plus robuste", "API GraphQL"],
+    stack: [tags[3], tags[6]],
+  },
+];
+
+function ProjectsClient() {
   const [visibleCount, setVisibleCount] = useState(2);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
 
@@ -38,7 +75,9 @@ function ProjectsClient({ projects, tags }: ProjectsClientProps) {
     selectedTags.length === 0
       ? projects
       : projects.filter((project) =>
-          project.tags.some((tag) => selectedTags.find((t) => t.id === tag.id))
+          project.tags.some((tag) =>
+            selectedTags.find((t) => t.id === tag.id)
+          )
         );
 
   return (
@@ -58,21 +97,13 @@ function ProjectsClient({ projects, tags }: ProjectsClientProps) {
                 color: "white",
                 "& .MuiOutlinedInput-root": {
                   color: "white",
-                  "& fieldset": {
-                    borderColor: "white",
-                  },
-                  "&:hover fieldset": {
-                    borderColor: "#FC6D36",
-                  },
-                  "&.Mui-focused fieldset": {
-                    borderColor: "#FC6D36",
-                  },
+                  "& fieldset": { borderColor: "white" },
+                  "&:hover fieldset": { borderColor: "#FC6D36" },
+                  "&.Mui-focused fieldset": { borderColor: "#FC6D36" },
                 },
                 "& .MuiInputLabel-root": {
                   color: "white",
-                  "&.Mui-focused": {
-                    color: "#FC6D36",
-                  },
+                  "&.Mui-focused": { color: "#FC6D36" },
                 },
               }}
             />
@@ -88,9 +119,7 @@ function ProjectsClient({ projects, tags }: ProjectsClientProps) {
                   backgroundColor: "#FC6D36",
                   "& .MuiChip-deleteIcon": {
                     color: "white",
-                    "&:hover": {
-                      color: "rgba(255, 255, 255, 0.7)",
-                    },
+                    "&:hover": { color: "rgba(255, 255, 255, 0.7)" },
                   },
                 }}
               />
@@ -98,10 +127,9 @@ function ProjectsClient({ projects, tags }: ProjectsClientProps) {
           }
           sx={{
             minWidth: "300px",
-            "& .MuiAutocomplete-clearIndicator, & .MuiAutocomplete-popupIndicator":
-              {
-                color: "white",
-              },
+            "& .MuiAutocomplete-clearIndicator, & .MuiAutocomplete-popupIndicator": {
+              color: "white",
+            },
           }}
         />
       </FormControl>
@@ -113,46 +141,14 @@ function ProjectsClient({ projects, tags }: ProjectsClientProps) {
             imageUrl={project.images[0]?.filePath || undefined}
             projectId={project.id}
             tags={project.tags}
+            description={project.description}
+            features={project.features}
+            stack={project.stack}
           />
         ))}
       </div>
       {visibleCount < filteredProjects.length && (
-        <Button
-          onClick={handleShowMore}
-          sx={{
-            width: "fit-content",
-            backgroundColor: "transparent",
-            color: "white",
-            fontSize: "14px",
-            fontWeight: "600 !important",
-            borderRadius: "100px",
-            padding: "8px 16px",
-            border: "2px solid #FC6D36",
-            position: "relative",
-            overflow: "hidden",
-            zIndex: 1,
-            marginTop: "32px",
-            "&::after": {
-              content: '""',
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              background: "#FC6D36",
-              transform: "translateX(-100%)",
-              transition: "transform 0.5s ease",
-              zIndex: -1,
-            },
-            "&:hover": {
-              color: "white",
-              border: "2px solid #FC6D36",
-            },
-            "&:hover::after": {
-              transform: "translateX(0)",
-            },
-          }}
-        >
+        <Button onClick={handleShowMore} className="showMoreButton">
           Show More
         </Button>
       )}
