@@ -9,6 +9,7 @@ import UserForm from "@/components/UserFrom/UserForm";
 import ZhangParisotLogo from "../../public/img/ZhangParisotLogoBlackNoBg.webp";
 // import Projects from "@/components/Projects/Projects";
 import ProjectsClient from "@/components/Projects/ProjectsClient";
+import Expertises from "@/components/Expertises/Expertises";
 
 export default function Home() {
   return (
@@ -27,6 +28,15 @@ export default function Home() {
           src={purplesCircles}
           alt="background design image"
         />
+      </section>
+
+      <section className="sectionExpertise">
+        <h2>Our Expertise</h2>
+        <p>
+          Our team is specialized in 3 areas to cover all spectra of the web,
+          from design to maintenance!
+        </p>
+        <Expertises />
       </section>
 
       <section className="sectionProjects">
