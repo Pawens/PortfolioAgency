@@ -35,7 +35,11 @@ const projects = [
     description: "Une application React moderne avec hooks et context API.",
     images: [{ filePath: "/images/cover-illustration.png" }],
     tags: [tags[0], tags[2]],
-    features: ["Gestion des états avec Redux", "Optimisation des performances", "Tests unitaires"],
+    features: [
+      "Gestion des états avec Redux",
+      "Optimisation des performances",
+      "Tests unitaires",
+    ],
     stack: [tags[0], tags[2]],
   },
   {
@@ -75,9 +79,7 @@ function ProjectsClient() {
     selectedTags.length === 0
       ? projects
       : projects.filter((project) =>
-          project.tags.some((tag) =>
-            selectedTags.find((t) => t.id === tag.id)
-          )
+          project.tags.some((tag) => selectedTags.find((t) => t.id === tag.id))
         );
 
   return (
@@ -127,9 +129,10 @@ function ProjectsClient() {
           }
           sx={{
             minWidth: "300px",
-            "& .MuiAutocomplete-clearIndicator, & .MuiAutocomplete-popupIndicator": {
-              color: "white",
-            },
+            "& .MuiAutocomplete-clearIndicator, & .MuiAutocomplete-popupIndicator":
+              {
+                color: "white",
+              },
           }}
         />
       </FormControl>
@@ -140,15 +143,50 @@ function ProjectsClient() {
             name={project.title}
             imageUrl={project.images[0]?.filePath || undefined}
             projectId={project.id}
-            tags={project.tags}
             description={project.description}
             features={project.features}
-            stack={project.stack}
           />
         ))}
       </div>
       {visibleCount < filteredProjects.length && (
-        <Button onClick={handleShowMore} className="showMoreButton">
+        <Button
+          onClick={handleShowMore}
+          sx={{
+            width: "fit-content",
+            backgroundColor: "transparent",
+            color: "white",
+            fontSize: "14px",
+            fontWeight: "600 !important",
+            borderRadius: "100px",
+            padding: "8px 16px",
+            border: "2px solid #FC6D36",
+            position: "relative",
+            overflow: "hidden",
+            zIndex: 1,
+            fontFamily: "Inter, sans-serif",
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              background: "#FC6D36",
+              transform: "translateX(-100%)",
+              transition: "transform 0.5s ease",
+              zIndex: -1,
+            },
+            "&:hover": {
+              color: "white",
+              border: "2px solid #FC6D36",
+            },
+            "&:hover::after": {
+              transform: "translateX(0)",
+            },
+          }}
+          variant="outlined"
+          className="showMoreButton"
+        >
           Show More
         </Button>
       )}

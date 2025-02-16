@@ -5,7 +5,7 @@ import AdvantagesCards from "@/components/AdvantagesCards/AdvantagesCards";
 import MainValuesCards from "@/components/MainValuesCards/MainValuesCards";
 import Testimonials from "@/components/Testimonials/Testimonials";
 import TeamPresentation from "@/components/TeamPresentation/TeamPresentation";
-// import UserForm from "@/components/UserFrom/UserForm";
+import UserForm from "@/components/UserFrom/UserForm";
 import ZhangParisotLogo from "../../public/img/ZhangParisotLogoBlackNoBg.webp";
 // import Projects from "@/components/Projects/Projects";
 import ProjectsClient from "@/components/Projects/ProjectsClient";
@@ -46,7 +46,7 @@ export default function Home() {
 
       <section className="sectionContact">
         <h2>Contact Us</h2>
-        {/* <UserForm /> */}
+        <UserForm />
       </section>
     </div>
   );

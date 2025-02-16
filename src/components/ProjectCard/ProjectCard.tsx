@@ -1,7 +1,15 @@
-import { Button, Dialog, DialogContent, IconButton, Grid, Typography, List, ListItem, Chip } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  IconButton,
+  Grid,
+  Typography,
+  List,
+  ListItem,
+} from "@mui/material";
 import Image from "next/image";
 import React, { useState } from "react";
-import { Tag } from "@prisma/client";
 import CloseIcon from "@mui/icons-material/Close";
 import placeholderImage from "@/../public/images/cover-illustration.png";
 import "./ProjectCard.css";
@@ -10,13 +18,16 @@ interface ProjectCardProps {
   name: string;
   imageUrl?: string;
   projectId: string;
-  tags: Tag[];
   description?: string;
   features?: string[];
-  stack?: Tag[];
 }
 
-function ProjectCard({ name, imageUrl, tags, description, features, stack }: ProjectCardProps) {
+function ProjectCard({
+  name,
+  imageUrl,
+  description,
+  features,
+}: ProjectCardProps) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => {
@@ -29,15 +40,6 @@ function ProjectCard({ name, imageUrl, tags, description, features, stack }: Pro
 
   return (
     <div className="projectCard">
-      {tags && tags.length > 0 && (
-        <div className="projectCardTags">
-          {tags.map((tag) => (
-            <span key={tag.id} className="tag">
-              {tag.name}
-            </span>
-          ))}
-        </div>
-      )}
       <div className="imageContainer">
         <Image
           src={imageUrl || placeholderImage}
@@ -91,7 +93,14 @@ function ProjectCard({ name, imageUrl, tags, description, features, stack }: Pro
       </div>
 
       <Dialog open={open} onClose={handleClose} maxWidth="lg">
-        <DialogContent sx={{ backgroundColor: "#121212", color: "white", width: "80vw", height: "80vh" }}>
+        <DialogContent
+          sx={{
+            backgroundColor: "#121212",
+            color: "white",
+            width: "80vw",
+            height: "80vh",
+          }}
+        >
           <IconButton
             edge="start"
             color="inherit"
@@ -101,7 +110,13 @@ function ProjectCard({ name, imageUrl, tags, description, features, stack }: Pro
           >
             <CloseIcon />
           </IconButton>
-          <Grid container spacing={4} alignItems="center" justifyContent="center" sx={{ height: "100%" }}>
+          <Grid
+            container
+            spacing={4}
+            alignItems="center"
+            justifyContent="center"
+            sx={{ height: "100%" }}
+          >
             {/* Image à gauche */}
             <Grid item xs={12} md={6}>
               <Image
@@ -115,30 +130,24 @@ function ProjectCard({ name, imageUrl, tags, description, features, stack }: Pro
             </Grid>
             {/* Contenu à droite */}
             <Grid item xs={12} md={6}>
-              <Typography variant="h4" gutterBottom>{name}</Typography>
-              <Typography variant="body1" gutterBottom>{description || "Aucune description disponible."}</Typography>
-              
+              <Typography variant="h4" gutterBottom>
+                {name}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                {description || "Aucune description disponible."}
+              </Typography>
+
               {/* Features */}
               {features && features.length > 0 && (
                 <>
                   <Typography variant="h6">Features:</Typography>
                   <List>
                     {features.map((feature, index) => (
-                      <ListItem key={index} sx={{ color: "white" }}>• {feature}</ListItem>
+                      <ListItem key={index} sx={{ color: "white" }}>
+                        • {feature}
+                      </ListItem>
                     ))}
                   </List>
-                </>
-              )}
-              
-              {/* Stack */}
-              {stack && stack.length > 0 && (
-                <>
-                  <Typography variant="h6">Stack:</Typography>
-                  <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-                    {stack.map((tech) => (
-                      <Chip key={tech.id} label={tech.name} sx={{ backgroundColor: "#FC6D36", color: "white" }} />
-                    ))}
-                  </div>
                 </>
               )}
             </Grid>

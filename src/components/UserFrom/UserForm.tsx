@@ -1,8 +1,7 @@
 "use client";
 
-import { useState, useActionState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { TextField, Button } from "@mui/material";
-import { createUser } from "@/app/actions/userActions";
 import "./UserForm.css";
 
 const initialState = {
@@ -13,7 +12,6 @@ const initialState = {
 
 export default function UserForm() {
   const [isClient, setIsClient] = useState(false);
-  const [state, formAction, pending] = useActionState(createUser, initialState);
   const [name, setName] = useState(initialState.name);
   const [email, setEmail] = useState(initialState.email);
   const [message, setMessage] = useState(initialState.message);
@@ -22,20 +20,12 @@ export default function UserForm() {
     setIsClient(true);
   }, []);
 
-  useEffect(() => {
-    if (state?.message === "Utilisateur créé avec succès !") {
-      setName("");
-      setEmail("");
-      setMessage("");
-    }
-  }, [state]);
-
   if (!isClient) {
     return null; // or loading state
   }
 
   return (
-    <form action={formAction} className="userForm">
+    <form className="userForm">
       <TextField
         id="name"
         name="name"
@@ -176,26 +166,20 @@ export default function UserForm() {
 
       <Button
         type="submit"
-        disabled={pending}
         variant="contained"
         fullWidth
         sx={{
           mt: 2,
-          bgcolor: pending ? "grey.400" : "#fc6d36",
+          bgcolor: "#fc6d36",
           transition: "all 0.3s ease",
           "&:hover": {
-            bgcolor: pending ? "grey.400" : "#d45e31",
+            bgcolor: "#d45e31",
             transform: "scale(1.02)",
           },
         }}
       >
-        {pending ? "En cours..." : "Créer"}
+        {"Créer"}
       </Button>
-      {isClient && (
-        <p aria-live="polite" className="messageError">
-          {state?.message}
-        </p>
-      )}
     </form>
   );
 }
