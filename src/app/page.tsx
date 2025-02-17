@@ -1,20 +1,24 @@
-import Hero from "@/components/Hero/Hero";
-import purplesCircles from "../../public/img/purpulesCircles.webp";
+"use client";
+
+import AdvantagesCards from "../components/AdvantagesCards/AdvantagesCards";
+import Hero from "../components/Hero/Hero";
+import MainValuesCards from "../components/MainValuesCards/MainValuesCards";
+import TeamPresentation from "../components/TeamPresentation/TeamPresentation";
+import Testimonials from "../components/Testimonials/Testimonials";
 import Image from "next/image";
-import AdvantagesCards from "@/components/AdvantagesCards/AdvantagesCards";
-import MainValuesCards from "@/components/MainValuesCards/MainValuesCards";
-import Testimonials from "@/components/Testimonials/Testimonials";
-import TeamPresentation from "@/components/TeamPresentation/TeamPresentation";
-import UserForm from "@/components/UserFrom/UserForm";
-import ZhangParisotLogo from "../../public/img/ZhangParisotLogoBlackNoBg.webp";
+import purplesCircles from "../../public/img/purpulesCircles.webp";
 // import Projects from "@/components/Projects/Projects";
-import ProjectsClient from "@/components/Projects/ProjectsClient";
-import Expertises from "@/components/Expertises/Expertises";
+
+import { motion as m } from "framer-motion";
+import { FaQuoteLeft } from "react-icons/fa";
+import Expertises from "../components/Expertises/Expertises";
+import ProjectsClient from "../components/Projects/ProjectsClient";
+import Bubble from "../components/Bubble/Bubble";
+import UserForm from "../components/UserFrom/UserForm";
 
 export default function Home() {
   return (
     <div style={{ position: "relative" }}>
-      <Image className="logo" src={ZhangParisotLogo} alt="Logo of the agency" />
       <section className="sectionHero">
         <Hero />
       </section>
@@ -29,7 +33,6 @@ export default function Home() {
           alt="background design image"
         />
       </section>
-
       <section className="sectionExpertise">
         <h2>Our Expertise</h2>
         <p>
@@ -38,22 +41,29 @@ export default function Home() {
         </p>
         <Expertises />
       </section>
-
       <section className="sectionProjects">
         <h2>Our Projects</h2>
         <ProjectsClient />
       </section>
-
       <section className="sectionTestimonials">
         <h2>Testimonials</h2>
         <Testimonials />
       </section>
-
       <section className="sectionTeamPresentation">
         <h2>Team Presentation</h2>
         <TeamPresentation />
       </section>
-
+      <section className="sectionTeamPresentation">
+        <h2>Our Stack</h2>
+        <Bubble>
+          <m.div
+            className="testtets"
+            style={{ position: "relative", zIndex: 1 }}
+          >
+            <FaQuoteLeft />
+          </m.div>
+        </Bubble>
+      </section>
       <section className="sectionContact">
         <h2>Contact Us</h2>
         <UserForm />
