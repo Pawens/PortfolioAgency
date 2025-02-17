@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Projects.css";
 import {
   Button,
@@ -58,6 +58,16 @@ const projects = [
   },
 ];
 
+const fetchProjects = async () => {
+  try {
+    const response = await fetch("https://portfolioagencystrapi-production.up.railway.app/api/projects");
+    const data = await response.json();
+    console.log(data);
+  } catch (error) {
+    console.error("Erreur de récupération :", error);
+  }
+};
+
 function ProjectsClient() {
   const [visibleCount, setVisibleCount] = useState(2);
   const [selectedTags, setSelectedTags] = useState<Tag[]>([]);
@@ -70,6 +80,10 @@ function ProjectsClient() {
     setSelectedTags(newValue);
     setVisibleCount(2);
   };
+
+  useEffect(() => {
+    fetchProjects();
+  }, []);
 
   const filteredProjects =
     selectedTags.length === 0
