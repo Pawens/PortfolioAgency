@@ -241,26 +241,19 @@
     padding-right: 64px;
   }
 }
-/* Fix for Next.js image warnings */
-.next-image-wrapper img {
-  object-fit: contain !important;
-}
 
-/* Bubble styles */
 .testtets {
-  background-color: transparent;
+  width: 100px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 32px;
   border: 3px solid #fc6d36;
-  border-radius: 100%;
-  transition: color 0.2s;
+  border-radius: 50%;
   position: relative;
-  z-index: 1;
 }
 
 .background-effect {
   transform-origin: center;
-  will-change: transform, opacity; /* Add hardware acceleration */
+  will-change: transform, opacity;
 }

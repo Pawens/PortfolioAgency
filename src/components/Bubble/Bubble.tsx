@@ -6,8 +6,8 @@ import { ReactNode, useRef, useState } from "react";
 function Bubble({ children }: { children: ReactNode }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
+  const [origin, setOrigin] = useState({ x: 0, y: 0 });
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!containerRef.current) return;
@@ -20,11 +20,21 @@ function Bubble({ children }: { children: ReactNode }) {
       x: e.clientX - centerX,
       y: e.clientY - centerY,
     });
+  };
 
-    setMousePosition({
-      x: e.clientX - rect.left,
-      y: e.clientY - rect.top,
+  const handleMouseEnter = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (!containerRef.current) return;
+
+    const rect = containerRef.current.getBoundingClientRect();
+    const entryX = e.clientX - rect.left;
+    const entryY = e.clientY - rect.top;
+
+    setOrigin({
+      x: entryX - rect.width / 2,
+      y: entryY - rect.height / 2,
     });
+
+    setIsHovered(true);
   };
 
   return (
@@ -40,24 +50,28 @@ function Bubble({ children }: { children: ReactNode }) {
         setPosition({ x: 0, y: 0 });
         setIsHovered(false);
       }}
-      onMouseEnter={() => setIsHovered(true)}
+      onMouseEnter={handleMouseEnter}
       animate={{ x: position.x, y: position.y }}
       transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
     >
       {/* Background effect */}
       <motion.div
         className="background-effect"
-        initial={{ scale: 0, opacity: 0 }}
+        initial={{ scale: 0, opacity: 0, x: origin.x, y: origin.y }}
         animate={{
-          scale: isHovered ? 2 : 0,
+          scale: isHovered ? 1 : 0,
           opacity: isHovered ? 1 : 0,
+          x: 0,
+          y: 0,
         }}
-        transition={{ duration: 0.3 }}
+        transition={{
+          scale: { duration: 0.3 },
+          x: { type: "spring", stiffness: 300, damping: 20 },
+          y: { type: "spring", stiffness: 300, damping: 20 },
+        }}
         style={{
           position: "absolute",
-          left: mousePosition.x,
-          top: mousePosition.y,
-          transform: "translate(-50%, -50%)",
+
           backgroundColor: "#fc6d36",
           borderRadius: "50%",
           width: "100%",

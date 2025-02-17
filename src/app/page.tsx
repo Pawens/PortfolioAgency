@@ -56,10 +56,7 @@ export default function Home() {
       <section className="sectionTeamPresentation">
         <h2>Our Stack</h2>
         <Bubble>
-          <m.div
-            className="testtets"
-            style={{ position: "relative", zIndex: 1 }}
-          >
+          <m.div className="testtets">
             <FaQuoteLeft />
           </m.div>
         </Bubble>
