@@ -294,3 +294,12 @@
   font-family: "Inter", sans-serif;
   padding-bottom: 128px;
 }
+
+.sectionProjectsSteps {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 128px;
+  padding-right: 128px;
+}

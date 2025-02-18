@@ -1,0 +1,51 @@
+.ProjectsStepsCard {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 32px;
+  padding-bottom: 32px;
+  border-bottom: 1px solid #e0e0e0;
+  flex-grow: 1;
+}
+
+.FirstProjectsStepsCard {
+  border-top: 1px solid #e0e0e0;
+}
+
+.ProjectsStepsIndex {
+  font-size: 24px;
+  font-weight: 800;
+  color: #fc6d36;
+}
+
+.ProjectsStepsTitle {
+  font-size: 24px;
+  font-weight: 800;
+  color: white;
+  text-transform: uppercase;
+  width: 400px;
+}
+
+.ProjectsStepsTitleContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.ProjectsStepsDescriptionContainer {
+  display: flex;
+  justify-content: start;
+  flex-direction: column;
+  width: 400px;
+}
+
+.ProjectsStepsDescription {
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+}
+
+.ProjectsStepsValidation {
+  font-size: 16px;
+  font-weight: bold;
+  color: #fc6d36;
+}
