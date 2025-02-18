@@ -11,7 +11,7 @@ import {
 import Image from "next/image";
 import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import placeholderImage from "@/../public/images/cover-illustration.png";
+import placeholderImage from "../../../public/images/cover-illustration.png";
 import "./ProjectCard.css";
 
 interface ProjectCardProps {
