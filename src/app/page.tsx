@@ -5,8 +5,7 @@ import Hero from "../components/Hero/Hero";
 import MainValuesCards from "../components/MainValuesCards/MainValuesCards";
 import TeamPresentation from "../components/TeamPresentation/TeamPresentation";
 import Testimonials from "../components/Testimonials/Testimonials";
-import Image from "next/image";
-import purplesCircles from "../../public/img/purpulesCircles.webp";
+
 // import Projects from "@/components/Projects/Projects";
 
 import Expertises from "../components/Expertises/Expertises";
@@ -29,14 +28,7 @@ export default function Home() {
       <section className="sectionAdvantages">
         <AdvantagesCards />
       </section>
-      <section className="sectionMainValues">
-        <MainValuesCards />
-        <Image
-          className="backgroundCirclesImage"
-          src={purplesCircles}
-          alt="background design image"
-        />
-      </section>
+
       <section className="sectionExpertise">
         <h2>Our Expertise</h2>
         <p>
@@ -48,6 +40,9 @@ export default function Home() {
       <section className="sectionProjects">
         <h2>Our Projects</h2>
         <ProjectsClient />
+      </section>
+      <section className="sectionMainValues">
+        <MainValuesCards />
       </section>
       <section className="sectionTestimonials">
         <h2>Testimonials</h2>
