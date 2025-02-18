@@ -243,17 +243,57 @@
 }
 
 .testtets {
-  width: 100px;
-  height: 100px;
+  width: 128px;
+  height: 128px;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 3px solid #fc6d36;
   border-radius: 50%;
   position: relative;
+  padding: 32px;
 }
 
 .background-effect {
   transform-origin: center;
   will-change: transform, opacity;
+}
+
+.stackLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 128px;
+}
+
+.stackLine svg {
+  width: 64px;
+  height: 64px;
+}
+
+.stackContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 128px;
+}
+
+.sectionTeamStack {
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-left: 128px;
+  padding-right: 128px;
+  padding-bottom: 64px;
+}
+
+.sectionTeamStack h2 {
+  color: white;
+  font-size: 48px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  padding-bottom: 128px;
 }

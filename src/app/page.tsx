@@ -9,12 +9,16 @@ import Image from "next/image";
 import purplesCircles from "../../public/img/purpulesCircles.webp";
 // import Projects from "@/components/Projects/Projects";
 
-import { motion as m } from "framer-motion";
-import { FaQuoteLeft } from "react-icons/fa";
 import Expertises from "../components/Expertises/Expertises";
 import ProjectsClient from "../components/Projects/ProjectsClient";
-import Bubble from "../components/Bubble/Bubble";
 import UserForm from "../components/UserFrom/UserForm";
+import ReactSvg from "../../public/svg/ReactSvg";
+import NextSvg from "../../public/svg/NextSvg";
+import NodeSvg from "../../public/svg/NodeSvg";
+import ShopifySvg from "../../public/svg/ShopifySvg";
+import PostgreeSvg from "../../public/svg/PostgreeSvg";
+import StrapiSvg from "../../public/svg/StrapiSvg";
+import Bubble from "../components/Bubble/Bubble";
 
 export default function Home() {
   return (
@@ -53,13 +57,30 @@ export default function Home() {
         <h2>Team Presentation</h2>
         <TeamPresentation />
       </section>
-      <section className="sectionTeamPresentation">
+      <section className="sectionTeamStack">
         <h2>Our Stack</h2>
-        <Bubble>
-          <m.div className="testtets">
-            <FaQuoteLeft />
-          </m.div>
-        </Bubble>
+        <div className="stackContainer">
+          <div className="stackLine">
+            <Bubble>
+              <NextSvg />
+            </Bubble>
+            <Bubble>
+              <ReactSvg />
+            </Bubble>
+            <Bubble>
+              <StrapiSvg />
+            </Bubble>
+            <Bubble>
+              <NodeSvg />
+            </Bubble>
+            <Bubble>
+              <ShopifySvg />
+            </Bubble>
+            <Bubble>
+              <PostgreeSvg />
+            </Bubble>
+          </div>
+        </div>
       </section>
       <section className="sectionContact">
         <h2>Contact Us</h2>

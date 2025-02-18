@@ -2,8 +2,14 @@
 
 import { motion } from "framer-motion";
 import { ReactNode, useRef, useState } from "react";
+import { BubbleContext } from "../../context/BubbleContext";
 
-function Bubble({ children }: { children: ReactNode }) {
+interface BubbleProps {
+  children: ReactNode;
+  showBackground?: boolean;
+}
+
+function Bubble({ children, showBackground = false }: BubbleProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const [isHovered, setIsHovered] = useState(false);
@@ -38,52 +44,55 @@ function Bubble({ children }: { children: ReactNode }) {
   };
 
   return (
-    <motion.div
-      ref={containerRef}
-      style={{
-        position: "relative",
-        display: "inline-block",
-        cursor: "pointer",
-      }}
-      onMouseMove={handleMouseMove}
-      onMouseLeave={() => {
-        setPosition({ x: 0, y: 0 });
-        setIsHovered(false);
-      }}
-      onMouseEnter={handleMouseEnter}
-      animate={{ x: position.x, y: position.y }}
-      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-    >
-      {/* Background effect */}
+    <BubbleContext.Provider value={isHovered}>
       <motion.div
-        className="background-effect"
-        initial={{ scale: 0, opacity: 0, x: origin.x, y: origin.y }}
-        animate={{
-          scale: isHovered ? 1 : 0,
-          opacity: isHovered ? 1 : 0,
-          x: 0,
-          y: 0,
-        }}
-        transition={{
-          scale: { duration: 0.3 },
-          x: { type: "spring", stiffness: 300, damping: 20 },
-          y: { type: "spring", stiffness: 300, damping: 20 },
-        }}
+        ref={containerRef}
         style={{
-          position: "absolute",
-
-          backgroundColor: "#fc6d36",
-          borderRadius: "50%",
-          width: "100%",
-          height: "100%",
-          zIndex: 0,
-          pointerEvents: "none",
+          position: "relative",
+          display: "inline-block",
+          cursor: "pointer",
         }}
-      />
+        onMouseMove={handleMouseMove}
+        onMouseLeave={() => {
+          setPosition({ x: 0, y: 0 });
+          setIsHovered(false);
+        }}
+        onMouseEnter={handleMouseEnter}
+        animate={{ x: position.x, y: position.y }}
+        transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
+      >
+        {/* Background effect */}
+        {showBackground && (
+          <motion.div
+            className="background-effect"
+            initial={{ scale: 0, opacity: 0, x: origin.x, y: origin.y }}
+            animate={{
+              scale: isHovered ? 1 : 0,
+              opacity: isHovered ? 1 : 0,
+              x: 0,
+              y: 0,
+            }}
+            transition={{
+              scale: { duration: 0.3 },
+              x: { type: "spring", stiffness: 300, damping: 20 },
+              y: { type: "spring", stiffness: 300, damping: 20 },
+            }}
+            style={{
+              position: "absolute",
 
-      {/* Children wrapper */}
-      <div style={{ position: "relative", zIndex: 1 }}>{children}</div>
-    </motion.div>
+              backgroundColor: "#fc6d36",
+              borderRadius: "50%",
+              width: "100%",
+              height: "100%",
+              zIndex: 0,
+              pointerEvents: "none",
+            }}
+          />
+        )}
+
+        <div style={{ position: "relative", zIndex: 1 }}>{children}</div>
+      </motion.div>
+    </BubbleContext.Provider>
   );
 }
 
