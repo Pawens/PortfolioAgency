@@ -308,4 +308,16 @@ body {
   flex-direction: column;
   padding-left: 128px;
   padding-right: 128px;
+  padding-bottom: 128px;
+}
+
+.sectionProjectsSteps h2 {
+  color: white;
+  font-size: 48px;
+  font-weight: 600;
+  font-family: "Inter", sans-serif;
+  padding-bottom: 64px;
+  padding-top: 32px;
+  text-align: center;
+  text-transform: uppercase;
 }

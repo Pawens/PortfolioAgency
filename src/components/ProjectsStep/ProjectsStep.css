@@ -5,6 +5,11 @@
   padding-bottom: 32px;
   border-bottom: 1px solid #e0e0e0;
   flex-grow: 1;
+  transition: all 0.2s;
+}
+
+.ProjectsStepsCard:hover {
+  transform: scale(1.03);
 }
 
 .FirstProjectsStepsCard {
