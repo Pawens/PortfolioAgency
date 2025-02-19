@@ -18,6 +18,7 @@ import ShopifySvg from "../../public/svg/ShopifySvg";
 import PostgreeSvg from "../../public/svg/PostgreeSvg";
 import StrapiSvg from "../../public/svg/StrapiSvg";
 import Bubble from "../components/Bubble/Bubble";
+import ProjectsSteps from "../components/ProjectsSteps/ProjectsSteps";
 
 export default function Home() {
   return (
@@ -28,7 +29,13 @@ export default function Home() {
       <section className="sectionAdvantages">
         <AdvantagesCards />
       </section>
-
+      <section className="sectionMainValues">
+        <MainValuesCards />
+      </section>
+      <section className="sectionProjectsSteps">
+        <h2>How do we work ?</h2>
+        <ProjectsSteps />
+      </section>
       <section className="sectionExpertise">
         <h2>Our Expertise</h2>
         <p>
@@ -41,9 +48,7 @@ export default function Home() {
         <h2>Our Projects</h2>
         <ProjectsClient />
       </section>
-      <section className="sectionMainValues">
-        <MainValuesCards />
-      </section>
+
       <section className="sectionTestimonials">
         <h2>Testimonials</h2>
         <Testimonials />

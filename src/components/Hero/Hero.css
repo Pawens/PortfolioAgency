@@ -9,6 +9,7 @@
   flex-grow: 1;
   gap: 32px;
   text-align: center;
+  position: relative;
 }
 
 .hero h1 {
@@ -28,6 +29,28 @@
   color: #fc6d36;
   font-family: "Inter", sans-serif !important;
   font-weight: 800;
+}
+
+.devisBubble {
+  width: 128px;
+  height: 128px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px solid #fc6d36;
+  border-radius: 50%;
+  position: relative;
+  padding: 76px;
+  font-family: "Teko", sans-serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.testtest {
+  position: absolute;
+  top: -25px;
+  right: -150px;
 }
 
 @media (max-width: 1400px) {
