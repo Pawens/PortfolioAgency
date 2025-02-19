@@ -3,6 +3,9 @@
 import React from "react";
 import Button from "@mui/material/Button";
 import "./Hero.css";
+import Bubble from "../Bubble/Bubble";
+import Link from "next/link";
+import { m } from "framer-motion";
 
 function Hero() {
   return (
@@ -56,6 +59,13 @@ function Hero() {
       >
         Get Started
       </Button>
+      <div className="testtest">
+        <Bubble showBackground>
+          <m.div className="devisBubble">
+            <Link href="/contact">Obtenir un devis</Link>
+          </m.div>
+        </Bubble>
+      </div>
     </div>
   );
 }
