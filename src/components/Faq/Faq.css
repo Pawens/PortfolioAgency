@@ -1,0 +1,12 @@
+.faqCard {
+  background-color: black;
+  display: flex;
+  justify-content: space-between;
+  gap: 256px;
+}
+
+.faqTitle p {
+  color: white;
+  font-size: 20px;
+  font-weight: 600;
+}

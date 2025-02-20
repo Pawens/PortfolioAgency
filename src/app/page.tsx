@@ -19,6 +19,7 @@ import PostgreeSvg from "../../public/svg/PostgreeSvg";
 import StrapiSvg from "../../public/svg/StrapiSvg";
 import Bubble from "../components/Bubble/Bubble";
 import ProjectsSteps from "../components/ProjectsSteps/ProjectsSteps";
+import Faq from "../components/Faq/Faq";
 
 export default function Home() {
   return (
@@ -81,6 +82,9 @@ export default function Home() {
             </Bubble>
           </div>
         </div>
+      </section>
+      <section className="sectionFaq">
+        <Faq />
       </section>
       <section className="sectionContact">
         <h2>Contact Us</h2>
