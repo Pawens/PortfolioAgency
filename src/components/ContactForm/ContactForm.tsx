@@ -38,7 +38,7 @@ export default function ContactForm() {
         name: formData.name,
         email: formData.email,
         message: formData.message,
-        to_email: "adamsimon2002pro@gmail.com"
+        to_email: "adamsimon2002pro@gmail.com, romainparisot.pro@gmail.com"
       },
       process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
     )

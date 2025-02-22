@@ -70,7 +70,6 @@ function ProjectsClient() {
             imageUrl={project.Images?.[0]?.url ? `${BASE_URL}${project.Images[0].url}` : undefined}
             videoUrl={project.videoUrl}
             projectId={project.id.toString()}
-            tags={project.stacks || []}
             description={project.Description}
             features={project.features?.map((f) => f ? { id: f.id, Name: f.Name } : null).filter((f): f is Feature => f !== null) || []}
             stack={project.stacks || []}

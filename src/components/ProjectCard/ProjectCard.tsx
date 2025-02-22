@@ -3,7 +3,7 @@ import Image from "next/image";
 import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import ReactPlayer from "react-player";
-import placeholderImage from "@/../public/images/cover-illustration.png";
+import placeholderImage from "../../../public/images/cover-illustration.png";
 import "./ProjectCard.css";
 
 interface Tag {
@@ -32,7 +32,6 @@ interface ProjectCardProps {
   imageUrl?: string;
   videoUrl?: string | null;
   projectId: string;
-  tags: Tag[];
   description?: string;
   features?: Feature[];
   stack?: Stack[];
@@ -83,7 +82,14 @@ function ProjectCard({ name, imageUrl, videoUrl, description, features, stack, i
       </div>
 
       <Dialog open={open} onClose={handleClose} maxWidth="lg">
-        <DialogContent sx={{ backgroundColor: "#121212", color: "white", width: "80vw", height: "80vh" }}>
+        <DialogContent
+          sx={{
+            backgroundColor: "#121212",
+            color: "white",
+            width: "80vw",
+            height: "80vh",
+          }}
+        >
           <IconButton
             edge="start"
             color="inherit"
