@@ -9,6 +9,7 @@ import TeamPresentation from "@/components/TeamPresentation/TeamPresentation";
 import ZhangParisotLogo from "../../public/img/ZhangParisotLogoBlackNoBg.webp";
 // import Projects from "@/components/Projects/Projects";
 import ProjectsClient from "@/components/Projects/ProjectsClient";
+import ContactForm from "@/components/ContactForm/ContactForm";
 
 export default function Home() {
   return (
@@ -46,7 +47,7 @@ export default function Home() {
 
       <section className="sectionContact">
         <h2>Contact Us</h2>
-        {/* <UserForm /> */}
+        <ContactForm />
       </section>
     </div>
   );

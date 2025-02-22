@@ -5,9 +5,8 @@ import "./Projects.css";
 import { Button } from "@mui/material";
 import ProjectCard from "../ProjectCard/ProjectCard";
 
-const BASE_URL = "https://portfolioagencystrapi-production.up.railway.app";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
-// Define Types
 interface Stack {
   id: number;
   name: string;

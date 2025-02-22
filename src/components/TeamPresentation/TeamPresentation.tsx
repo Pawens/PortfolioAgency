@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import "./TeamPresentation.css";
 import Image from "next/image";
 
-const BASE_URL = "https://portfolioagencystrapi-production.up.railway.app";
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 // Define TypeScript Interfaces
 interface ProfilePicture {
