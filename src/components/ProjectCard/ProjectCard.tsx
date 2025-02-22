@@ -6,11 +6,6 @@ import ReactPlayer from "react-player";
 import placeholderImage from "../../../public/images/cover-illustration.png";
 import "./ProjectCard.css";
 
-interface Tag {
-  id: number;
-  name: string;
-}
-
 interface ImageData {
   id: number;
   name: string;
