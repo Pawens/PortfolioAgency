@@ -10,7 +10,6 @@ import Testimonials from "../components/Testimonials/Testimonials";
 
 import Expertises from "../components/Expertises/Expertises";
 import ProjectsClient from "../components/Projects/ProjectsClient";
-import UserForm from "../components/UserFrom/UserForm";
 import ReactSvg from "../../public/svg/ReactSvg";
 import NextSvg from "../../public/svg/NextSvg";
 import NodeSvg from "../../public/svg/NodeSvg";
@@ -19,6 +18,7 @@ import PostgreeSvg from "../../public/svg/PostgreeSvg";
 import StrapiSvg from "../../public/svg/StrapiSvg";
 import Bubble from "../components/Bubble/Bubble";
 import ProjectsSteps from "../components/ProjectsSteps/ProjectsSteps";
+import ContactForm from "../components/ContactForm/ContactForm";
 
 export default function Home() {
   return (
@@ -84,7 +84,7 @@ export default function Home() {
       </section>
       <section className="sectionContact">
         <h2>Contact Us</h2>
-        <UserForm />
+        <ContactForm />
       </section>
     </div>
   );

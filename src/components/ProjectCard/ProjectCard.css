@@ -56,3 +56,9 @@
   width: fit-content;
   z-index: 3;
 }
+
+.scrollableImageContainer {
+  max-height: 100%;
+  overflow-y: auto;
+}
+
