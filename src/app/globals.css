@@ -331,6 +331,28 @@ body {
   padding-bottom: 128px;
 }
 
+/* under 1000px pt128px */
+
+@media (max-width: 1000px) {
+  .sectionFaq {
+    padding-top: 128px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .sectionFaq {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+}
+
+@media (max-width: 800px) {
+  .sectionFaq {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
 .sectionFaq h2 {
   color: white;
   font-size: 60px;

@@ -17,3 +17,18 @@
   flex-direction: column;
   flex-grow: 1;
 }
+
+@media (max-width: 1200px) {
+  .faqContainer {
+    gap: 128px;
+  }
+}
+
+/* under 800 flex direction column */
+
+@media (max-width: 800px) {
+  .faqContainer {
+    flex-direction: column;
+    gap: 32px;
+  }
+}
