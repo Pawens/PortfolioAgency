@@ -19,73 +19,78 @@ import StrapiSvg from "../../public/svg/StrapiSvg";
 import Bubble from "../components/Bubble/Bubble";
 import ProjectsSteps from "../components/ProjectsSteps/ProjectsSteps";
 import ContactForm from "../components/ContactForm/ContactForm";
+import { FormProvider } from "../context/ConfirmationPopupContext";
+import ConfirmationPopup from "../components/ConfirmationPopup/ConfirmationPopup";
 
 export default function Home() {
   return (
     <div style={{ position: "relative" }}>
-      <section className="sectionHero">
-        <Hero />
-      </section>
-      <section className="sectionAdvantages">
-        <AdvantagesCards />
-      </section>
-      <section className="sectionMainValues">
-        <MainValuesCards />
-      </section>
-      <section className="sectionProjectsSteps">
-        <h2>How do we work ?</h2>
-        <ProjectsSteps />
-      </section>
-      <section className="sectionExpertise">
-        <h2>Our Expertise</h2>
-        <p>
-          Our team is specialized in 3 areas to cover all spectra of the web,
-          from design to maintenance!
-        </p>
-        <Expertises />
-      </section>
-      <section className="sectionProjects">
-        <h2>Our Projects</h2>
-        <ProjectsClient />
-      </section>
+      <FormProvider>
+        <ConfirmationPopup />
+        <section className="sectionHero">
+          <Hero />
+        </section>
+        <section className="sectionAdvantages">
+          <AdvantagesCards />
+        </section>
+        <section className="sectionMainValues">
+          <MainValuesCards />
+        </section>
+        <section className="sectionProjectsSteps">
+          <h2>How do we work ?</h2>
+          <ProjectsSteps />
+        </section>
+        <section className="sectionExpertise">
+          <h2>Our Expertise</h2>
+          <p>
+            Our team is specialized in 3 areas to cover all spectra of the web,
+            from design to maintenance!
+          </p>
+          <Expertises />
+        </section>
+        <section className="sectionProjects">
+          <h2>Our Projects</h2>
+          <ProjectsClient />
+        </section>
 
-      <section className="sectionTestimonials">
-        <h2>Testimonials</h2>
-        <Testimonials />
-      </section>
-      <section className="sectionTeamPresentation">
-        <h2>Team Presentation</h2>
-        <TeamPresentation />
-      </section>
-      <section className="sectionTeamStack">
-        <h2>Our Stack</h2>
-        <div className="stackContainer">
-          <div className="stackLine">
-            <Bubble>
-              <NextSvg />
-            </Bubble>
-            <Bubble>
-              <ReactSvg />
-            </Bubble>
-            <Bubble>
-              <StrapiSvg />
-            </Bubble>
-            <Bubble>
-              <NodeSvg />
-            </Bubble>
-            <Bubble>
-              <ShopifySvg />
-            </Bubble>
-            <Bubble>
-              <PostgreeSvg />
-            </Bubble>
+        <section className="sectionTestimonials">
+          <h2>Testimonials</h2>
+          <Testimonials />
+        </section>
+        <section className="sectionTeamPresentation">
+          <h2>Team Presentation</h2>
+          <TeamPresentation />
+        </section>
+        <section className="sectionTeamStack">
+          <h2>Our Stack</h2>
+          <div className="stackContainer">
+            <div className="stackLine">
+              <Bubble>
+                <NextSvg />
+              </Bubble>
+              <Bubble>
+                <ReactSvg />
+              </Bubble>
+              <Bubble>
+                <StrapiSvg />
+              </Bubble>
+              <Bubble>
+                <NodeSvg />
+              </Bubble>
+              <Bubble>
+                <ShopifySvg />
+              </Bubble>
+              <Bubble>
+                <PostgreeSvg />
+              </Bubble>
+            </div>
           </div>
-        </div>
-      </section>
-      <section className="sectionContact">
-        <h2>Contact Us</h2>
-        <ContactForm />
-      </section>
+        </section>
+        <section className="sectionContact">
+          <h2>Contact Us</h2>
+          <ContactForm />
+        </section>
+      </FormProvider>
     </div>
   );
 }

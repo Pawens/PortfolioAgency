@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import "./ContactForm.css";
 import emailjs from "emailjs-com";
+import { useForm } from "../../context/ConfirmationPopupContext";
 
 interface ContactFormState {
   name: string;
@@ -19,7 +20,8 @@ const initialState: ContactFormState = {
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<ContactFormState>(initialState);
-  const [submittedMessage, setSubmittedMessage] = useState("");
+  const { setSubmittedMessage, setShowPopupConfirmation, setShowPopupError } =
+    useForm();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -62,12 +64,16 @@ export default function ContactForm() {
         console.log("All emails sent successfully!");
         setSubmittedMessage("Message envoyé avec succès !");
         setFormData(initialState);
+        setShowPopupConfirmation(true);
+        setTimeout(() => setShowPopupConfirmation(false), 2000);
       })
       .catch((error) => {
         console.error("Failed to send email:", error);
         setSubmittedMessage(
           "Erreur lors de l'envoi du message. Veuillez réessayer."
         );
+        setShowPopupError(true);
+        setTimeout(() => setShowPopupError(false), 2000);
       });
   };
 
@@ -179,11 +185,6 @@ export default function ContactForm() {
       >
         Envoyer
       </Button>
-      {submittedMessage && (
-        <p aria-live="polite" className="messageError">
-          {submittedMessage}
-        </p>
-      )}
     </form>
   );
 }
