@@ -1,3 +1,7 @@
+.faqCardSummary {
+  gap: 16px;
+}
+
 .faqCardSummary span {
   color: white;
   text-transform: uppercase;
@@ -7,7 +11,5 @@
 
 .faqCardDetails {
   font-size: 16px !important;
-  font-weight: 500 !important;
-  font-family: "Teko", sans-serif !important;
-  padding-left: 32px;
+  font-weight: 600 !important;
 }

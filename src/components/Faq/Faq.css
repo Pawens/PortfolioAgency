@@ -1,12 +1,19 @@
-.faqCard {
+.faqContainer {
   background-color: black;
   display: flex;
   justify-content: space-between;
   gap: 256px;
+  flex-grow: 1;
 }
 
 .faqTitle p {
-  color: white;
+  color: #999999;
   font-size: 20px;
   font-weight: 600;
+}
+
+.faqContent {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
 }
