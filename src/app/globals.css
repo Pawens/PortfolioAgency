@@ -265,8 +265,9 @@ body {
 .stackLine {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
   gap: 128px;
+  flex-wrap: wrap;
 }
 
 .stackLine svg {
