@@ -5,7 +5,6 @@ import Image from "next/image";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
 import "./style.css";
-import { Project as PrismaProject } from "@prisma/client";
 
 interface Project extends PrismaProject {
   tags: string[];
