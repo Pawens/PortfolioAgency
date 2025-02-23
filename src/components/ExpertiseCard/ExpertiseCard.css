@@ -31,11 +31,22 @@
 @media (max-width: 1200px) {
   .expertiseCard {
     width: calc((100% - 16px) / 2);
+    min-height: unset;
   }
 }
 
 @media (max-width: 1000px) {
   .expertiseCard {
     width: 100%;
+  }
+}
+
+@media (max-width: 800px) {
+  .expertiseCard h3 {
+    font-size: 24px;
+  }
+  .expertiseCard svg {
+    width: 48px;
+    height: 48px;
   }
 }

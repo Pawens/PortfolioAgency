@@ -9,7 +9,7 @@ import { m } from "framer-motion";
 function Hero() {
   return (
     <div className="hero">
-      <p className="heroCredits">By ZHANG Tony & PARISOT Romain</p>
+      <p className="heroCredits">By PARISOT Romain & SIMON Adam</p>
       <h1>Get A Website Personalize Just For You</h1>
       <p>
         We craft stunning digital experiences that transform your vision into
