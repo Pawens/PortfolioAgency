@@ -65,6 +65,13 @@
 .projectPopupContainer {
   height: 100%;
 }
+.projectPopupCloseButton {
+  transition: all 0.2s;
+}
+
+.projectPopupCloseButton:hover {
+  transform: rotate(90deg);
+}
 
 @media (max-width: 900px) {
   .projectPopupContainer {

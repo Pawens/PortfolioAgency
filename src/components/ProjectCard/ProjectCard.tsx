@@ -72,13 +72,22 @@ function ProjectCard({
           alt={name}
           width={400}
           height={300}
-          style={{ objectFit: "cover", objectPosition: "top" }}
+          style={{
+            objectFit: "cover",
+            objectPosition: "top",
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            handleOpen();
+          }}
         />
       </div>
       <div className="projectContent">
         <h4>{name}</h4>
         <Button
-          onClick={handleOpen}
+          onClick={() => {
+            handleOpen();
+          }}
           sx={{
             width: "fit-content",
             backgroundColor: "transparent",
@@ -88,6 +97,29 @@ function ProjectCard({
             borderRadius: "100px",
             padding: "8px 16px",
             border: "2px solid #FC6D36",
+            position: "relative",
+            overflow: "hidden",
+            zIndex: 1,
+            fontFamily: "Inter, sans-serif",
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              background: "#FC6D36",
+              transform: "translateX(-100%)",
+              transition: "transform 0.5s ease",
+              zIndex: -1,
+            },
+            "&:hover": {
+              color: "white",
+              border: "2px solid #FC6D36",
+            },
+            "&:hover::after": {
+              transform: "translateX(0)",
+            },
           }}
           variant="outlined"
         >
@@ -111,6 +143,7 @@ function ProjectCard({
             onClick={handleClose}
             aria-label="close"
             sx={{ position: "absolute", top: 10, right: 10 }}
+            className="projectPopupCloseButton"
           >
             <CloseIcon />
           </IconButton>
