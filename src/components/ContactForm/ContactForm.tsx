@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { TextField, Button } from "@mui/material";
 import "./ContactForm.css";
-import emailjs from 'emailjs-com';
+import emailjs from "emailjs-com";
 
 interface ContactFormState {
   name: string;
@@ -30,31 +30,46 @@ export default function ContactForm() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-  
-    emailjs.send(
-      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+
+    // Send to Adam
+    const sendToAdam = emailjs.send(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID_ADAM!,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_ADAM!,
       {
         name: formData.name,
         email: formData.email,
         message: formData.message,
-        to_email: "adamsimon2002pro@gmail.com, romainparisot.pro@gmail.com"
+        to_email: "adamsimon2002pro@gmail.com",
       },
-      process.env.NEXT_PUBLIC_EMAILJS_USER_ID!
-    )
-    .then(
-      (result) => {
-        console.log('Email sent successfully!', result.text);
+      process.env.NEXT_PUBLIC_EMAILJS_USER_ID_ADAM!
+    );
+
+    // Send to Romain
+    const sendToRomain = emailjs.send(
+      process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID_ROMAIN!,
+      process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID_ROMAIN!,
+      {
+        name: formData.name,
+        email: formData.email,
+        message: formData.message,
+        to_email: "romainparisot.pro@gmail.com",
+      },
+      process.env.NEXT_PUBLIC_EMAILJS_USER_ID_ROMAIN!
+    );
+
+    Promise.all([sendToAdam, sendToRomain])
+      .then(() => {
+        console.log("All emails sent successfully!");
         setSubmittedMessage("Message envoyé avec succès !");
         setFormData(initialState);
-      },
-      (error) => {
-        console.error('Failed to send email:', error.text);
-      }
-    );
+      })
+      .catch((error) => {
+        console.error("Failed to send email:", error);
+        setSubmittedMessage(
+          "Erreur lors de l'envoi du message. Veuillez réessayer."
+        );
+      });
   };
-  
-  
 
   return (
     <form onSubmit={handleSubmit} className="contactForm">

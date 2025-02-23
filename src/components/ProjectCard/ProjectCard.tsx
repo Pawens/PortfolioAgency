@@ -1,9 +1,20 @@
-import { Button, Dialog, DialogContent, IconButton, Grid, Typography, List, ListItem, Chip, Card } from "@mui/material";
+import {
+  Button,
+  Dialog,
+  DialogContent,
+  IconButton,
+  Grid,
+  Typography,
+  List,
+  ListItem,
+  Chip,
+  Card,
+} from "@mui/material";
 import Image from "next/image";
 import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import ReactPlayer from "react-player";
-import placeholderImage from "../../../public/images/cover-illustration.png";
+import placeholderImage from "../../../public/img/placeholder.webp";
 import "./ProjectCard.css";
 
 interface Tag {
@@ -38,7 +49,15 @@ interface ProjectCardProps {
   images?: ImageData[];
 }
 
-function ProjectCard({ name, imageUrl, videoUrl, description, features, stack, images }: ProjectCardProps) {
+function ProjectCard({
+  name,
+  imageUrl,
+  videoUrl,
+  description,
+  features,
+  stack,
+  images,
+}: ProjectCardProps) {
   const [open, setOpen] = useState(false);
   const [activeImage, setActiveImage] = useState(imageUrl || placeholderImage);
 
@@ -100,12 +119,33 @@ function ProjectCard({ name, imageUrl, videoUrl, description, features, stack, i
             <CloseIcon />
           </IconButton>
           <Grid container spacing={4} sx={{ height: "100%" }}>
-            <Grid item xs={12} md={6} sx={{ height: "100%", display: "flex", justifyContent: "center", overflow: "hidden" }}>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                overflow: "hidden",
+              }}
+            >
               {videoUrl ? (
-                <ReactPlayer url={videoUrl} width="100%" height="100%" controls />
+                <ReactPlayer
+                  url={videoUrl}
+                  width="100%"
+                  height="100%"
+                  controls
+                />
               ) : (
                 <div
-                  style={{ width: "100%", height: "100%", overflowY: "auto", scrollbarWidth: "thin", scrollbarColor: "#FC6D36 #1e1e1e" }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    overflowY: "auto",
+                    scrollbarWidth: "thin",
+                    scrollbarColor: "#FC6D36 #1e1e1e",
+                  }}
                 >
                   <Image
                     src={activeImage}
@@ -117,16 +157,37 @@ function ProjectCard({ name, imageUrl, videoUrl, description, features, stack, i
                 </div>
               )}
             </Grid>
-            <Grid item xs={12} md={6} sx={{ height: "100%", display: "flex", flexDirection: "column", overflowY: "auto", maxHeight: "80vh", scrollbarWidth: "thin", scrollbarColor: "#FC6D36 #1e1e1e" }}>
-              <Typography variant="h4" gutterBottom>{name}</Typography>
-              <Typography variant="body1" gutterBottom>{description || "Aucune description disponible."}</Typography>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                overflowY: "auto",
+                maxHeight: "80vh",
+                scrollbarWidth: "thin",
+                scrollbarColor: "#FC6D36 #1e1e1e",
+              }}
+            >
+              <Typography variant="h4" gutterBottom>
+                {name}
+              </Typography>
+              <Typography variant="body1" gutterBottom>
+                {description || "Aucune description disponible."}
+              </Typography>
               {(features ?? []).length > 0 && (
                 <>
                   <Typography variant="h6">Features:</Typography>
                   <List>
-                    {features?.filter(f => f && f.Name).map((feature) => (
-                      <ListItem key={feature.id} sx={{ color: "white" }}>• {feature.Name}</ListItem>
-                    ))}
+                    {features
+                      ?.filter((f) => f && f.Name)
+                      .map((feature) => (
+                        <ListItem key={feature.id} sx={{ color: "white" }}>
+                          • {feature.Name}
+                        </ListItem>
+                      ))}
                   </List>
                 </>
               )}
@@ -134,9 +195,15 @@ function ProjectCard({ name, imageUrl, videoUrl, description, features, stack, i
               {(stack ?? []).length > 0 && (
                 <>
                   <Typography variant="h6">Stack:</Typography>
-                  <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
+                  <div
+                    style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}
+                  >
                     {stack?.map((tech) => (
-                      <Chip key={tech.id} label={tech.Name || "Unknown Stack"} sx={{ backgroundColor: "#FC6D36", color: "white" }} />
+                      <Chip
+                        key={tech.id}
+                        label={tech.Name || "Unknown Stack"}
+                        sx={{ backgroundColor: "#FC6D36", color: "white" }}
+                      />
                     ))}
                   </div>
                 </>
@@ -145,7 +212,18 @@ function ProjectCard({ name, imageUrl, videoUrl, description, features, stack, i
               {!videoUrl && (images ?? []).length > 0 && (
                 <Grid container spacing={2} sx={{ marginTop: "16px" }}>
                   {(images ?? []).map((img) => (
-                    <Grid item key={img.id} xs={6} md={4} lg={3} sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+                    <Grid
+                      item
+                      key={img.id}
+                      xs={6}
+                      md={4}
+                      lg={3}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
                       <Card
                         sx={{
                           backgroundColor: "#1e1e1e",
@@ -166,14 +244,17 @@ function ProjectCard({ name, imageUrl, videoUrl, description, features, stack, i
                           alt={img.name}
                           width={160}
                           height={100}
-                          style={{ objectFit: "cover", objectPosition: "top", display: "block" }}
+                          style={{
+                            objectFit: "cover",
+                            objectPosition: "top",
+                            display: "block",
+                          }}
                         />
                       </Card>
                     </Grid>
                   ))}
                 </Grid>
               )}
-
             </Grid>
           </Grid>
         </DialogContent>
