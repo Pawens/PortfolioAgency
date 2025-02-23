@@ -4,7 +4,6 @@ import React from "react";
 import Button from "@mui/material/Button";
 import "./Hero.css";
 import Bubble from "../Bubble/Bubble";
-import Link from "next/link";
 import { m } from "framer-motion";
 
 function Hero() {
@@ -19,7 +18,7 @@ function Hero() {
       </p>
       <Button
         onClick={() => {
-          document.querySelector(".sectionContact")?.scrollIntoView({
+          document.querySelector(".sectionProjects")?.scrollIntoView({
             behavior: "smooth",
           });
         }}
@@ -57,12 +56,20 @@ function Hero() {
         }}
         variant="outlined"
       >
-        Get Started
+        Nos réalisations
       </Button>
       <div className="testtest">
         <Bubble showBackground>
           <m.div className="devisBubble">
-            <Link href="/contact">Obtenir un devis</Link>
+            <button
+              onClick={() => {
+                document.querySelector(".sectionContact")?.scrollIntoView({
+                  behavior: "smooth",
+                });
+              }}
+            >
+              Obtenir un devis en 48h
+            </button>
           </m.div>
         </Bubble>
       </div>

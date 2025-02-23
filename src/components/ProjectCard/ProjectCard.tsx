@@ -7,28 +7,59 @@ import {
   Typography,
   List,
   ListItem,
+  Chip,
+  Card,
 } from "@mui/material";
 import Image from "next/image";
 import React, { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
-import placeholderImage from "../../../public/images/cover-illustration.png";
+import ReactPlayer from "react-player";
+import placeholderImage from "../../../public/img/placeholder.webp";
 import "./ProjectCard.css";
+
+interface Tag {
+  id: number;
+  name: string;
+}
+
+interface ImageData {
+  id: number;
+  name: string;
+  url: string;
+}
+
+interface Feature {
+  id: number;
+  Name?: string;
+}
+
+interface Stack {
+  id: number;
+  Name?: string;
+}
 
 interface ProjectCardProps {
   name: string;
   imageUrl?: string;
+  videoUrl?: string | null;
   projectId: string;
   description?: string;
-  features?: string[];
+  features?: Feature[];
+  stack?: Stack[];
+  images?: ImageData[];
 }
 
 function ProjectCard({
   name,
   imageUrl,
+  videoUrl,
   description,
   features,
+  stack,
+  images,
 }: ProjectCardProps) {
   const [open, setOpen] = useState(false);
+  const [activeImage, setActiveImage] = useState(imageUrl || placeholderImage);
 
   const handleOpen = () => {
     setOpen(true);
@@ -46,7 +77,7 @@ function ProjectCard({
           alt={name}
           width={400}
           height={300}
-          objectFit="cover"
+          style={{ objectFit: "cover", objectPosition: "top" }}
         />
       </div>
       <div className="projectContent">
@@ -62,29 +93,6 @@ function ProjectCard({
             borderRadius: "100px",
             padding: "8px 16px",
             border: "2px solid #FC6D36",
-            position: "relative",
-            overflow: "hidden",
-            zIndex: 1,
-            fontFamily: "Inter, sans-serif",
-            "&::after": {
-              content: '""',
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              background: "#FC6D36",
-              transform: "translateX(-100%)",
-              transition: "transform 0.5s ease",
-              zIndex: -1,
-            },
-            "&:hover": {
-              color: "white",
-              border: "2px solid #FC6D36",
-            },
-            "&:hover::after": {
-              transform: "translateX(0)",
-            },
           }}
           variant="outlined"
         >
@@ -110,45 +118,142 @@ function ProjectCard({
           >
             <CloseIcon />
           </IconButton>
-          <Grid
-            container
-            spacing={4}
-            alignItems="center"
-            justifyContent="center"
-            sx={{ height: "100%" }}
-          >
-            {/* Image à gauche */}
-            <Grid item xs={12} md={6}>
-              <Image
-                src={imageUrl || placeholderImage}
-                alt={name}
-                width={600}
-                height={400}
-                objectFit="cover"
-                style={{ borderRadius: "8px" }}
-              />
+          <Grid container spacing={4} sx={{ height: "100%" }}>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                overflow: "hidden",
+              }}
+            >
+              {videoUrl ? (
+                <ReactPlayer
+                  url={videoUrl}
+                  width="100%"
+                  height="100%"
+                  controls
+                />
+              ) : (
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    overflowY: "auto",
+                    scrollbarWidth: "thin",
+                    scrollbarColor: "#FC6D36 #1e1e1e",
+                  }}
+                >
+                  <Image
+                    src={activeImage}
+                    alt={name}
+                    width={400}
+                    height={1200}
+                    style={{ objectFit: "cover", display: "block" }}
+                  />
+                </div>
+              )}
             </Grid>
-            {/* Contenu à droite */}
-            <Grid item xs={12} md={6}>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                height: "100%",
+                display: "flex",
+                flexDirection: "column",
+                overflowY: "auto",
+                maxHeight: "80vh",
+                scrollbarWidth: "thin",
+                scrollbarColor: "#FC6D36 #1e1e1e",
+              }}
+            >
               <Typography variant="h4" gutterBottom>
                 {name}
               </Typography>
               <Typography variant="body1" gutterBottom>
                 {description || "Aucune description disponible."}
               </Typography>
-
-              {/* Features */}
-              {features && features.length > 0 && (
+              {(features ?? []).length > 0 && (
                 <>
                   <Typography variant="h6">Features:</Typography>
                   <List>
-                    {features.map((feature, index) => (
-                      <ListItem key={index} sx={{ color: "white" }}>
-                        • {feature}
-                      </ListItem>
-                    ))}
+                    {features
+                      ?.filter((f) => f && f.Name)
+                      .map((feature) => (
+                        <ListItem key={feature.id} sx={{ color: "white" }}>
+                          • {feature.Name}
+                        </ListItem>
+                      ))}
                   </List>
                 </>
+              )}
+
+              {(stack ?? []).length > 0 && (
+                <>
+                  <Typography variant="h6">Stack:</Typography>
+                  <div
+                    style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}
+                  >
+                    {stack?.map((tech) => (
+                      <Chip
+                        key={tech.id}
+                        label={tech.Name || "Unknown Stack"}
+                        sx={{ backgroundColor: "#FC6D36", color: "white" }}
+                      />
+                    ))}
+                  </div>
+                </>
+              )}
+
+              {!videoUrl && (images ?? []).length > 0 && (
+                <Grid container spacing={2} sx={{ marginTop: "16px" }}>
+                  {(images ?? []).map((img) => (
+                    <Grid
+                      item
+                      key={img.id}
+                      xs={6}
+                      md={4}
+                      lg={3}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Card
+                        sx={{
+                          backgroundColor: "#1e1e1e",
+                          border: "2px solid white",
+                          width: "160px",
+                          height: "100px",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          padding: "0",
+                          borderRadius: "0",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => setActiveImage(img.url)}
+                      >
+                        <Image
+                          src={img.url}
+                          alt={img.name}
+                          width={160}
+                          height={100}
+                          style={{
+                            objectFit: "cover",
+                            objectPosition: "top",
+                            display: "block",
+                          }}
+                        />
+                      </Card>
+                    </Grid>
+                  ))}
+                </Grid>
               )}
             </Grid>
           </Grid>
