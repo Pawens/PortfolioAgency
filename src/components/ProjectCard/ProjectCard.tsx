@@ -17,11 +17,6 @@ import ReactPlayer from "react-player";
 import placeholderImage from "../../../public/img/placeholder.webp";
 import "./ProjectCard.css";
 
-interface Tag {
-  id: number;
-  name: string;
-}
-
 interface ImageData {
   id: number;
   name: string;
@@ -77,13 +72,22 @@ function ProjectCard({
           alt={name}
           width={400}
           height={300}
-          style={{ objectFit: "cover", objectPosition: "top" }}
+          style={{
+            objectFit: "cover",
+            objectPosition: "top",
+            cursor: "pointer",
+          }}
+          onClick={() => {
+            handleOpen();
+          }}
         />
       </div>
       <div className="projectContent">
         <h4>{name}</h4>
         <Button
-          onClick={handleOpen}
+          onClick={() => {
+            handleOpen();
+          }}
           sx={{
             width: "fit-content",
             backgroundColor: "transparent",
@@ -93,6 +97,29 @@ function ProjectCard({
             borderRadius: "100px",
             padding: "8px 16px",
             border: "2px solid #FC6D36",
+            position: "relative",
+            overflow: "hidden",
+            zIndex: 1,
+            fontFamily: "Inter, sans-serif",
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              background: "#FC6D36",
+              transform: "translateX(-100%)",
+              transition: "transform 0.5s ease",
+              zIndex: -1,
+            },
+            "&:hover": {
+              color: "white",
+              border: "2px solid #FC6D36",
+            },
+            "&:hover::after": {
+              transform: "translateX(0)",
+            },
           }}
           variant="outlined"
         >
@@ -105,9 +132,10 @@ function ProjectCard({
           sx={{
             backgroundColor: "#121212",
             color: "white",
-            width: "80vw",
             height: "80vh",
+            padding: "64px",
           }}
+          className="projectPopupDialog"
         >
           <IconButton
             edge="start"
@@ -115,48 +143,11 @@ function ProjectCard({
             onClick={handleClose}
             aria-label="close"
             sx={{ position: "absolute", top: 10, right: 10 }}
+            className="projectPopupCloseButton"
           >
             <CloseIcon />
           </IconButton>
-          <Grid container spacing={4} sx={{ height: "100%" }}>
-            <Grid
-              item
-              xs={12}
-              md={6}
-              sx={{
-                height: "100%",
-                display: "flex",
-                justifyContent: "center",
-                overflow: "hidden",
-              }}
-            >
-              {videoUrl ? (
-                <ReactPlayer
-                  url={videoUrl}
-                  width="100%"
-                  height="100%"
-                  controls
-                />
-              ) : (
-                <div
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    overflowY: "auto",
-                    scrollbarWidth: "thin",
-                    scrollbarColor: "#FC6D36 #1e1e1e",
-                  }}
-                >
-                  <Image
-                    src={activeImage}
-                    alt={name}
-                    width={400}
-                    height={1200}
-                    style={{ objectFit: "cover", display: "block" }}
-                  />
-                </div>
-              )}
-            </Grid>
+          <Grid container spacing={4} className="projectPopupContainer">
             <Grid
               item
               xs={12}
@@ -170,6 +161,7 @@ function ProjectCard({
                 scrollbarWidth: "thin",
                 scrollbarColor: "#FC6D36 #1e1e1e",
               }}
+              className="projectPopupContent"
             >
               <Typography variant="h4" gutterBottom>
                 {name}
@@ -254,6 +246,44 @@ function ProjectCard({
                     </Grid>
                   ))}
                 </Grid>
+              )}
+            </Grid>
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                height: "100%",
+                display: "flex",
+                justifyContent: "center",
+                overflow: "hidden",
+              }}
+            >
+              {videoUrl ? (
+                <ReactPlayer
+                  url={videoUrl}
+                  width="100%"
+                  height="100%"
+                  controls
+                />
+              ) : (
+                <div
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    overflowY: "auto",
+                    scrollbarWidth: "thin",
+                    scrollbarColor: "#FC6D36 #1e1e1e",
+                  }}
+                >
+                  <Image
+                    src={activeImage}
+                    alt={name}
+                    width={400}
+                    height={1200}
+                    style={{ objectFit: "cover", display: "block" }}
+                  />
+                </div>
               )}
             </Grid>
           </Grid>

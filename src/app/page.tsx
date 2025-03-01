@@ -21,26 +21,27 @@ import ProjectsSteps from "../components/ProjectsSteps/ProjectsSteps";
 import ContactForm from "../components/ContactForm/ContactForm";
 import { FormProvider } from "../context/ConfirmationPopupContext";
 import ConfirmationPopup from "../components/ConfirmationPopup/ConfirmationPopup";
+import Faq from "../components/Faq/Faq";
 
 export default function Home() {
   return (
     <div style={{ position: "relative" }}>
       <FormProvider>
         <ConfirmationPopup />
-        <section className="sectionHero">
+        <section className="section sectionHero">
           <Hero />
         </section>
-        <section className="sectionAdvantages">
+        <section className="section sectionAdvantages">
           <AdvantagesCards />
         </section>
-        <section className="sectionMainValues">
+        <section className="section sectionMainValues">
           <MainValuesCards />
         </section>
-        <section className="sectionProjectsSteps">
+        <section className="section sectionProjectsSteps">
           <h2>How do we work ?</h2>
           <ProjectsSteps />
         </section>
-        <section className="sectionExpertise">
+        <section className="section sectionExpertise">
           <h2>Our Expertise</h2>
           <p>
             Our team is specialized in 3 areas to cover all spectra of the web,
@@ -48,20 +49,20 @@ export default function Home() {
           </p>
           <Expertises />
         </section>
-        <section className="sectionProjects">
+        <section className="section sectionFlex sectionProjects">
           <h2>Our Projects</h2>
           <ProjectsClient />
         </section>
 
-        <section className="sectionTestimonials">
+        <section className="section sectionFlex sectionTestimonials">
           <h2>Testimonials</h2>
           <Testimonials />
         </section>
-        <section className="sectionTeamPresentation">
+        <section className="section sectionFlex sectionTeamPresentation">
           <h2>Team Presentation</h2>
           <TeamPresentation />
         </section>
-        <section className="sectionTeamStack">
+        <section className="section sectionFlex sectionTeamStack">
           <h2>Our Stack</h2>
           <div className="stackContainer">
             <div className="stackLine">
@@ -86,7 +87,10 @@ export default function Home() {
             </div>
           </div>
         </section>
-        <section className="sectionContact">
+        <section className="section sectionFaq">
+          <Faq />
+        </section>
+        <section className="section sectionFlex sectionContact">
           <h2>Contact Us</h2>
           <ContactForm />
         </section>
