@@ -29,6 +29,7 @@ export default function LanguageSelector() {
         setShowFlags(!showFlags);
       }, 100);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedLanguage]);
 
   const changeLanguage = (language: string) => {
@@ -58,27 +59,27 @@ export default function LanguageSelector() {
       >
         {selectedLanguage === "fr" && (
           <div>
-            <FlagFrance alt="French flag" />
+            <FlagFrance aria-label="French flag" />
           </div>
         )}
         {selectedLanguage === "en" && (
           <div>
-            <FlagEngland alt="England flag" />
+            <FlagEngland aria-label="England flag" />
           </div>
         )}
         {selectedLanguage === "de" && (
           <div>
-            <FlagGermany alt="German flag" />
+            <FlagGermany aria-label="German flag" />
           </div>
         )}
         {selectedLanguage === "es" && (
           <div>
-            <FlagSpain alt="Spanish flag" />
+            <FlagSpain aria-label="Spanish flag" />
           </div>
         )}
         {selectedLanguage === "it" && (
           <div>
-            <FlagItaly alt="Italian flag" />
+            <FlagItaly aria-label="Italian flag" />
           </div>
         )}
       </button>
@@ -93,7 +94,7 @@ export default function LanguageSelector() {
           showFlags && selectedLanguage !== "fr" ? "" : styles.dpnone
         } MouseHoverEffect`}
       >
-        <FlagFrance alt="French flag" />
+        <FlagFrance aria-label="French flag" />
       </button>
       <button
         type="button"
@@ -106,7 +107,7 @@ export default function LanguageSelector() {
           showFlags && selectedLanguage !== "en" ? "" : styles.dpnone
         } MouseHoverEffect`}
       >
-        <FlagEngland alt="England flag" />
+        <FlagEngland aria-label="England flag" />
       </button>
       <button
         type="button"
@@ -119,7 +120,7 @@ export default function LanguageSelector() {
           showFlags && selectedLanguage !== "de" ? "" : styles.dpnone
         } MouseHoverEffect`}
       >
-        <FlagGermany alt="German flag" />
+        <FlagGermany aria-label="German flag" />
       </button>
       <button
         type="button"
@@ -132,7 +133,7 @@ export default function LanguageSelector() {
           showFlags && selectedLanguage !== "es" ? "" : styles.dpnone
         } MouseHoverEffect`}
       >
-        <FlagSpain alt="Spanish flag" />
+        <FlagSpain aria-label="Spanish flag" />
       </button>
       <button
         type="button"
@@ -145,7 +146,7 @@ export default function LanguageSelector() {
           showFlags && selectedLanguage !== "it" ? "" : styles.dpnone
         } MouseHoverEffect`}
       >
-        <FlagItaly alt="Italian flag" />
+        <FlagItaly aria-label="Italian flag" />
       </button>
     </div>
   );
