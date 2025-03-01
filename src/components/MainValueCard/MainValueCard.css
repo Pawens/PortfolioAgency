@@ -15,6 +15,13 @@
   transition: all 0.2s ease;
 }
 
+@media (max-width: 800px) {
+  .mainValueCard {
+    padding: 16px;
+    gap: 8px;
+  }
+}
+
 .mainValueCard:hover {
   transform: translate(0, -8px) scale(1.05);
 }
@@ -32,4 +39,16 @@
 .mainValueCard p {
   font-size: 18px;
   font-weight: 700;
+}
+@media (max-width: 800px) {
+  .mainValueCard h4 {
+    font-size: 24px;
+  }
+  .mainValueCard p {
+    font-size: 16px;
+  }
+  .mainValueCard svg {
+    width: 28px;
+    height: 28px;
+  }
 }

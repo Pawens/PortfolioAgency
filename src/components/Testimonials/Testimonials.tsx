@@ -2,54 +2,46 @@
 
 import React, { useState, useEffect } from "react";
 import Testimonial from "../Testimonial/Testimonial";
+import Button from "@mui/material/Button";
 import "./Testimonials.css";
+import Image from "next/image";
+import logoGoogle from "../../../public/img/LogoGoogle.webp";
 
-const testimonialData = [
-  {
-    description:
-      "Working with this team has been an absolute game-changer for our business. Their attention to detail and innovative approach to web development perfectly captured our brand's essence. The final product exceeded all our expectations.",
-    name: "John Smith",
-    role: "CEO at TechStart",
-  },
-  {
-    description:
-      "From the initial consultation to the final launch, their professionalism was outstanding. They didn't just build a website; they created a powerful digital platform that has significantly improved our online engagement and conversion rates.",
-    name: "Sarah Johnson",
-    role: "Marketing Director",
-  },
-  {
-    description:
-      "The team's technical expertise and creative vision transformed our outdated website into a modern, user-friendly platform. Their responsive design approach ensures our site looks and performs perfectly across all devices.",
-    name: "Mike Williams",
-    role: "Business Owner",
-  },
-  {
-    description:
-      "What impressed me most was their ability to understand our unique needs and translate them into effective solutions. Their collaborative approach made the entire development process smooth and enjoyable.",
-    name: "Emily Brown",
-    role: "Project Manager",
-  },
-  {
-    description:
-      "The level of support and dedication we received was exceptional. They went above and beyond to ensure every aspect of our website was optimized for performance and user experience. Truly a remarkable team.",
-    name: "David Chen",
-    role: "Startup Founder",
-  },
-  {
-    description:
-      "Their innovative approach to web design and development has given us a competitive edge in our industry. The custom solutions they implemented have streamlined our operations and boosted our online presence.",
-    name: "Lisa Anderson",
-    role: "Art Director",
-  },
-];
+const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+
+interface Testimonial {
+  FullName: string;
+  JobTitle: string;
+  Message: string;
+}
+
+const fetchTestimonial = async (): Promise<Testimonial[]> => {
+  try {
+    const response = await fetch(`${BASE_URL}/api/testimonials`);
+    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
+
+    const result = await response.json();
+    console.log("Fetched Testimonials:", result);
+
+    console.log("Fetched Testimonials:", result.data);
+
+    return result.data || [];
+  } catch (error) {
+    console.error("Error fetching testimonials:", error);
+    return [];
+  }
+};
 
 function Testimonials() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
   const [isClient, setIsClient] = useState(false);
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
 
   useEffect(() => {
+    fetchTestimonial().then(setTestimonials);
+
     setIsClient(true);
     setWindowWidth(window.innerWidth);
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -63,18 +55,20 @@ function Testimonials() {
     let interval: NodeJS.Timeout;
     const slidesPerView = windowWidth <= 1000 ? 1 : windowWidth <= 1200 ? 2 : 3;
 
-    if (!isPaused) {
+    if (!isPaused && testimonials.length > slidesPerView) {
       interval = setInterval(() => {
-        setCurrentIndex((prevIndex) =>
-          prevIndex === testimonialData.length - slidesPerView
-            ? 0
-            : prevIndex + 1
-        );
+        setCurrentIndex((prevIndex) => {
+          const nextIndex = prevIndex + 1;
+          if (nextIndex >= testimonials.length - slidesPerView + 1) {
+            return 0;
+          }
+          return nextIndex;
+        });
       }, 3000);
     }
 
     return () => clearInterval(interval);
-  }, [isPaused, windowWidth, isClient]);
+  }, [isPaused, windowWidth, isClient, testimonials.length]);
 
   if (!isClient) return null;
 
@@ -94,20 +88,78 @@ function Testimonials() {
           transition: "transform 1s ease-in-out",
         }}
       >
-        {testimonialData.map((testimonial, index) => (
+        {testimonials.map((testimonial, index) => (
           <div
             key={index}
             className="testimonialSlide"
             style={{ width: `${slideWidth}%` }}
           >
             <Testimonial
-              description={testimonial.description}
-              name={testimonial.name}
-              role={testimonial.role}
+              description={testimonial.Message}
+              name={testimonial.FullName}
+              role={testimonial.JobTitle}
             />
           </div>
         ))}
       </div>
+      <a
+        href="https://g.co/kgs/y9aYSmx"
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Voir les avis sur Google (ouvre dans un nouvel onglet)"
+        style={{
+          textDecoration: "none",
+        }}
+      >
+        <Button
+          sx={{
+            backgroundColor: "transparent",
+            color: "white",
+            fontSize: "16px",
+            fontWeight: "600 !important",
+            borderRadius: "100px",
+            padding: "12px 48px",
+            border: "2px solid #FC6D36",
+            position: "relative",
+            overflow: "hidden",
+            zIndex: 1,
+            display: "flex",
+            gap: "16px",
+            justifyContent: "center",
+            alignItems: "center",
+            fontFamily: "Inter, sans-serif",
+            "&::after": {
+              content: '""',
+              position: "absolute",
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
+              background: "#FC6D36",
+              transform: "translateX(-100%)",
+              transition: "transform 0.5s ease",
+              zIndex: -1,
+            },
+            "&:hover": {
+              color: "white",
+              border: "2px solid #FC6D36",
+            },
+            "&:hover::after": {
+              transform: "translateX(0)",
+            },
+          }}
+          variant="outlined"
+        >
+          Voir les avis sur Google
+          <Image
+            src={logoGoogle}
+            alt={`Logo Google`}
+            objectFit="cover"
+            width={32}
+            height={32}
+          />
+        </Button>
+      </a>
     </div>
   );
 }

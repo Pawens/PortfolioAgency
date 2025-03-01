@@ -1,0 +1,15 @@
+.faqCardSummary {
+  gap: 16px;
+}
+
+.faqCardSummary span {
+  color: white;
+  text-transform: uppercase;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+}
+
+.faqCardDetails {
+  font-size: 16px !important;
+  font-weight: 600 !important;
+}
