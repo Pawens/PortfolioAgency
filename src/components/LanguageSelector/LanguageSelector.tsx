@@ -1,13 +1,13 @@
-import { useEffect, useState } from 'react';
-import { useLanguage } from '../../../contexts/LanguageContext';
-import styles from './LanguageSelector.module.css';
+import { useEffect, useState } from "react";
+import { useLanguage } from "../../context/LanguageContext";
+import styles from "./LanguageSelector.module.css";
 
 // Flags
-import FlagEngland from './FlagSvg/FlagEngland';
-import FlagFrance from './FlagSvg/FlagFrance';
-import FlagGermany from './FlagSvg/FlagGermany';
-import FlagItaly from './FlagSvg/FlagItaly';
-import FlagSpain from './FlagSvg/FlagSpain';
+import FlagEngland from "./FlagSvg/FlagEngland";
+import FlagFrance from "./FlagSvg/FlagFrance";
+import FlagGermany from "./FlagSvg/FlagGermany";
+import FlagItaly from "./FlagSvg/FlagItaly";
+import FlagSpain from "./FlagSvg/FlagSpain";
 
 export default function LanguageSelector() {
   const { selectedLanguage, setSelectedLanguage } = useLanguage();
@@ -32,7 +32,7 @@ export default function LanguageSelector() {
   }, [selectedLanguage]);
 
   const changeLanguage = (language: string) => {
-    setSelectedLanguage(language as 'en' | 'fr' | 'de' | 'es' | 'it');
+    setSelectedLanguage(language as "en" | "fr" | "de" | "es" | "it");
   };
 
   return (
@@ -56,27 +56,27 @@ export default function LanguageSelector() {
         }}
         className="MouseHoverEffect"
       >
-        {selectedLanguage === 'fr' && (
+        {selectedLanguage === "fr" && (
           <div>
             <FlagFrance alt="French flag" />
           </div>
         )}
-        {selectedLanguage === 'en' && (
+        {selectedLanguage === "en" && (
           <div>
             <FlagEngland alt="England flag" />
           </div>
         )}
-        {selectedLanguage === 'de' && (
+        {selectedLanguage === "de" && (
           <div>
             <FlagGermany alt="German flag" />
           </div>
         )}
-        {selectedLanguage === 'es' && (
+        {selectedLanguage === "es" && (
           <div>
             <FlagSpain alt="Spanish flag" />
           </div>
         )}
-        {selectedLanguage === 'it' && (
+        {selectedLanguage === "it" && (
           <div>
             <FlagItaly alt="Italian flag" />
           </div>
@@ -84,45 +84,65 @@ export default function LanguageSelector() {
       </button>
       <button
         type="button"
-        onClick={() => changeLanguage('fr')}
-        className={`${showFlags2 && selectedLanguage !== 'fr' ? styles.flagDisplay : styles.flagHidden} ${
-          showFlags && selectedLanguage !== 'fr' ? '' : styles.dpnone
+        onClick={() => changeLanguage("fr")}
+        className={`${
+          showFlags2 && selectedLanguage !== "fr"
+            ? styles.flagDisplay
+            : styles.flagHidden
+        } ${
+          showFlags && selectedLanguage !== "fr" ? "" : styles.dpnone
         } MouseHoverEffect`}
       >
         <FlagFrance alt="French flag" />
       </button>
       <button
         type="button"
-        onClick={() => changeLanguage('en')}
-        className={`${showFlags2 && selectedLanguage !== 'en' ? styles.flagDisplay : styles.flagHidden} ${
-          showFlags && selectedLanguage !== 'en' ? '' : styles.dpnone
+        onClick={() => changeLanguage("en")}
+        className={`${
+          showFlags2 && selectedLanguage !== "en"
+            ? styles.flagDisplay
+            : styles.flagHidden
+        } ${
+          showFlags && selectedLanguage !== "en" ? "" : styles.dpnone
         } MouseHoverEffect`}
       >
         <FlagEngland alt="England flag" />
       </button>
       <button
         type="button"
-        onClick={() => changeLanguage('de')}
-        className={`${showFlags2 && selectedLanguage !== 'de' ? styles.flagDisplay : styles.flagHidden} ${
-          showFlags && selectedLanguage !== 'de' ? '' : styles.dpnone
+        onClick={() => changeLanguage("de")}
+        className={`${
+          showFlags2 && selectedLanguage !== "de"
+            ? styles.flagDisplay
+            : styles.flagHidden
+        } ${
+          showFlags && selectedLanguage !== "de" ? "" : styles.dpnone
         } MouseHoverEffect`}
       >
         <FlagGermany alt="German flag" />
       </button>
       <button
         type="button"
-        onClick={() => changeLanguage('es')}
-        className={`${showFlags2 && selectedLanguage !== 'es' ? styles.flagDisplay : styles.flagHidden} ${
-          showFlags && selectedLanguage !== 'es' ? '' : styles.dpnone
+        onClick={() => changeLanguage("es")}
+        className={`${
+          showFlags2 && selectedLanguage !== "es"
+            ? styles.flagDisplay
+            : styles.flagHidden
+        } ${
+          showFlags && selectedLanguage !== "es" ? "" : styles.dpnone
         } MouseHoverEffect`}
       >
         <FlagSpain alt="Spanish flag" />
       </button>
       <button
         type="button"
-        onClick={() => changeLanguage('it')}
-        className={`${showFlags2 && selectedLanguage !== 'it' ? styles.flagDisplay : styles.flagHidden} ${
-          showFlags && selectedLanguage !== 'it' ? '' : styles.dpnone
+        onClick={() => changeLanguage("it")}
+        className={`${
+          showFlags2 && selectedLanguage !== "it"
+            ? styles.flagDisplay
+            : styles.flagHidden
+        } ${
+          showFlags && selectedLanguage !== "it" ? "" : styles.dpnone
         } MouseHoverEffect`}
       >
         <FlagItaly alt="Italian flag" />
