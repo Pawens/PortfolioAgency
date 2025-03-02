@@ -2,6 +2,30 @@
 @tailwind components;
 @tailwind utilities;
 
+/* scroll bar style accross browsers */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #fc6d36 #1e1e1e;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #fc6d36;
+  border-radius: 10px;
+  border: 2px solid #1e1e1e;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #d45e31;
+}
+
 body {
   overflow-x: hidden;
   background-color: rgba(0, 0, 0, 0.95);
