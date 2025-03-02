@@ -1,3 +1,4 @@
+import { motion, useInView } from "framer-motion";
 import {
   Button,
   Dialog,
@@ -59,8 +60,14 @@ function ProjectCard({
   const [activeImage, setActiveImage] = useState(imageUrl || placeholderImage);
   const [isImageVisible, setIsImageVisible] = useState(false);
   const imageRef = useRef<HTMLDivElement>(null);
+  const cardRef = useRef(null);
 
   const { selectedLanguage } = useLanguage();
+
+  const isInView = useInView(cardRef, {
+    margin: "-30% 0px -30% 0px",
+    once: true,
+  });
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -82,7 +89,13 @@ function ProjectCard({
   const handleClose = () => setOpen(false);
 
   return (
-    <div className="projectCard">
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, y: 50 }}
+      animate={isInView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className="projectCard"
+    >
       <div className="imageContainer" ref={imageRef}>
         {isImageVisible && (
           <Image
@@ -277,7 +290,7 @@ function ProjectCard({
           </Grid>
         </DialogContent>
       </Dialog>
-    </div>
+    </motion.div>
   );
 }
 

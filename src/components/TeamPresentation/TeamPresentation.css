@@ -6,6 +6,7 @@
   padding-right: 128px;
   color: white;
   font-family: "Inter", sans-serif;
+  z-index: 3;
 }
 
 .teamPresentationMember {

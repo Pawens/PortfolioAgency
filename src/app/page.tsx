@@ -24,6 +24,16 @@ import { useRef } from "react";
 import LanguageSelector from "@/components/LanguageSelector/LanguageSelector";
 import { useLanguage } from "@/context/LanguageContext";
 import translations from "../../public/translation";
+import { motion } from "framer-motion";
+
+const bubbles = [
+  { key: "next", component: <NextSvg /> },
+  { key: "react", component: <ReactSvg /> },
+  { key: "strapi", component: <StrapiSvg /> },
+  { key: "node", component: <NodeSvg /> },
+  { key: "shopify", component: <ShopifySvg /> },
+  { key: "postgree", component: <PostgreeSvg /> },
+];
 
 export default function Home() {
   const section1Ref = useRef(null);
@@ -37,6 +47,41 @@ export default function Home() {
   const section9Ref = useRef(null);
 
   const { selectedLanguage } = useLanguage();
+
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  };
+
+  const bubbleVariants = {
+    hidden: (index: number) => {
+      const directions = ["left", "right", "top", "bottom"];
+      const direction = directions[index % directions.length];
+
+      switch (direction) {
+        case "left":
+          return { opacity: 0, x: -100 };
+        case "right":
+          return { opacity: 0, x: 100 };
+        case "top":
+          return { opacity: 0, y: -100 };
+        case "bottom":
+          return { opacity: 0, y: 100 };
+        default:
+          return { opacity: 0, y: 100 };
+      }
+    },
+    visible: {
+      opacity: 1,
+      x: 0,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
+  };
 
   return (
     <div style={{ position: "relative" }}>
@@ -95,7 +140,7 @@ export default function Home() {
             sectionRef={section9Ref}
             scrollSpeedFactor={100}
           />
-          <h2>How do we work ?</h2>
+          <h2>{translations[selectedLanguage].projectsSteps.title}</h2>
           <ProjectsSteps />
         </section>
         <section className="section sectionExpertise">
@@ -190,30 +235,35 @@ export default function Home() {
             sectionRef={section6Ref}
             scrollSpeedFactor={100}
           />
-          <h2>{translations[selectedLanguage].stack.title}</h2>
-          <div className="stackContainer">
-            <div className="stackLine">
-              <Bubble>
-                <NextSvg />
-              </Bubble>
-              <Bubble>
-                <ReactSvg />
-              </Bubble>
-              <Bubble>
-                <StrapiSvg />
-              </Bubble>
-              <Bubble>
-                <NodeSvg />
-              </Bubble>
-              <Bubble>
-                <ShopifySvg />
-              </Bubble>
-              <Bubble>
-                <PostgreeSvg />
-              </Bubble>
-            </div>
-          </div>
+          <motion.h2
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            {translations[selectedLanguage].stack.title}
+          </motion.h2>
+
+          <motion.div
+            className="stackContainer"
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.5 }}
+          >
+            <motion.div className="stackLine" variants={containerVariants}>
+              {bubbles.map((item, index) => (
+                <motion.div
+                  key={item.key}
+                  variants={bubbleVariants}
+                  custom={index}
+                >
+                  <Bubble>{item.component}</Bubble>
+                </motion.div>
+              ))}
+            </motion.div>
+          </motion.div>
         </section>
+
         <section className="section sectionFaq" ref={section7Ref}>
           <BackgroundCircles
             numCircles={1}
