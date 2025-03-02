@@ -9,6 +9,7 @@ import {
   List,
   ListItem,
   Chip,
+  Card,
 } from "@mui/material";
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
@@ -54,6 +55,7 @@ function ProjectCard({
   description,
   features,
   stack,
+  images,
   websiteUrl,
 }: ProjectCardProps) {
   const [open, setOpen] = useState(false);
@@ -194,13 +196,16 @@ function ProjectCard({
         )}
       </div>
 
-      <Dialog open={open} onClose={handleClose} maxWidth="lg">
+      <Dialog open={open} onClose={handleClose} maxWidth={false}>
         <DialogContent
           sx={{
             backgroundColor: "#121212",
             color: "white",
-            height: "80vh",
             padding: "64px",
+            overflowY: {
+              md: "hidden",
+              xs: "auto",
+            },
           }}
           className="projectPopupDialog"
         >
@@ -215,7 +220,20 @@ function ProjectCard({
             <CloseIcon />
           </IconButton>
           <Grid container spacing={4} className="projectPopupContainer">
-            <Grid item xs={12} md={6} className="projectPopupContent">
+            {/* left part */}
+            <Grid
+              item
+              xs={12}
+              md={6}
+              sx={{
+                overflowY: {
+                  xs: "hidden",
+                  md: "auto",
+                },
+                maxHeight: "calc(100vh - 128px)",
+              }}
+              className="projectPopupContent"
+            >
               <Typography variant="h4" gutterBottom>
                 {name}
               </Typography>
@@ -240,9 +258,7 @@ function ProjectCard({
 
               {(stack ?? []).length > 0 && (
                 <>
-                  <Typography variant="h6">
-                    {translations[selectedLanguage].projects.stack}
-                  </Typography>
+                  <Typography variant="h6">Stack:</Typography>
                   <div
                     style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}
                   >
@@ -256,16 +272,72 @@ function ProjectCard({
                   </div>
                 </>
               )}
+
+              {!videoUrl && (images ?? []).length > 0 && (
+                <Grid container spacing={2} sx={{ marginTop: "16px" }}>
+                  {(images ?? []).map((img) => (
+                    <Grid
+                      item
+                      key={img.id}
+                      xs={6}
+                      md={4}
+                      lg={3}
+                      sx={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Card
+                        sx={{
+                          backgroundColor: "#1e1e1e",
+                          border: "2px solid white",
+                          width: "160px",
+                          height: "100px",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          padding: "0",
+                          borderRadius: "0",
+                          cursor: "pointer",
+                        }}
+                        onClick={() => setActiveImage(img.url)}
+                      >
+                        <Image
+                          src={img.url}
+                          alt={img.name}
+                          width={160}
+                          height={100}
+                          style={{
+                            objectFit: "cover",
+                            objectPosition: "top",
+                            display: "block",
+                          }}
+                        />
+                      </Card>
+                    </Grid>
+                  ))}
+                </Grid>
+              )}
             </Grid>
 
+            {/* right part */}
             <Grid
               item
               xs={12}
               md={6}
               sx={{
                 display: "flex",
-                justifyContent: "center",
-                overflow: "hidden",
+                justifyContent: "start",
+                flexDirection: "column",
+                overflowY: {
+                  xs: "hidden",
+                  md: "auto",
+                },
+                maxHeight: "calc(100vh - 128px)",
+                minHeight: 0,
+                alignItems: "center",
+                width: "100%",
               }}
             >
               {videoUrl ? (
@@ -279,10 +351,13 @@ function ProjectCard({
                 <Image
                   src={activeImage}
                   alt={name}
-                  width={400}
-                  height={300}
+                  width={640}
+                  height={480}
                   loading="lazy"
-                  style={{ objectFit: "cover", display: "block" }}
+                  style={{
+                    objectFit: "contain",
+                    display: "block",
+                  }}
                   onError={() => setActiveImage(placeholderImage)}
                 />
               )}
