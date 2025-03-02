@@ -26,7 +26,7 @@ const Accordion = styled((props: AccordionProps) => (
   color: "white",
   borderTop: "1px solid rgba(255, 255, 255, .125)",
   padding: "16px",
-  backgroundColor: "black",
+  backgroundColor: "transparent",
 
   "&::before": {
     display: "none",
@@ -39,7 +39,7 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
     {...props}
   />
 ))(({ theme }) => ({
-  backgroundColor: "black",
+  backgroundColor: "transparent",
   flexDirection: "row-reverse",
   [`& .${accordionSummaryClasses.expandIconWrapper}.${accordionSummaryClasses.expanded}`]:
     {
@@ -48,9 +48,6 @@ const AccordionSummary = styled((props: AccordionSummaryProps) => (
   [`& .${accordionSummaryClasses.content}`]: {
     marginLeft: theme.spacing(1),
   },
-  ...theme.applyStyles("dark", {
-    backgroundColor: "rgba(255, 255, 255, .05)",
-  }),
 }));
 
 const AccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
