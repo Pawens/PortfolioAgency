@@ -20,7 +20,7 @@ interface LanguageProviderProps {
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   children,
 }) => {
-  const [selectedLanguage, setSelectedLanguage] = useState<LanguageKeys>("en");
+  const [selectedLanguage, setSelectedLanguage] = useState<LanguageKeys>("fr");
 
   return (
     <LanguageContext.Provider value={{ selectedLanguage, setSelectedLanguage }}>
