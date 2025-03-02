@@ -84,6 +84,10 @@
     margin-left: 64px;
     margin-right: 64px;
   }
+  .testtest {
+    top: -123px;
+    right: 149px;
+  }
 }
 
 @media (max-width: 600px) {
