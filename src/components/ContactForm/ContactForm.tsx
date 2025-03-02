@@ -1,7 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { TextField, Button } from "@mui/material";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import "./ContactForm.css";
 import emailjs from "emailjs-com";
 import { useForm } from "../../context/ConfirmationPopupContext";

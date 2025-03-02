@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
+import React, { useRef } from "react";
+import useSWR from "swr";
 import { motion, useInView } from "framer-motion";
 import "./TeamPresentation.css";
 import Image from "next/image";
@@ -21,14 +22,13 @@ interface TeamMember {
   ProfilePicture?: ProfilePicture;
 }
 
-const fetchMembers = async (): Promise<TeamMember[]> => {
+// Fetcher function for SWR
+const fetcher = async (url: string): Promise<TeamMember[]> => {
   try {
-    const response = await fetch(`${BASE_URL}/api/team-members?populate=*`);
+    const response = await fetch(url);
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
     const result = await response.json();
-    console.log("Fetched Team Members:", result);
-
     return result.data || [];
   } catch (error) {
     console.error("Error fetching team members:", error);
@@ -37,12 +37,18 @@ const fetchMembers = async (): Promise<TeamMember[]> => {
 };
 
 const TeamPresentation: React.FC = () => {
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
   const { selectedLanguage } = useLanguage();
 
-  useEffect(() => {
-    fetchMembers().then(setTeamMembers);
-  }, []);
+  // Fetch team members with SWR, caching results for 24 hours
+  const { data: teamMembers = [] } = useSWR(
+    `${BASE_URL}/api/team-members?populate=*`,
+    fetcher,
+    {
+      dedupingInterval: 86400000, // Cache for 24 hours
+      revalidateOnFocus: false, // Prevent refetching when tab switches
+      revalidateIfStale: false, // Do not revalidate if data is cached
+    }
+  );
 
   const containerRef = useRef(null);
   const isInView = useInView(containerRef, {

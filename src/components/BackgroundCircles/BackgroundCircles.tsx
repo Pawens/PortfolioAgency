@@ -37,11 +37,6 @@ const BackgroundCircles: React.FC<AnimatedBackgroundProps> = ({
         const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
         setIsInView(isVisible);
         setScrollOffset(window.scrollY - sectionRef.current.offsetTop);
-
-        console.log("Section Top:", rect.top);
-        console.log("Section Bottom:", rect.bottom);
-        console.log("Window Height:", window.innerHeight);
-        console.log("isInView:", isVisible);
       }
     };
 
@@ -50,10 +45,6 @@ const BackgroundCircles: React.FC<AnimatedBackgroundProps> = ({
 
     return () => window.removeEventListener("scroll", handleScroll);
   }, [sectionRef]);
-
-  useEffect(() => {
-    console.log("Scroll Offset:", scrollOffset);
-  }, [scrollOffset]);
 
   const circles = useMemo(() => {
     const allSides: ("left" | "right" | "top" | "bottom")[] = [

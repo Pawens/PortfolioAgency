@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from "react";
+"use client";
+
+import React from "react";
+import useSWR from "swr";
 import "./MainValuesCards.css";
 import MainValueCard from "../MainValueCard/MainValueCard";
 import { useLanguage } from "@/context/LanguageContext";
@@ -14,32 +17,29 @@ interface MainValueCardProps {
   iconName: IconType;
 }
 
-const fetchMainValues = async (lang: string) => {
-  try {
-    const response = await fetch(`${BASE_URL}/api/key-values?locale=${lang}`);
-    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-    const result = await response.json();
-    console.log("Fetched key values:", result);
-    return result.data || [];
-  } catch (error) {
-    console.error("Error fetching kay values:", error);
-    return [];
-  }
-};
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 function MainValuesCards() {
-  const [values, setValues] = useState([]);
   const { selectedLanguage } = useLanguage();
 
-  useEffect(() => {
-    if (selectedLanguage) {
-      fetchMainValues(selectedLanguage).then(setValues);
+  const { data, error } = useSWR(
+    selectedLanguage
+      ? `${BASE_URL}/api/key-values?locale=${selectedLanguage}`
+      : null,
+    fetcher,
+    {
+      dedupingInterval: 86400000, // Cache data for 24 hours
+      revalidateOnFocus: false, // Prevent refetch when switching tabs
+      revalidateIfStale: false, // Do not revalidate if data is in cache
     }
-  }, [selectedLanguage]);
+  );
+
+  if (error) return <p>Error loading data</p>;
+  if (!data) return <p>Loading...</p>;
 
   return (
     <div className="mainValuesCards">
-      {values.map((value: MainValueCardProps) => (
+      {data.data?.map((value: MainValueCardProps) => (
         <MainValueCard
           key={value.id}
           label={value.Label}

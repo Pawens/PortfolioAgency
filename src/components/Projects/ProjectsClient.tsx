@@ -1,8 +1,9 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
+import useSWR from "swr";
 import "./Projects.css";
-import { Button } from "@mui/material";
+import Button from "@mui/material/Button";
 import ProjectCard from "../ProjectCard/ProjectCard";
 import { MutatingDots } from "react-loader-spinner";
 import { useLanguage } from "@/context/LanguageContext";
@@ -37,17 +38,13 @@ interface Project {
   websiteUrl?: string;
 }
 
-const fetchProjects = async (lang: string): Promise<Project[]> => {
+// Fetcher function for SWR
+const fetcher = async (url: string): Promise<Project[]> => {
   try {
-    const response = await fetch(
-      `${BASE_URL}/api/projects?populate=*&locale=${lang}`
-    );
+    const response = await fetch(url);
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
 
     const result = await response.json();
-
-    console.log("Fetched Projects:", result.data);
-
     return result.data || [];
   } catch (error) {
     console.error("Error fetching projects:", error);
@@ -56,21 +53,21 @@ const fetchProjects = async (lang: string): Promise<Project[]> => {
 };
 
 function ProjectsClient() {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { selectedLanguage } = useLanguage();
   const [visibleCount, setVisibleCount] = useState<number>(2);
 
-  const { selectedLanguage } = useLanguage();
-
-  useEffect(() => {
-    if (selectedLanguage) {
-      setLoading(true);
-      fetchProjects(selectedLanguage).then((data) => {
-        setProjects(data);
-        setLoading(false);
-      });
+  // Fetch projects with SWR (caching for 24 hours)
+  const { data: projects = [], isLoading } = useSWR(
+    selectedLanguage
+      ? `${BASE_URL}/api/projects?populate=*&locale=${selectedLanguage}`
+      : null,
+    fetcher,
+    {
+      dedupingInterval: 86400000, // Cache for 24 hours
+      revalidateOnFocus: false, // Prevent unnecessary re-fetching on tab focus
+      revalidateIfStale: false, // Do not refetch if data is cached
     }
-  }, [selectedLanguage]);
+  );
 
   const handleShowMore = () => {
     setVisibleCount((prev) => Math.min(prev + 2, projects.length));
@@ -79,7 +76,7 @@ function ProjectsClient() {
   return (
     <div className="projectsContainer">
       <div className="projectsGrid">
-        {loading
+        {isLoading
           ? Array.from({ length: visibleCount }).map((_, index) => (
               <div key={index} className="projectCardLoader">
                 <MutatingDots
@@ -90,8 +87,6 @@ function ProjectsClient() {
                   secondaryColor="#fc6e36"
                   radius="12.5"
                   ariaLabel="mutating-dots-loading"
-                  wrapperStyle={{}}
-                  wrapperClass=""
                 />
               </div>
             ))
@@ -120,6 +115,7 @@ function ProjectsClient() {
               />
             ))}
       </div>
+
       {visibleCount < projects.length && (
         <Button
           onClick={handleShowMore}

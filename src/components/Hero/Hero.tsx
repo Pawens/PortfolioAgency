@@ -24,16 +24,16 @@ function Hero() {
         className="heroCredits"
         initial={{ opacity: 0, y: -50 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       >
         {translations[selectedLanguage].hero.by} PARISOT Romain & SIMON Adam
       </motion.p>
 
       <motion.h1
         ref={titleRef}
-        initial={{ opacity: 0, y: 50 }}
-        animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1, ease: "easeOut" }}
+        initial={{ opacity: 1 }}
+        animate={isInView ? { opacity: 1 } : {}}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       >
         {translations[selectedLanguage].hero.titleH1}
       </motion.h1>
@@ -41,7 +41,7 @@ function Hero() {
       <motion.p
         initial={{ opacity: 0, y: 30 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 1, ease: "easeOut" }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       >
         {translations[selectedLanguage].hero.descriptionHero}
       </motion.p>
@@ -49,7 +49,7 @@ function Hero() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
       >
         <Button
           onClick={() => {
@@ -98,7 +98,7 @@ function Hero() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.8, ease: "easeOut" }}
+        transition={{ duration: 0.3, ease: "easeOut" }}
         className="testtest"
       >
         <Bubble showBackground>

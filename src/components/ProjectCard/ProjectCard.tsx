@@ -1,16 +1,14 @@
 import { motion, useInView } from "framer-motion";
-import {
-  Button,
-  Dialog,
-  DialogContent,
-  IconButton,
-  Grid,
-  Typography,
-  List,
-  ListItem,
-  Chip,
-  Card,
-} from "@mui/material";
+import Button from "@mui/material/Button";
+import Dialog from "@mui/material/Dialog";
+import DialogContent from "@mui/material/DialogContent";
+import IconButton from "@mui/material/IconButton";
+import Grid from "@mui/material/Grid";
+import Typography from "@mui/material/Typography";
+import List from "@mui/material/List";
+import ListItem from "@mui/material/ListItem";
+import Chip from "@mui/material/Chip";
+import Card from "@mui/material/Card";
 import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
 import CloseIcon from "@mui/icons-material/Close";

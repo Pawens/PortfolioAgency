@@ -1,7 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { TextField, Button } from "@mui/material";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
 import "./UserForm.css";
 
 const initialState = {

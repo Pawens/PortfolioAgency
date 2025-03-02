@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import useSWR from "swr";
 import Testimonial from "../Testimonial/Testimonial";
 import Button from "@mui/material/Button";
 import "./Testimonials.css";
@@ -17,12 +18,12 @@ interface Testimonial {
   Message: string;
 }
 
-const fetchTestimonial = async (lang: string): Promise<Testimonial[]> => {
+// Fetcher function for SWR
+const fetcher = async (url: string): Promise<Testimonial[]> => {
   try {
-    const response = await fetch(`${BASE_URL}/api/testimonials?locale=${lang}`);
+    const response = await fetch(url);
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
     const result = await response.json();
-    console.log("Fetched Testimonials:", result);
     return result.data || [];
   } catch (error) {
     console.error("Error fetching testimonials:", error);
@@ -35,15 +36,21 @@ function Testimonials() {
   const [isPaused, setIsPaused] = useState(false);
   const [windowWidth, setWindowWidth] = useState(0);
   const [isClient, setIsClient] = useState(false);
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
 
   const { selectedLanguage } = useLanguage();
 
-  useEffect(() => {
-    if (selectedLanguage) {
-      fetchTestimonial(selectedLanguage).then(setTestimonials);
+  // Fetch testimonials with SWR, caching results for 24 hours
+  const { data: testimonials = [] } = useSWR(
+    selectedLanguage
+      ? `${BASE_URL}/api/testimonials?locale=${selectedLanguage}`
+      : null,
+    fetcher,
+    {
+      dedupingInterval: 86400000, // Cache for 24 hours
+      revalidateOnFocus: false, // Prevent refetching when tab switches
+      revalidateIfStale: false, // Do not revalidate if data is cached
     }
-  }, [selectedLanguage]);
+  );
 
   useEffect(() => {
     setIsClient(true);
@@ -63,10 +70,9 @@ function Testimonials() {
       interval = setInterval(() => {
         setCurrentIndex((prevIndex) => {
           const nextIndex = prevIndex + 1;
-          if (nextIndex >= testimonials.length - slidesPerView + 1) {
-            return 0;
-          }
-          return nextIndex;
+          return nextIndex >= testimonials.length - slidesPerView + 1
+            ? 0
+            : nextIndex;
         });
       }, 3000);
     }
@@ -111,9 +117,7 @@ function Testimonials() {
         target="_blank"
         rel="noopener noreferrer"
         aria-label="Voir les avis sur Google (ouvre dans un nouvel onglet)"
-        style={{
-          textDecoration: "none",
-        }}
+        style={{ textDecoration: "none" }}
       >
         <Button
           sx={{

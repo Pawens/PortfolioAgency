@@ -79,7 +79,7 @@ export default function Home() {
       opacity: 1,
       x: 0,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" },
+      transition: { duration: 0.3, ease: "easeOut" },
     },
   };
 
@@ -238,7 +238,7 @@ export default function Home() {
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.3 }}
             viewport={{ once: true, amount: 0.5 }}
           >
             {translations[selectedLanguage].stack.title}
