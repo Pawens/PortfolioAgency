@@ -1,73 +1,63 @@
 import React from "react";
 import ProjectsStep from "../ProjectsStep/ProjectsStep";
 import "./ProjectsSteps.css";
+import { useLanguage } from "@/context/LanguageContext";
+import translations from "../../../public/translation";
 
 function ProjectsSteps() {
+  const { selectedLanguage } = useLanguage();
+
   return (
     <div className="ProjectsStepsContainer">
       <ProjectsStep
         index={"01."}
-        title="Prise de Contact"
-        descriptions={[
-          "+ Mise en contexte par rapport au marché.",
-          "+ Analyse des besoins.",
-          "+ Définnition des objectifs.",
-        ]}
+        title={translations[selectedLanguage].projectsSteps.steps1.title}
+        descriptions={
+          translations[selectedLanguage].projectsSteps.steps1.description
+        }
         first
       />
       <ProjectsStep
         index={"02."}
-        title="Évaluation & Conceptualisation"
-        descriptions={[
-          "+ Arboressance des pages.",
-          "+ Formalisation des fonctionalité attendu.",
-          "+ Présentation du devis.",
-        ]}
+        title={translations[selectedLanguage].projectsSteps.steps2.title}
+        descriptions={
+          translations[selectedLanguage].projectsSteps.steps2.description
+        }
       />
       <ProjectsStep
         index={"03."}
-        title="Design"
-        descriptions={[
-          "+ Charte graphique.",
-          "+ Creation des Mockups.",
-          "+ Défintion des animations.",
-        ]}
+        title={translations[selectedLanguage].projectsSteps.steps3.title}
+        descriptions={
+          translations[selectedLanguage].projectsSteps.steps3.description
+        }
       />
       <ProjectsStep
         index={"04."}
-        title="Développement"
-        descriptions={[
-          "+ Développement des fonctionalités mentionnés.",
-          "+ Intégration du design.",
-          "+ Mise en place des animations.",
-        ]}
+        title={translations[selectedLanguage].projectsSteps.steps4.title}
+        descriptions={
+          translations[selectedLanguage].projectsSteps.steps4.description
+        }
       />
       <ProjectsStep
         index={"05."}
-        title="Déploiment & Correctifs"
-        descriptions={[
-          "+ Test de l'ensemble des fonctionalités.",
-          "+ Correction des bugs.",
-          "+ Mise en ligne.",
-        ]}
+        title={translations[selectedLanguage].projectsSteps.steps5.title}
+        descriptions={
+          translations[selectedLanguage].projectsSteps.steps5.description
+        }
       />
       <ProjectsStep
         index={"06."}
-        title="Livraison & Formation"
-        descriptions={[
-          "+ Formation à l'administration.",
-          "+ Livraison des clés.",
-          "+ Support après livraison.",
-        ]}
+        title={translations[selectedLanguage].projectsSteps.steps6.title}
+        descriptions={
+          translations[selectedLanguage].projectsSteps.steps6.description
+        }
       />
       <ProjectsStep
         index={"07."}
-        title="Maintenance & Sécurité"
-        descriptions={[
-          "+ Mise à jour des stacks.",
-          "+ Veiles et correction des nouvelles vulnérabilités.",
-          "+ Backup des données.",
-        ]}
+        title={translations[selectedLanguage].projectsSteps.steps7.title}
+        descriptions={
+          translations[selectedLanguage].projectsSteps.steps7.description
+        }
       />
     </div>
   );

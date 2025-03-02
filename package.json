@@ -20,12 +20,14 @@
     "emailjs-com": "^3.2.0",
     "framer-motion": "^12.4.3",
     "gsap": "^3.12.7",
+    "ioredis": "^5.5.0",
     "jose": "^5.9.6",
     "jsonwebtoken": "^9.0.2",
     "next": "^14.2.24",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.4.0",
+    "react-loader-spinner": "^6.1.6",
     "react-player": "^2.16.0"
   },
   "devDependencies": {

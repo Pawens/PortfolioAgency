@@ -5,6 +5,8 @@ import { TextField, Button } from "@mui/material";
 import "./ContactForm.css";
 import emailjs from "emailjs-com";
 import { useForm } from "../../context/ConfirmationPopupContext";
+import { useLanguage } from "@/context/LanguageContext";
+import translations from "../../../public/translation";
 
 interface ContactFormState {
   name: string;
@@ -22,6 +24,8 @@ export default function ContactForm() {
   const [formData, setFormData] = useState<ContactFormState>(initialState);
   const { setSubmittedMessage, setShowPopupConfirmation, setShowPopupError } =
     useForm();
+
+  const { selectedLanguage } = useLanguage();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -61,8 +65,9 @@ export default function ContactForm() {
 
     Promise.all([sendToAdam, sendToRomain])
       .then(() => {
-        console.log("All emails sent successfully!");
-        setSubmittedMessage("Message envoyé avec succès !");
+        setSubmittedMessage(
+          translations[selectedLanguage].confirmationPopup.successMessage
+        );
         setFormData(initialState);
         setShowPopupConfirmation(true);
         setTimeout(() => setShowPopupConfirmation(false), 2000);
@@ -70,7 +75,7 @@ export default function ContactForm() {
       .catch((error) => {
         console.error("Failed to send email:", error);
         setSubmittedMessage(
-          "Erreur lors de l'envoi du message. Veuillez réessayer."
+          translations[selectedLanguage].confirmationPopup.errorMessage
         );
         setShowPopupError(true);
         setTimeout(() => setShowPopupError(false), 2000);
@@ -82,7 +87,7 @@ export default function ContactForm() {
       <TextField
         id="name"
         name="name"
-        label="Nom"
+        label={translations[selectedLanguage].contact.name}
         variant="filled"
         fullWidth
         margin="normal"
@@ -111,7 +116,7 @@ export default function ContactForm() {
       <TextField
         id="email"
         name="email"
-        label="Email"
+        label={translations[selectedLanguage].contact.email}
         variant="filled"
         fullWidth
         margin="normal"
@@ -141,7 +146,7 @@ export default function ContactForm() {
       <TextField
         id="message"
         name="message"
-        label="Message"
+        label={translations[selectedLanguage].contact.message}
         variant="filled"
         fullWidth
         margin="normal"
@@ -183,7 +188,7 @@ export default function ContactForm() {
           },
         }}
       >
-        Envoyer
+        {translations[selectedLanguage].contact.send}
       </Button>
     </form>
   );

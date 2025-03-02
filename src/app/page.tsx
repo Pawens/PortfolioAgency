@@ -21,15 +21,21 @@ import ConfirmationPopup from "../components/ConfirmationPopup/ConfirmationPopup
 import Faq from "../components/Faq/Faq";
 import BackgroundCircles from "../components/BackgroundCircles/BackgroundCircles";
 import { useRef } from "react";
+import LanguageSelector from "@/components/LanguageSelector/LanguageSelector";
+import { useLanguage } from "@/context/LanguageContext";
+import translations from "../../public/translation";
 
 export default function Home() {
   const section1Ref = useRef(null);
   const section2Ref = useRef(null);
 
+  const { selectedLanguage } = useLanguage();
+
   return (
     <div style={{ position: "relative" }}>
       <FormProvider>
         <ConfirmationPopup />
+        <LanguageSelector />
         <section className="section sectionHero">
           <BackgroundCircles
             numCircles={2}
@@ -74,11 +80,8 @@ export default function Home() {
           <ProjectsSteps />
         </section>
         <section className="section sectionExpertise">
-          <h2>Our Expertise</h2>
-          <p>
-            Our team is specialized in 3 areas to cover all spectra of the web,
-            from design to maintenance!
-          </p>
+          <h2>{translations[selectedLanguage].expertise.title}</h2>
+          <p>{translations[selectedLanguage].expertise.description}</p>
           <Expertises />
         </section>
         <section className="section sectionFlex sectionProjects">
@@ -107,20 +110,20 @@ export default function Home() {
             scrollSpeedFactor={1}
           />
 
-          <h2>Our Projects</h2>
+          <h2>{translations[selectedLanguage].projects.title}</h2>
           <ProjectsClient />
         </section>
 
         <section className="section sectionFlex sectionTestimonials">
-          <h2>Testimonials</h2>
+          <h2>{translations[selectedLanguage].testimonials.title}</h2>
           <Testimonials />
         </section>
         <section className="section sectionFlex sectionTeamPresentation">
-          <h2>Team Presentation</h2>
+          <h2>{translations[selectedLanguage].team.title}</h2>
           <TeamPresentation />
         </section>
         <section className="section sectionFlex sectionTeamStack">
-          <h2>Our Stack</h2>
+          <h2>{translations[selectedLanguage].stack.title}</h2>
           <div className="stackContainer">
             <div className="stackLine">
               <Bubble>
@@ -148,7 +151,7 @@ export default function Home() {
           <Faq />
         </section>
         <section className="section sectionFlex sectionContact">
-          <h2>Contact Us</h2>
+          <h2>{translations[selectedLanguage].contact.title}</h2>
           <ContactForm />
         </section>
       </FormProvider>

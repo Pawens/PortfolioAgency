@@ -18,3 +18,9 @@
     grid-template-columns: 1fr;
   }
 }
+
+.projectCardLoader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

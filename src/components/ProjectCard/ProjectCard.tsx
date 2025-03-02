@@ -8,14 +8,15 @@ import {
   List,
   ListItem,
   Chip,
-  Card,
 } from "@mui/material";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import ReactPlayer from "react-player";
 import placeholderImage from "../../../public/img/placeholder.webp";
 import "./ProjectCard.css";
+import { useLanguage } from "@/context/LanguageContext";
+import translations from "../../../public/translation";
 
 interface ImageData {
   id: number;
@@ -42,6 +43,7 @@ interface ProjectCardProps {
   features?: Feature[];
   stack?: Stack[];
   images?: ImageData[];
+  websiteUrl?: string;
 }
 
 function ProjectCard({
@@ -51,43 +53,58 @@ function ProjectCard({
   description,
   features,
   stack,
-  images,
+  websiteUrl,
 }: ProjectCardProps) {
   const [open, setOpen] = useState(false);
   const [activeImage, setActiveImage] = useState(imageUrl || placeholderImage);
+  const [isImageVisible, setIsImageVisible] = useState(false);
+  const imageRef = useRef<HTMLDivElement>(null);
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  const { selectedLanguage } = useLanguage();
 
-  const handleClose = () => {
-    setOpen(false);
-  };
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsImageVisible(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (imageRef.current) observer.observe(imageRef.current);
+
+    return () => observer.disconnect();
+  }, []);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   return (
     <div className="projectCard">
-      <div className="imageContainer">
-        <Image
-          src={imageUrl || placeholderImage}
-          alt={name}
-          width={400}
-          height={300}
-          style={{
-            objectFit: "cover",
-            objectPosition: "top",
-            cursor: "pointer",
-          }}
-          onClick={() => {
-            handleOpen();
-          }}
-        />
+      <div className="imageContainer" ref={imageRef}>
+        {isImageVisible && (
+          <Image
+            src={activeImage}
+            alt={name}
+            width={400}
+            height={300}
+            loading="lazy"
+            style={{
+              objectFit: "cover",
+              objectPosition: "top",
+              cursor: "pointer",
+            }}
+            onClick={handleOpen}
+            onError={() => setActiveImage(placeholderImage)}
+          />
+        )}
       </div>
       <div className="projectContent">
         <h4>{name}</h4>
         <Button
-          onClick={() => {
-            handleOpen();
-          }}
+          onClick={handleOpen}
           sx={{
             width: "fit-content",
             backgroundColor: "transparent",
@@ -123,8 +140,45 @@ function ProjectCard({
           }}
           variant="outlined"
         >
-          View Project
+          {translations[selectedLanguage].projects.viewProject}
         </Button>
+
+        {websiteUrl ? (
+          <Button
+            onClick={() =>
+              window.open(websiteUrl, "_blank", "noopener,noreferrer")
+            }
+            sx={{
+              width: "fit-content",
+              backgroundColor: "#FC6D36",
+              color: "black",
+              fontSize: "14px",
+              fontWeight: "600 !important",
+              borderRadius: "100px",
+              padding: "8px 16px",
+              border: "2px solid #FC6D36",
+              position: "relative",
+              overflow: "hidden",
+              zIndex: 1,
+              marginTop: "8px",
+              fontFamily: "Inter, sans-serif",
+              transition: "transform 0.3s ease-in-out",
+              "&:hover": {
+                transform: "scale(1.05)",
+              },
+            }}
+            variant="outlined"
+          >
+            {translations[selectedLanguage].projects.visitWebsite}
+          </Button>
+        ) : (
+          <Typography
+            variant="body2"
+            sx={{ color: "gray", fontSize: "12px", marginTop: "8px" }}
+          >
+            {translations[selectedLanguage].projects.notHostedMessage}
+          </Typography>
+        )}
       </div>
 
       <Dialog open={open} onClose={handleClose} maxWidth="lg">
@@ -148,45 +202,34 @@ function ProjectCard({
             <CloseIcon />
           </IconButton>
           <Grid container spacing={4} className="projectPopupContainer">
-            <Grid
-              item
-              xs={12}
-              md={6}
-              sx={{
-                height: "100%",
-                display: "flex",
-                flexDirection: "column",
-                overflowY: "auto",
-                maxHeight: "80vh",
-                scrollbarWidth: "thin",
-                scrollbarColor: "#FC6D36 #1e1e1e",
-              }}
-              className="projectPopupContent"
-            >
+            <Grid item xs={12} md={6} className="projectPopupContent">
               <Typography variant="h4" gutterBottom>
                 {name}
               </Typography>
               <Typography variant="body1" gutterBottom>
                 {description || "Aucune description disponible."}
               </Typography>
+
               {(features ?? []).length > 0 && (
                 <>
-                  <Typography variant="h6">Features:</Typography>
+                  <Typography variant="h6">
+                    {translations[selectedLanguage].projects.features}
+                  </Typography>
                   <List>
-                    {features
-                      ?.filter((f) => f && f.Name)
-                      .map((feature) => (
-                        <ListItem key={feature.id} sx={{ color: "white" }}>
-                          • {feature.Name}
-                        </ListItem>
-                      ))}
+                    {features?.map((feature) => (
+                      <ListItem key={feature.id} sx={{ color: "white" }}>
+                        • {feature.Name}
+                      </ListItem>
+                    ))}
                   </List>
                 </>
               )}
 
               {(stack ?? []).length > 0 && (
                 <>
-                  <Typography variant="h6">Stack:</Typography>
+                  <Typography variant="h6">
+                    {translations[selectedLanguage].projects.stack}
+                  </Typography>
                   <div
                     style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}
                   >
@@ -200,60 +243,13 @@ function ProjectCard({
                   </div>
                 </>
               )}
-
-              {!videoUrl && (images ?? []).length > 0 && (
-                <Grid container spacing={2} sx={{ marginTop: "16px" }}>
-                  {(images ?? []).map((img) => (
-                    <Grid
-                      item
-                      key={img.id}
-                      xs={6}
-                      md={4}
-                      lg={3}
-                      sx={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <Card
-                        sx={{
-                          backgroundColor: "#1e1e1e",
-                          border: "2px solid white",
-                          width: "160px",
-                          height: "100px",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          padding: "0",
-                          borderRadius: "0",
-                          cursor: "pointer",
-                        }}
-                        onClick={() => setActiveImage(img.url)}
-                      >
-                        <Image
-                          src={img.url}
-                          alt={img.name}
-                          width={160}
-                          height={100}
-                          style={{
-                            objectFit: "cover",
-                            objectPosition: "top",
-                            display: "block",
-                          }}
-                        />
-                      </Card>
-                    </Grid>
-                  ))}
-                </Grid>
-              )}
             </Grid>
+
             <Grid
               item
               xs={12}
               md={6}
               sx={{
-                height: "100%",
                 display: "flex",
                 justifyContent: "center",
                 overflow: "hidden",
@@ -267,23 +263,15 @@ function ProjectCard({
                   controls
                 />
               ) : (
-                <div
-                  style={{
-                    width: "100%",
-                    height: "100%",
-                    overflowY: "auto",
-                    scrollbarWidth: "thin",
-                    scrollbarColor: "#FC6D36 #1e1e1e",
-                  }}
-                >
-                  <Image
-                    src={activeImage}
-                    alt={name}
-                    width={400}
-                    height={1200}
-                    style={{ objectFit: "cover", display: "block" }}
-                  />
-                </div>
+                <Image
+                  src={activeImage}
+                  alt={name}
+                  width={400}
+                  height={300}
+                  loading="lazy"
+                  style={{ objectFit: "cover", display: "block" }}
+                  onError={() => setActiveImage(placeholderImage)}
+                />
               )}
             </Grid>
           </Grid>

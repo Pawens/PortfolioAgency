@@ -1,5 +1,7 @@
 import React from "react";
 import "./ProjectsStep.css";
+import translations from "../../../public/translation";
+import { useLanguage } from "@/context/LanguageContext";
 
 interface ProjectsStepProps {
   index: string;
@@ -14,6 +16,8 @@ function ProjectsStep({
   descriptions,
   first,
 }: ProjectsStepProps) {
+  const { selectedLanguage } = useLanguage();
+
   return (
     <div
       className={`ProjectsStepsCard ${first ? "FirstProjectsStepsCard" : ""}`}
@@ -26,7 +30,9 @@ function ProjectsStep({
             {description}
           </p>
         ))}
-        <p className="ProjectsStepsValidation">+ Validation client</p>
+        <p className="ProjectsStepsValidation">
+          {translations[selectedLanguage].projectsSteps.clientValidation}
+        </p>
       </div>
     </div>
   );

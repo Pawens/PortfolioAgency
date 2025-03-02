@@ -1,6 +1,8 @@
-import React, { createContext, useContext, useState } from 'react';
+"use client";
 
-type LanguageKeys = 'en' | 'fr' | 'de' | 'es' | 'it';
+import React, { createContext, useContext, useState } from "react";
+
+type LanguageKeys = "en" | "fr" | "de" | "es" | "it";
 
 interface LanguageContextProps {
   selectedLanguage: LanguageKeys;
@@ -8,7 +10,7 @@ interface LanguageContextProps {
 }
 
 const LanguageContext = createContext<LanguageContextProps | undefined>(
-  undefined,
+  undefined
 );
 
 interface LanguageProviderProps {
@@ -18,7 +20,7 @@ interface LanguageProviderProps {
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({
   children,
 }) => {
-  const [selectedLanguage, setSelectedLanguage] = useState<LanguageKeys>('en');
+  const [selectedLanguage, setSelectedLanguage] = useState<LanguageKeys>("en");
 
   return (
     <LanguageContext.Provider value={{ selectedLanguage, setSelectedLanguage }}>
@@ -30,7 +32,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({
 export const useLanguage = (): LanguageContextProps => {
   const context = useContext(LanguageContext);
   if (!context) {
-    throw new Error('useLanguage must be used within a LanguageProvider');
+    throw new Error("useLanguage must be used within a LanguageProvider");
   }
   return context;
 };

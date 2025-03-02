@@ -5,17 +5,19 @@ import Button from "@mui/material/Button";
 import "./Hero.css";
 import Bubble from "../Bubble/Bubble";
 import { m } from "framer-motion";
+import { useLanguage } from "@/context/LanguageContext";
+import translations from "../../../public/translation";
 
 function Hero() {
+  const { selectedLanguage } = useLanguage();
+
   return (
     <div className="hero">
-      <p className="heroCredits">By PARISOT Romain & SIMON Adam</p>
-      <h1>Get A Website Personalize Just For You</h1>
-      <p>
-        We craft stunning digital experiences that transform your vision into
-        reality. Our team of experts delivers innovative solutions tailored to
-        your needs.
+      <p className="heroCredits">
+        {translations[selectedLanguage].hero.by} PARISOT Romain & SIMON Adam
       </p>
+      <h1>{translations[selectedLanguage].hero.titleH1}</h1>
+      <p>{translations[selectedLanguage].hero.descriptionHero}</p>
       <Button
         onClick={() => {
           document.querySelector(".sectionProjects")?.scrollIntoView({
@@ -56,7 +58,7 @@ function Hero() {
         }}
         variant="outlined"
       >
-        Nos réalisations
+        {translations[selectedLanguage].hero.ourRealizations}
       </Button>
       <div className="testtest">
         <Bubble showBackground>
@@ -68,7 +70,7 @@ function Hero() {
                 });
               }}
             >
-              Obtenir un devis en 48h
+              {translations[selectedLanguage].hero.getQuote}
             </button>
           </m.div>
         </Bubble>

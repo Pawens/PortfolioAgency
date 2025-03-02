@@ -6,6 +6,8 @@ import Button from "@mui/material/Button";
 import "./Testimonials.css";
 import Image from "next/image";
 import logoGoogle from "../../../public/img/LogoGoogle.webp";
+import { useLanguage } from "@/context/LanguageContext";
+import translations from "../../../public/translation";
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
@@ -15,16 +17,12 @@ interface Testimonial {
   Message: string;
 }
 
-const fetchTestimonial = async (): Promise<Testimonial[]> => {
+const fetchTestimonial = async (lang: string): Promise<Testimonial[]> => {
   try {
-    const response = await fetch(`${BASE_URL}/api/testimonials`);
+    const response = await fetch(`${BASE_URL}/api/testimonials?locale=${lang}`);
     if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-
     const result = await response.json();
     console.log("Fetched Testimonials:", result);
-
-    console.log("Fetched Testimonials:", result.data);
-
     return result.data || [];
   } catch (error) {
     console.error("Error fetching testimonials:", error);
@@ -39,9 +37,15 @@ function Testimonials() {
   const [isClient, setIsClient] = useState(false);
   const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
 
-  useEffect(() => {
-    fetchTestimonial().then(setTestimonials);
+  const { selectedLanguage } = useLanguage();
 
+  useEffect(() => {
+    if (selectedLanguage) {
+      fetchTestimonial(selectedLanguage).then(setTestimonials);
+    }
+  }, [selectedLanguage]);
+
+  useEffect(() => {
     setIsClient(true);
     setWindowWidth(window.innerWidth);
     const handleResize = () => setWindowWidth(window.innerWidth);
@@ -150,7 +154,7 @@ function Testimonials() {
           }}
           variant="outlined"
         >
-          Voir les avis sur Google
+          {translations[selectedLanguage].testimonials.seeGoogleReview}
           <Image
             src={logoGoogle}
             alt={`Logo Google`}

@@ -2,24 +2,34 @@ import React from "react";
 import ExpertiseCard from "../ExpertiseCard/ExpertiseCard";
 import { LuCodeXml, LuPaintbrush, LuSmartphone } from "react-icons/lu";
 import "./Expertises.css";
+import { useLanguage } from "@/context/LanguageContext";
+import translations from "../../../public/translation";
 
 function Expertises() {
+  const { selectedLanguage } = useLanguage();
+
   return (
     <div className="expertisesContainer">
       <ExpertiseCard
         icon={LuCodeXml}
-        label="Web Development"
-        description="Specialized in creating dynamic web applications using modern frameworks and technologies."
+        label={translations[selectedLanguage].expertise.expertise1.title}
+        description={
+          translations[selectedLanguage].expertise.expertise1.description
+        }
       />
       <ExpertiseCard
         icon={LuPaintbrush}
-        label="UI/UX Design"
-        description="Creating intuitive and aesthetically pleasing user interfaces with a focus on user experience and accessibility."
+        label={translations[selectedLanguage].expertise.expertise2.title}
+        description={
+          translations[selectedLanguage].expertise.expertise2.description
+        }
       />
       <ExpertiseCard
         icon={LuSmartphone}
-        label="Mobile Development"
-        description="Focused on building seamless, mobile-optimized websites to capture the growing mobile audience, driving engagement where over 60% of web traffic is generated."
+        label={translations[selectedLanguage].expertise.expertise3.title}
+        description={
+          translations[selectedLanguage].expertise.expertise3.description
+        }
       />
     </div>
   );
