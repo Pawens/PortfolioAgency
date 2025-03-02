@@ -1,5 +1,5 @@
-import React, { useMemo, useState } from "react";
-import { motion, useScroll, useMotionValueEvent } from "framer-motion";
+import React, { useMemo, useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import "./BackgroundCircles.css";
 
 type AnimatedBackgroundProps = {
@@ -11,7 +11,7 @@ type AnimatedBackgroundProps = {
   initialPositions?: { top: number; left: number }[];
   moveDistances?: { x: number; y: number }[];
   sides?: ("left" | "right" | "top" | "bottom")[];
-  sectionRef: React.RefObject<HTMLElement>;
+  sectionRef: React.RefObject<HTMLElement>; // ✅ Track the section's ref
   scrollSpeedFactor?: number;
 };
 
@@ -25,13 +25,35 @@ const BackgroundCircles: React.FC<AnimatedBackgroundProps> = ({
   moveDistances = [],
   sides = [],
   scrollSpeedFactor = 300,
+  sectionRef,
 }) => {
-  const { scrollY } = useScroll();
   const [scrollOffset, setScrollOffset] = useState(0);
+  const [isInView, setIsInView] = useState(false);
 
-  useMotionValueEvent(scrollY, "change", (latest) => {
-    setScrollOffset(latest);
-  });
+  useEffect(() => {
+    const handleScroll = () => {
+      if (sectionRef.current) {
+        const rect = sectionRef.current.getBoundingClientRect();
+        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+        setIsInView(isVisible);
+        setScrollOffset(window.scrollY - sectionRef.current.offsetTop);
+
+        console.log("Section Top:", rect.top);
+        console.log("Section Bottom:", rect.bottom);
+        console.log("Window Height:", window.innerHeight);
+        console.log("isInView:", isVisible);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    handleScroll(); // Run once on mount
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [sectionRef]);
+
+  useEffect(() => {
+    console.log("Scroll Offset:", scrollOffset);
+  }, [scrollOffset]);
 
   const circles = useMemo(() => {
     const allSides: ("left" | "right" | "top" | "bottom")[] = [
@@ -81,27 +103,28 @@ const BackgroundCircles: React.FC<AnimatedBackgroundProps> = ({
 
   return (
     <div className="backgroundAnimationCirclesContainer">
-      {circles.map((circle, index) => {
-        const moveX = (scrollOffset / scrollSpeedFactor) * circle.moveX;
-        const moveY = (scrollOffset / scrollSpeedFactor) * circle.moveY;
+      {isInView && // ✅ Only render circles when section is visible
+        circles.map((circle, index) => {
+          const moveX = (scrollOffset / scrollSpeedFactor) * circle.moveX;
+          const moveY = (scrollOffset / scrollSpeedFactor) * circle.moveY;
 
-        return (
-          <motion.div
-            key={index}
-            className="backgroundAnimationCircles"
-            style={{
-              width: circle.size,
-              height: circle.size,
-              top: `${circle.top}%`,
-              left: `${circle.left}%`,
-              background: circle.background,
-              filter: `blur(${blurAmount}px)`,
-              x: moveX,
-              y: moveY,
-            }}
-          />
-        );
-      })}
+          return (
+            <motion.div
+              key={index}
+              className="backgroundAnimationCircles"
+              style={{
+                width: circle.size,
+                height: circle.size,
+                top: `${circle.top}%`,
+                left: `${circle.left}%`,
+                background: circle.background,
+                filter: `blur(${blurAmount}px)`,
+                x: moveX,
+                y: moveY,
+              }}
+            />
+          );
+        })}
     </div>
   );
 };
