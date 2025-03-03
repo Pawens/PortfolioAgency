@@ -36,3 +36,9 @@
     width: 100%;
   }
 }
+
+@media (max-width: 800px) {
+  .testimonialsSlider {
+    width: calc(100% - 64px);
+  }
+}

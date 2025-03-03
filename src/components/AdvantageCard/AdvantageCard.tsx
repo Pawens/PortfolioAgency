@@ -41,6 +41,7 @@ function AdvantageCard({ title, items, color = "orange" }: AdvantageCardProps) {
               delay: 0.2 * (index + 1),
               ease: "easeOut",
             }}
+            style={{ display: "flex" }}
           >
             <FaCircleCheck style={{ color: iconColor, marginRight: "8px" }} />
             {item}

@@ -81,8 +81,11 @@
 
 @media (max-width: 800px) {
   .hero {
-    margin-left: 64px;
-    margin-right: 64px;
+    margin-left: unset;
+    margin-right: unset;
+  }
+  .heroCredits {
+    margin-top: 64px;
   }
   .testtest {
     top: -123px;

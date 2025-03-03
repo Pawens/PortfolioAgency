@@ -32,6 +32,10 @@ const ProjectStepWrapper: React.FC<ProjectStepWrapperProps> = ({
       initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
       animate={isInView ? { opacity: 1, x: 0 } : {}}
       transition={{ duration: 0.5, ease: "easeOut" }}
+      style={{
+        display: "flex",
+        width: "100%",
+      }}
     >
       <ProjectsStep
         index={`${index + 1 < 10 ? "0" : ""}${index + 1}.`}

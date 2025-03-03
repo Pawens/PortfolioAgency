@@ -6,6 +6,7 @@
 html {
   scrollbar-width: thin;
   scrollbar-color: #fc6d36 #1e1e1e;
+  overflow-x: hidden;
 }
 
 ::-webkit-scrollbar {
@@ -27,7 +28,6 @@ html {
 }
 
 body {
-  overflow-x: hidden;
   background-color: rgba(0, 0, 0, 0.95);
   background-image: url("/svg/mosaiqueGray.svg");
   background-size: 12px auto, cover;
@@ -54,6 +54,8 @@ body {
   .section {
     padding-left: 32px;
     padding-right: 32px;
+    padding-top: 64px;
+    padding-bottom: 64px;
   }
 }
 
@@ -93,9 +95,10 @@ body {
 
 /* Hero section */
 
-@media (max-width: 750px) {
+@media (max-width: 800px) {
   .sectionHero {
     padding-bottom: 0px;
+    padding-top: 128px;
   }
 }
 
