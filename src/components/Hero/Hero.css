@@ -1,6 +1,6 @@
 .hero {
-  margin-left: 368px;
-  margin-right: 368px;
+  margin-left: 128px;
+  margin-right: 128px;
   color: white;
   display: flex;
   align-items: center;
@@ -57,20 +57,6 @@
   position: absolute;
   top: -25px;
   right: -150px;
-}
-
-@media (max-width: 1400px) {
-  .hero {
-    margin-left: 256px;
-    margin-right: 256px;
-  }
-}
-
-@media (max-width: 1200px) {
-  .hero {
-    margin-left: 128px;
-    margin-right: 128px;
-  }
 }
 
 @media (max-width: 1000px) {

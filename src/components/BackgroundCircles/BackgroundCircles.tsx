@@ -11,8 +11,10 @@ type AnimatedBackgroundProps = {
   initialPositions?: { top: number; left: number }[];
   moveDistances?: { x: number; y: number }[];
   sides?: ("left" | "right" | "top" | "bottom")[];
-  sectionRef: React.RefObject<HTMLElement>; // ✅ Track the section's ref
+  sectionRef: React.RefObject<HTMLElement>;
   scrollSpeedFactor?: number;
+  enableAnimation?: boolean;
+  enableScrollAnimation?: boolean; // New prop to enable/disable scroll animation
 };
 
 const BackgroundCircles: React.FC<AnimatedBackgroundProps> = ({
@@ -26,6 +28,8 @@ const BackgroundCircles: React.FC<AnimatedBackgroundProps> = ({
   sides = [],
   scrollSpeedFactor = 300,
   sectionRef,
+  enableAnimation = true, // Default to true
+  enableScrollAnimation = true, // Default to true
 }) => {
   const [scrollOffset, setScrollOffset] = useState(0);
   const [isInView, setIsInView] = useState(false);
@@ -94,10 +98,15 @@ const BackgroundCircles: React.FC<AnimatedBackgroundProps> = ({
 
   return (
     <div className="backgroundAnimationCirclesContainer">
-      {isInView && // ✅ Only render circles when section is visible
+      {isInView &&
+        enableAnimation && // ✅ Only render circles when section is visible and animation is enabled
         circles.map((circle, index) => {
-          const moveX = (scrollOffset / scrollSpeedFactor) * circle.moveX;
-          const moveY = (scrollOffset / scrollSpeedFactor) * circle.moveY;
+          const moveX = enableScrollAnimation
+            ? (scrollOffset / scrollSpeedFactor) * circle.moveX
+            : 0;
+          const moveY = enableScrollAnimation
+            ? (scrollOffset / scrollSpeedFactor) * circle.moveY
+            : 0;
 
           return (
             <motion.div
