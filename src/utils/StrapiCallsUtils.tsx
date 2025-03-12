@@ -2,7 +2,7 @@
 
 const BASE_URL = process.env.BASE_URL;
 
-export const fetchTestimonials = async (selectedLanguage: string | null) => {
+export const getTestimonials = async (selectedLanguage: string | null) => {
   const url = selectedLanguage
     ? `${BASE_URL}/api/testimonials?locale=${selectedLanguage}`
     : null;
@@ -23,3 +23,14 @@ export const fetchTestimonials = async (selectedLanguage: string | null) => {
     throw error;
   }
 };
+
+export async function getMainValuesData(lang: string) {
+  const res = await fetch(
+    `${process.env.BASE_URL}/api/key-values?lang=${lang}`,
+    {
+      next: { revalidate: 0 },
+    }
+  );
+  if (!res.ok) throw new Error("Failed to fetch values");
+  return res.json();
+}
