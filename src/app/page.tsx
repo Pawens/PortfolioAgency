@@ -20,11 +20,12 @@ import { FormProvider } from "../context/ConfirmationPopupContext";
 import ConfirmationPopup from "../components/ConfirmationPopup/ConfirmationPopup";
 import Faq from "../components/Faq/Faq";
 import BackgroundCircles from "../components/BackgroundCircles/BackgroundCircles";
-import { useEffect, useRef, useState } from "react";
+import { useRef } from "react";
 import LanguageSelector from "@/components/LanguageSelector/LanguageSelector";
 import { useLanguage } from "@/context/LanguageContext";
 import translations from "../../public/translation";
 import { motion } from "framer-motion";
+import { useSyncExternalStore } from "react";
 
 const bubbles = [
   { key: "next", component: <NextSvg /> },
@@ -35,8 +36,20 @@ const bubbles = [
   { key: "postgree", component: <PostgreeSvg /> },
 ];
 
+const useIsMobile = () => {
+  return useSyncExternalStore(
+    (callback) => {
+      window.addEventListener("resize", callback);
+      return () => window.removeEventListener("resize", callback);
+    },
+    () => window.innerWidth < 800, // Client-side snapshot
+    () => false // Server-side snapshot (default to desktop)
+  );
+};
+
+
 export default function Home() {
-  const [isMobile, setIsMobile] = useState(false);
+  const isMobile = useIsMobile();
   const section1Ref = useRef(null);
   const section2Ref = useRef(null);
   const section3Ref = useRef(null);
@@ -83,15 +96,6 @@ export default function Home() {
       transition: { duration: 0.3, ease: "easeOut" },
     },
   };
-
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsMobile(window.innerWidth < 800);
-    };
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-    return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
 
   return (
     <div style={{ position: "relative" }}>
