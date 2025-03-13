@@ -10,7 +10,7 @@ import ListItem from "@mui/material/ListItem";
 import Chip from "@mui/material/Chip";
 import Card from "@mui/material/Card";
 import Image from "next/image";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import ReactPlayer from "react-player";
 import placeholderImage from "../../../public/img/placeholder.webp";
@@ -58,8 +58,6 @@ function ProjectCard({
 }: ProjectCardProps) {
   const [open, setOpen] = useState(false);
   const [activeImage, setActiveImage] = useState(imageUrl || placeholderImage);
-  const [isImageVisible, setIsImageVisible] = useState(false);
-  const imageRef = useRef<HTMLDivElement>(null);
   const cardRef = useRef(null);
 
   const { selectedLanguage } = useLanguage();
@@ -68,22 +66,6 @@ function ProjectCard({
     margin: "-30% 0px -30% 0px",
     once: true,
   });
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsImageVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    if (imageRef.current) observer.observe(imageRef.current);
-
-    return () => observer.disconnect();
-  }, []);
 
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
@@ -96,24 +78,19 @@ function ProjectCard({
       transition={{ duration: 0.8, ease: "easeOut" }}
       className="projectCard"
     >
-      <div className="imageContainer" ref={imageRef}>
-        {isImageVisible && (
-          <Image
-            src={activeImage}
-            alt={name}
-            width={400}
-            height={300}
-            loading="lazy"
-            style={{
-              objectFit: "cover",
-              objectPosition: "top",
-              cursor: "pointer",
-            }}
-            onClick={handleOpen}
-            onError={() => setActiveImage(placeholderImage)}
-          />
-        )}
+      <div className="imageContainer">
+        <Image
+          src={activeImage}
+          alt={name}
+          width={400}
+          height={300} // or whatever your desired dimensions are
+          loading="lazy" // this ensures built-in lazy loading
+          style={{ objectFit: "cover", cursor: "pointer" }}
+          onClick={handleOpen}
+          onError={() => setActiveImage(placeholderImage)}
+        />
       </div>
+
       <div className="projectContent">
         <h4>{name}</h4>
         <Button
