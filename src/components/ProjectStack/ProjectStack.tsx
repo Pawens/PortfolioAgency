@@ -3,7 +3,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/context/LanguageContext";
-import translations from "../../../public/translation";
+import translations from "@/translation";
 import NextSvg from "./svg/NextSvg";
 import ReactSvg from "./svg/ReactSvg";
 import StrapiSvg from "./svg/StrapiSvg";
@@ -80,7 +80,12 @@ function ProjectStack() {
       >
         <motion.div className="stackLine" variants={containerVariants}>
           {bubbles.map((item, index) => (
-            <motion.div key={item.key} variants={bubbleVariants} custom={index}>
+            <motion.div
+              key={item.key}
+              variants={bubbleVariants}
+              custom={index}
+              className="stackItem"
+            >
               <Bubble>{item.component}</Bubble>
             </motion.div>
           ))}

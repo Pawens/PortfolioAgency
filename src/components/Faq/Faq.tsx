@@ -2,7 +2,7 @@ import React from "react";
 import FaqCard from "../FaqCard/FaqCard";
 import "./Faq.css";
 import { useLanguage } from "@/context/LanguageContext";
-import translations from "../../../public/translation";
+import translations from "@/translation";
 
 function Faq() {
   const { selectedLanguage } = useLanguage();

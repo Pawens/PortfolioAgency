@@ -1,7 +1,35 @@
 "use client";
 
-import React, { createContext, useContext, useState, ReactNode } from "react";
+import React, { createContext, useContext, useReducer, ReactNode } from "react";
 
+// ✅ Define the action types for the reducer
+type FormAction =
+  | { type: "SET_MESSAGE"; payload: string }
+  | { type: "SHOW_CONFIRMATION"; payload: boolean }
+  | { type: "SHOW_ERROR"; payload: boolean };
+
+// ✅ Define the initial state
+const initialState = {
+  submittedMessage: "",
+  showPopupConfirmation: false,
+  showPopupError: false,
+};
+
+// ✅ Reducer function to manage all state updates
+function formReducer(state: typeof initialState, action: FormAction) {
+  switch (action.type) {
+    case "SET_MESSAGE":
+      return { ...state, submittedMessage: action.payload };
+    case "SHOW_CONFIRMATION":
+      return { ...state, showPopupConfirmation: action.payload };
+    case "SHOW_ERROR":
+      return { ...state, showPopupError: action.payload };
+    default:
+      return state;
+  }
+}
+
+// ✅ Define the context type
 interface FormContextType {
   submittedMessage: string;
   showPopupConfirmation: boolean;
@@ -14,16 +42,24 @@ interface FormContextType {
 const FormContext = createContext<FormContextType | undefined>(undefined);
 
 export function FormProvider({ children }: { children: ReactNode }) {
-  const [submittedMessage, setSubmittedMessage] = useState("");
-  const [showPopupConfirmation, setShowPopupConfirmation] = useState(false);
-  const [showPopupError, setShowPopupError] = useState(false);
+  const [state, dispatch] = useReducer(formReducer, initialState);
+
+  // ✅ Define dispatch functions
+  const setSubmittedMessage = (message: string) =>
+    dispatch({ type: "SET_MESSAGE", payload: message });
+
+  const setShowPopupConfirmation = (show: boolean) =>
+    dispatch({ type: "SHOW_CONFIRMATION", payload: show });
+
+  const setShowPopupError = (show: boolean) =>
+    dispatch({ type: "SHOW_ERROR", payload: show });
 
   return (
     <FormContext.Provider
       value={{
-        submittedMessage,
-        showPopupConfirmation,
-        showPopupError,
+        submittedMessage: state.submittedMessage,
+        showPopupConfirmation: state.showPopupConfirmation,
+        showPopupError: state.showPopupError,
         setSubmittedMessage,
         setShowPopupConfirmation,
         setShowPopupError,

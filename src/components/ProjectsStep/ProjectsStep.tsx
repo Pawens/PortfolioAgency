@@ -1,6 +1,6 @@
 import React from "react";
 import "./ProjectsStep.css";
-import translations from "../../../public/translation";
+import translations from "@/translation";
 import { useLanguage } from "@/context/LanguageContext";
 
 interface ProjectsStepProps {

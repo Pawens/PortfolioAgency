@@ -1,11 +1,18 @@
-import MainValuesCardsClient from "./MainValuesCardsClient";
 import { getMainValuesData } from "@/utils/StrapiCallsUtils";
 import { cookies } from "next/headers";
+import MainValuesCardsClient from "./MainValuesCardsClient";
 
-export default async function MainValuesCardsServer() {
+export default async function MainValuesCardsFetcher() {
+  const cookieStore = await cookies();
   const selectedLanguage =
-    ((await cookies()).get("selectedLanguage")?.value as string) || "fr";
+    (cookieStore.get("selectedLanguage")?.value as
+      | "en"
+      | "fr"
+      | "de"
+      | "es"
+      | "it") || "fr";
 
+  // Fetch initial data on the server
   const data = await getMainValuesData(selectedLanguage);
 
   return <MainValuesCardsClient initialData={data.data} />;

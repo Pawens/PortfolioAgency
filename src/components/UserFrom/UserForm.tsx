@@ -1,32 +1,26 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useRef } from "react";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import "./UserForm.css";
 
-const initialState = {
-  name: "",
-  email: "",
-  message: "",
-};
-
 export default function UserForm() {
-  const [isClient, setIsClient] = useState(false);
-  const [name, setName] = useState(initialState.name);
-  const [email, setEmail] = useState(initialState.email);
-  const [message, setMessage] = useState(initialState.message);
+  const nameRef = useRef<HTMLInputElement>(null);
+  const emailRef = useRef<HTMLInputElement>(null);
+  const messageRef = useRef<HTMLTextAreaElement>(null);
 
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
-
-  if (!isClient) {
-    return null; // or loading state
-  }
+  const handleSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    console.log("Form submitted with:", {
+      name: nameRef.current?.value,
+      email: emailRef.current?.value,
+      message: messageRef.current?.value,
+    });
+  };
 
   return (
-    <form className="userForm">
+    <form className="userForm" onSubmit={handleSubmit}>
       <TextField
         id="name"
         name="name"
@@ -34,42 +28,9 @@ export default function UserForm() {
         variant="filled"
         fullWidth
         margin="normal"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
+        inputRef={nameRef}
         required
-        sx={{
-          "& .MuiFilledInput-root": {
-            backgroundColor: "rgba(0, 0, 0, 0.2)",
-            color: "white",
-            "&:hover": {
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
-            },
-            "&.Mui-focused": {
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
-            },
-            "&:before": {
-              borderBottomColor: "white",
-            },
-            "&:hover:before": {
-              borderBottomColor: "white",
-            },
-            "& input": {
-              color: "white",
-            },
-            "& textarea": {
-              color: "white",
-            },
-          },
-          "& .MuiFilledInput-underline:after": {
-            borderBottomColor: "#fc6d36",
-          },
-          "& .MuiInputLabel-root": {
-            color: "white",
-            "&.Mui-focused": {
-              color: "#fc6d36",
-            },
-          },
-        }}
+        sx={textFieldStyles}
       />
 
       <TextField
@@ -80,42 +41,9 @@ export default function UserForm() {
         fullWidth
         margin="normal"
         type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        inputRef={emailRef}
         required
-        sx={{
-          "& .MuiFilledInput-root": {
-            backgroundColor: "rgba(0, 0, 0, 0.2)",
-            color: "white",
-            "&:hover": {
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
-            },
-            "&.Mui-focused": {
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
-            },
-            "&:before": {
-              borderBottomColor: "white",
-            },
-            "&:hover:before": {
-              borderBottomColor: "white",
-            },
-            "& input": {
-              color: "white",
-            },
-            "& textarea": {
-              color: "white",
-            },
-          },
-          "& .MuiFilledInput-underline:after": {
-            borderBottomColor: "#fc6d36",
-          },
-          "& .MuiInputLabel-root": {
-            color: "white",
-            "&.Mui-focused": {
-              color: "#fc6d36",
-            },
-          },
-        }}
+        sx={textFieldStyles}
       />
 
       <TextField
@@ -127,60 +55,46 @@ export default function UserForm() {
         margin="normal"
         multiline
         rows={4}
-        value={message}
-        onChange={(e) => setMessage(e.target.value)}
+        inputRef={messageRef}
         required
-        sx={{
-          "& .MuiFilledInput-root": {
-            backgroundColor: "rgba(0, 0, 0, 0.2)",
-            color: "white",
-            "&:hover": {
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
-            },
-            "&.Mui-focused": {
-              backgroundColor: "rgba(0, 0, 0, 0.3)",
-            },
-            "&:before": {
-              borderBottomColor: "white",
-            },
-            "&:hover:before": {
-              borderBottomColor: "white",
-            },
-            "& input": {
-              color: "white",
-            },
-            "& textarea": {
-              color: "white",
-            },
-          },
-          "& .MuiFilledInput-underline:after": {
-            borderBottomColor: "#fc6d36",
-          },
-          "& .MuiInputLabel-root": {
-            color: "white",
-            "&.Mui-focused": {
-              color: "#fc6d36",
-            },
-          },
-        }}
+        sx={textFieldStyles}
       />
 
       <Button
         type="submit"
         variant="contained"
         fullWidth
-        sx={{
-          mt: 2,
-          bgcolor: "#fc6d36",
-          transition: "all 0.3s ease",
-          "&:hover": {
-            bgcolor: "#d45e31",
-            transform: "scale(1.02)",
-          },
-        }}
+        sx={submitButtonStyles}
       >
         {"Créer"}
       </Button>
     </form>
   );
 }
+
+const textFieldStyles = {
+  "& .MuiFilledInput-root": {
+    backgroundColor: "rgba(0, 0, 0, 0.2)",
+    color: "white",
+    "&:hover": { backgroundColor: "rgba(0, 0, 0, 0.3)" },
+    "&.Mui-focused": { backgroundColor: "rgba(0, 0, 0, 0.3)" },
+    "&:before": { borderBottomColor: "white" },
+    "&:hover:before": { borderBottomColor: "white" },
+    "& input, & textarea": { color: "white" },
+  },
+  "& .MuiFilledInput-underline:after": { borderBottomColor: "#fc6d36" },
+  "& .MuiInputLabel-root": {
+    color: "white",
+    "&.Mui-focused": { color: "#fc6d36" },
+  },
+};
+
+const submitButtonStyles = {
+  mt: 2,
+  bgcolor: "#fc6d36",
+  transition: "all 0.3s ease",
+  "&:hover": {
+    bgcolor: "#d45e31",
+    transform: "scale(1.02)",
+  },
+};

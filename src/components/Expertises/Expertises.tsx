@@ -6,7 +6,7 @@ import { LuCodeXml, LuPaintbrush, LuSmartphone } from "react-icons/lu";
 import { motion } from "framer-motion";
 import "./Expertises.css";
 import { useLanguage } from "@/context/LanguageContext";
-import translations from "../../../public/translation";
+import translations from "@/translation";
 
 function Expertises() {
   const { selectedLanguage } = useLanguage();

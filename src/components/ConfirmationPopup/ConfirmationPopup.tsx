@@ -1,6 +1,8 @@
+"use client";
+
 import React from "react";
-import ErrorSvg from "../../../public/svg/ErrorSvg";
-import ConfirmationSvg from "../../../public/svg/ConfirmationSvg";
+import ConfirmationSvg from "./svg/ConfirmationSvg";
+import ErrorSvg from "./svg/ErrorSvg";
 import { useForm } from "../../context/ConfirmationPopupContext";
 import "./ConfirmationPopup.css";
 

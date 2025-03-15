@@ -3,12 +3,11 @@
 import React, { useState } from "react";
 import useSWR from "swr";
 import "./Projects.css";
-import Button from "@mui/material/Button";
 import ProjectCard from "../ProjectCard/ProjectCard";
 import { useLanguage } from "@/context/LanguageContext";
-import translations from "../../../public/translation";
-
-const BASE_URL = process.env.BASE_URL;
+import translations from "@/translation";
+import { getProjectsData } from "@/utils/StrapiCallsUtils";
+import { CustomButton } from "../CustomButton/CustomButton";
 
 interface Stack {
   id: number;
@@ -37,35 +36,21 @@ interface Project {
   websiteUrl?: string;
 }
 
-// Fetcher function for SWR
-const fetcher = async (url: string): Promise<Project[]> => {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-
-    const result = await response.json();
-    return result.data || [];
-  } catch (error) {
-    console.error("Error fetching projects:", error);
-    return [];
-  }
-};
-
-function ProjectsClient() {
+export default function ProjectsClient() {
   const { selectedLanguage } = useLanguage();
   const [visibleCount, setVisibleCount] = useState<number>(2);
 
-  // Fetch projects with SWR (caching for 24 hours)
+  // ✅ Use SWR to fetch projects with 24h caching
+  const fetcher = async () => {
+    console.log(`Fetching projects for language: ${selectedLanguage}`);
+    const response = await getProjectsData(selectedLanguage);
+    return response.data;
+  };
+
   const { data: projects = [], isLoading } = useSWR(
-    selectedLanguage
-      ? `${BASE_URL}/api/projects?populate=*&locale=${selectedLanguage}`
-      : null,
+    [`projects`, selectedLanguage],
     fetcher,
-    {
-      dedupingInterval: 86400000, // Cache for 24 hours
-      revalidateOnFocus: false, // Prevent unnecessary re-fetching on tab focus
-      revalidateIfStale: false, // Do not refetch if data is cached
-    }
+    { revalidateOnFocus: false, revalidateOnReconnect: false }
   );
 
   const handleShowMore = () => {
@@ -78,18 +63,10 @@ function ProjectsClient() {
         {isLoading
           ? Array.from({ length: visibleCount }).map((_, index) => (
               <div key={index} className="projectCardLoader">
-                {/* <MutatingDots
-                  visible={true}
-                  height="100"
-                  width="100"
-                  color="#fc6e36"
-                  secondaryColor="#fc6e36"
-                  radius="12.5"
-                  ariaLabel="mutating-dots-loading"
-                /> */}
+                {/* Placeholder for loading animation */}
               </div>
             ))
-          : projects.slice(0, visibleCount).map((project) => (
+          : projects.slice(0, visibleCount).map((project: Project) => (
               <ProjectCard
                 key={project.id}
                 name={project.Title}
@@ -116,49 +93,13 @@ function ProjectsClient() {
       </div>
 
       {visibleCount < projects.length && (
-        <Button
+        <CustomButton
+          value={translations[selectedLanguage].projects.showMore}
           onClick={handleShowMore}
-          sx={{
-            width: "fit-content",
-            backgroundColor: "transparent",
-            color: "white",
-            fontSize: "14px",
-            fontWeight: "600 !important",
-            borderRadius: "100px",
-            padding: "8px 16px",
-            border: "2px solid #FC6D36",
-            position: "relative",
-            overflow: "hidden",
-            zIndex: 1,
-            fontFamily: "Inter, sans-serif",
-            marginTop: "32px",
-            "&::after": {
-              content: '""',
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              background: "#FC6D36",
-              transform: "translateX(-100%)",
-              transition: "transform 0.5s ease",
-              zIndex: -1,
-            },
-            "&:hover": {
-              color: "white",
-              border: "2px solid #FC6D36",
-            },
-            "&:hover::after": {
-              transform: "translateX(0)",
-            },
-          }}
-          variant="outlined"
-        >
-          {translations[selectedLanguage].projects.showMore}
-        </Button>
+          sx={{ marginTop: "32px" }}
+          variant="small"
+        />
       )}
     </div>
   );
 }
-
-export default ProjectsClient;

@@ -1,36 +1,59 @@
 "use server";
 
-const BASE_URL = process.env.BASE_URL;
-
-export const getTestimonials = async (selectedLanguage: string | null) => {
-  const url = selectedLanguage
-    ? `${BASE_URL}/api/testimonials?locale=${selectedLanguage}`
-    : null;
-
-  if (!url) {
-    throw new Error("No provided selectedLanguage for fetching testimonials");
-  }
-
-  try {
-    const response = await fetch(url);
-    if (!response.ok) {
-      throw new Error(`Error fetching testimonials: ${response.statusText}`);
-    }
-    const data = await response.json();
-    return data;
-  } catch (error) {
-    console.error("Failed to fetch testimonials:", error);
-    throw error;
-  }
-};
-
 export async function getMainValuesData(lang: string) {
+  console.log(`Fetching main values for language: ${lang}`);
+
   const res = await fetch(
-    `${process.env.BASE_URL}/api/key-values?lang=${lang}`,
+    `${process.env.BASE_URL}/api/key-values?locale=${lang}`,
     {
-      next: { revalidate: 0 },
+      next: { revalidate: 86400 },
     }
   );
   if (!res.ok) throw new Error("Failed to fetch values");
+  return res.json();
+}
+
+export async function getTestimonialsData(lang: string) {
+  console.log(`Fetching testimonials for language: ${lang}`);
+
+  const res = await fetch(
+    `${process.env.BASE_URL}/api/testimonials?locale=${lang}`,
+    {
+      next: { revalidate: 86400 },
+    }
+  );
+
+  if (!res.ok) throw new Error("Failed to fetch testimonials");
+
+  return res.json();
+}
+
+export async function getTeamMembersData() {
+  console.log(`Fetching team members data`);
+
+  const res = await fetch(
+    `${process.env.BASE_URL}/api/team-members?populate=*`,
+    {
+      next: { revalidate: 86400 },
+    }
+  );
+
+  if (!res.ok) throw new Error("Failed to fetch team members");
+
+  return res.json();
+}
+
+export async function getProjectsData(lang: string) {
+  console.log(`Fetching projects for language: ${lang}`);
+
+  const res = await fetch(
+    `${process.env.BASE_URL}/api/projects?populate=*&locale=${lang}`,
+    {
+      next: { revalidate: 86400 },
+    }
+  );
+
+  if (!res.ok) throw new Error("Failed to fetch projects");
+
   return res.json();
 }

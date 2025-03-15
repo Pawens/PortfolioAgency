@@ -1,5 +1,4 @@
 import { motion, useInView } from "framer-motion";
-import Button from "@mui/material/Button";
 import Dialog from "@mui/material/Dialog";
 import DialogContent from "@mui/material/DialogContent";
 import IconButton from "@mui/material/IconButton";
@@ -13,10 +12,10 @@ import Image from "next/image";
 import React, { useState, useEffect, useRef } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import ReactPlayer from "react-player";
-import placeholderImage from "../../../public/img/placeholder.webp";
 import "./ProjectCard.css";
 import { useLanguage } from "@/context/LanguageContext";
-import translations from "../../../public/translation";
+import translations from "@/translation";
+import { CustomButton } from "../CustomButton/CustomButton";
 
 interface ImageData {
   id: number;
@@ -56,6 +55,9 @@ function ProjectCard({
   images,
   websiteUrl,
 }: ProjectCardProps) {
+  const placeholderImage =
+    "https://res.cloudinary.com/dslwin8c8/image/upload/v1741967934/placeholder_ghychn.webp";
+
   const [open, setOpen] = useState(false);
   const [activeImage, setActiveImage] = useState(imageUrl || placeholderImage);
   const [isImageVisible, setIsImageVisible] = useState(false);
@@ -116,74 +118,24 @@ function ProjectCard({
       </div>
       <div className="projectContent">
         <h4>{name}</h4>
-        <Button
+
+        <CustomButton
+          value={translations[selectedLanguage].projects.viewProject}
           onClick={handleOpen}
-          sx={{
-            width: "fit-content",
-            backgroundColor: "transparent",
-            color: "white",
-            fontSize: "14px",
-            fontWeight: "600 !important",
-            borderRadius: "100px",
-            padding: "8px 16px",
-            border: "2px solid #FC6D36",
-            position: "relative",
-            overflow: "hidden",
-            zIndex: 1,
-            fontFamily: "Inter, sans-serif",
-            "&::after": {
-              content: '""',
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              background: "#FC6D36",
-              transform: "translateX(-100%)",
-              transition: "transform 0.5s ease",
-              zIndex: -1,
-            },
-            "&:hover": {
-              color: "white",
-              border: "2px solid #FC6D36",
-            },
-            "&:hover::after": {
-              transform: "translateX(0)",
-            },
-          }}
-          variant="outlined"
-        >
-          {translations[selectedLanguage].projects.viewProject}
-        </Button>
+          variant="small"
+          sx={{ width: "fit-content" }}
+        />
 
         {websiteUrl ? (
-          <Button
+          <CustomButton
+            value={translations[selectedLanguage].projects.visitWebsite}
             onClick={() =>
               window.open(websiteUrl, "_blank", "noopener,noreferrer")
             }
-            sx={{
-              width: "fit-content",
-              backgroundColor: "#FC6D36",
-              color: "black",
-              fontSize: "14px",
-              fontWeight: "600 !important",
-              borderRadius: "100px",
-              padding: "8px 16px",
-              border: "2px solid #FC6D36",
-              position: "relative",
-              overflow: "hidden",
-              zIndex: 1,
-              marginTop: "8px",
-              fontFamily: "Inter, sans-serif",
-              transition: "transform 0.3s ease-in-out",
-              "&:hover": {
-                transform: "scale(1.05)",
-              },
-            }}
-            variant="outlined"
-          >
-            {translations[selectedLanguage].projects.visitWebsite}
-          </Button>
+            variant="small"
+            sx={{ width: "fit-content" }}
+            styleType="none"
+          />
         ) : (
           <Typography
             variant="body2"
