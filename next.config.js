@@ -1,5 +1,11 @@
+// next.config.mjs
+
+import withBundleAnalyzer from "@next/bundle-analyzer";
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: true,
+  swcMinify: true,
   images: {
     remotePatterns: [
       {
@@ -9,8 +15,8 @@ const nextConfig = {
     ],
     domains: ["portfolioagencystrapi-production-549b.up.railway.app"],
   },
-  reactStrictMode: true,
-  swcMinify: true,
 };
 
-module.exports = nextConfig;
+export default withBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+})(nextConfig);

@@ -7,7 +7,7 @@ import "./ContactForm.css";
 import emailjs from "emailjs-com";
 import { useForm } from "../../context/ConfirmationPopupContext";
 import { useLanguage } from "@/context/LanguageContext";
-import translations from "../../../public/translation";
+import translations from "@/translation";
 
 interface ContactFormState {
   name: string;

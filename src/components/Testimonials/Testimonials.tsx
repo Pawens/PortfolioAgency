@@ -1,16 +1,14 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useRef, useMemo, useEffect } from "react";
 import useSWR from "swr";
 import Testimonial from "../Testimonial/Testimonial";
-import Button from "@mui/material/Button";
-import "./Testimonials.css";
 import Image from "next/image";
-import logoGoogle from "../../../public/img/LogoGoogle.webp";
+import "./Testimonials.css";
 import { useLanguage } from "@/context/LanguageContext";
-import translations from "../../../public/translation";
-
-const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
+import translations from "@/translation";
+import { getTestimonialsData } from "@/utils/StrapiCallsUtils";
+import { CustomButton } from "../CustomButton/CustomButton";
 
 interface Testimonial {
   FullName: string;
@@ -18,87 +16,70 @@ interface Testimonial {
   Message: string;
 }
 
-// Fetcher function for SWR
-const fetcher = async (url: string): Promise<Testimonial[]> => {
-  try {
-    const response = await fetch(url);
-    if (!response.ok) throw new Error(`HTTP error! Status: ${response.status}`);
-    const result = await response.json();
-    return result.data || [];
-  } catch (error) {
-    console.error("Error fetching testimonials:", error);
-    return [];
-  }
-};
-
-function Testimonials() {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPaused, setIsPaused] = useState(false);
-  const [windowWidth, setWindowWidth] = useState(0);
-  const [isClient, setIsClient] = useState(false);
-
+export default function Testimonials() {
   const { selectedLanguage } = useLanguage();
+  const currentIndex = useRef(0);
+  const isPaused = useRef(false);
+  const sliderRef = useRef<HTMLDivElement>(null);
 
-  // Fetch testimonials with SWR, caching results for 24 hours
+  const logoGoogle =
+    "https://res.cloudinary.com/dslwin8c8/image/upload/v1741967970/LogoGoogle_b70wcs.webp";
+
+  // ✅ Use SWR to fetch testimonials with 24h caching
+  const fetcher = async () => {
+    console.log(`Fetching testimonials for language: ${selectedLanguage}`);
+    const response = await getTestimonialsData(selectedLanguage);
+    return response.data;
+  };
+
   const { data: testimonials = [] } = useSWR(
-    selectedLanguage
-      ? `${BASE_URL}/api/testimonials?locale=${selectedLanguage}`
-      : null,
+    [`testimonials`, selectedLanguage],
     fetcher,
-    {
-      dedupingInterval: 86400000, // Cache for 24 hours
-      revalidateOnFocus: false, // Prevent refetching when tab switches
-      revalidateIfStale: false, // Do not revalidate if data is cached
-    }
+    { revalidateOnFocus: false, revalidateOnReconnect: false }
   );
 
-  useEffect(() => {
-    setIsClient(true);
-    setWindowWidth(window.innerWidth);
-    const handleResize = () => setWindowWidth(window.innerWidth);
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
+  // ✅ Compute slides per view based on window width (useMemo prevents unnecessary recalculations)
+  const slidesPerView = useMemo(() => {
+    if (typeof window === "undefined") return 1; // SSR safety check
+    const width = window.innerWidth;
+    return width <= 1000 ? 1 : width <= 1200 ? 2 : 3;
   }, []);
 
+  const slideWidth = useMemo(() => 100 / slidesPerView, [slidesPerView]);
+
+  // ✅ Autoplay effect (Runs only when testimonials change)
   useEffect(() => {
-    if (!isClient) return;
+    if (!testimonials.length) return;
 
-    let interval: NodeJS.Timeout;
-    const slidesPerView = windowWidth <= 1000 ? 1 : windowWidth <= 1200 ? 2 : 3;
+    const interval = setInterval(() => {
+      if (isPaused.current || !sliderRef.current) return;
 
-    if (!isPaused && testimonials.length > slidesPerView) {
-      interval = setInterval(() => {
-        setCurrentIndex((prevIndex) => {
-          const nextIndex = prevIndex + 1;
-          return nextIndex >= testimonials.length - slidesPerView + 1
-            ? 0
-            : nextIndex;
-        });
-      }, 3000);
-    }
+      currentIndex.current += 1;
+      if (currentIndex.current >= testimonials.length - slidesPerView + 1) {
+        currentIndex.current = 0;
+      }
+      sliderRef.current.style.transform = `translateX(-${
+        currentIndex.current * slideWidth
+      }%)`;
+    }, 3000);
 
     return () => clearInterval(interval);
-  }, [isPaused, windowWidth, isClient, testimonials.length]);
-
-  if (!isClient) return null;
-
-  const slideWidth =
-    windowWidth <= 1000 ? 100 : windowWidth <= 1200 ? 50 : 33.33;
+  }, [testimonials.length, slideWidth, slidesPerView]);
 
   return (
     <div
       className="testimonialsContainer"
-      onMouseEnter={() => setIsPaused(true)}
-      onMouseLeave={() => setIsPaused(false)}
+      onMouseEnter={() => (isPaused.current = true)}
+      onMouseLeave={() => (isPaused.current = false)}
     >
       <div
+        ref={sliderRef}
         className="testimonialsSlider"
         style={{
-          transform: `translateX(-${currentIndex * slideWidth}%)`,
           transition: "transform 1s ease-in-out",
         }}
       >
-        {testimonials.map((testimonial, index) => (
+        {testimonials.map((testimonial: Testimonial, index: number) => (
           <div
             key={index}
             className="testimonialSlide"
@@ -119,45 +100,7 @@ function Testimonials() {
         aria-label="Voir les avis sur Google (ouvre dans un nouvel onglet)"
         style={{ textDecoration: "none" }}
       >
-        <Button
-          sx={{
-            backgroundColor: "transparent",
-            color: "white",
-            fontSize: "16px",
-            fontWeight: "600 !important",
-            borderRadius: "100px",
-            padding: "12px 48px",
-            border: "2px solid #FC6D36",
-            position: "relative",
-            overflow: "hidden",
-            zIndex: 1,
-            display: "flex",
-            gap: "16px",
-            justifyContent: "center",
-            alignItems: "center",
-            fontFamily: "Inter, sans-serif",
-            "&::after": {
-              content: '""',
-              position: "absolute",
-              top: 0,
-              left: 0,
-              width: "100%",
-              height: "100%",
-              background: "#FC6D36",
-              transform: "translateX(-100%)",
-              transition: "transform 0.5s ease",
-              zIndex: -1,
-            },
-            "&:hover": {
-              color: "white",
-              border: "2px solid #FC6D36",
-            },
-            "&:hover::after": {
-              transform: "translateX(0)",
-            },
-          }}
-          variant="outlined"
-        >
+        <CustomButton sx={{ marginTop: "16px", gap: "16px" }}>
           {translations[selectedLanguage].testimonials.seeGoogleReview}
           <Image
             src={logoGoogle}
@@ -166,10 +109,8 @@ function Testimonials() {
             width={32}
             height={32}
           />
-        </Button>
+        </CustomButton>
       </a>
     </div>
   );
 }
-
-export default Testimonials;

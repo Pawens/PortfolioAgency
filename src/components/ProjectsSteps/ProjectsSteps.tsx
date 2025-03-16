@@ -5,7 +5,7 @@ import ProjectsStep from "../ProjectsStep/ProjectsStep";
 import "./ProjectsSteps.css";
 import { useLanguage } from "@/context/LanguageContext";
 import { motion, useInView } from "framer-motion";
-import translations from "../../../public/translation";
+import translations from "@/translation";
 
 interface ProjectStepWrapperProps {
   index: number;

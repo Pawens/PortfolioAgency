@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import AdvantageCard from "../AdvantageCard/AdvantageCard";
 import "./AdvantagesCards.css";
 import { useLanguage } from "@/context/LanguageContext";
-import translations from "../../../public/translation";
+import translations from "@/translation";
 import { motion, useInView } from "framer-motion";
 
 function AdvantagesCards() {

@@ -1,8 +1,11 @@
+"use client";
+
 import React, { useMemo, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import "./BackgroundCircles.css";
 
 type AnimatedBackgroundProps = {
+  parentRef: React.RefObject<HTMLElement | null>;
   numCircles?: number;
   colors?: string[];
   minSize?: number;
@@ -11,13 +14,11 @@ type AnimatedBackgroundProps = {
   initialPositions?: { top: number; left: number }[];
   moveDistances?: { x: number; y: number }[];
   sides?: ("left" | "right" | "top" | "bottom")[];
-  sectionRef: React.RefObject<HTMLElement>;
   scrollSpeedFactor?: number;
-  enableAnimation?: boolean;
-  enableScrollAnimation?: boolean; // New prop to enable/disable scroll animation
 };
 
 const BackgroundCircles: React.FC<AnimatedBackgroundProps> = ({
+  parentRef,
   numCircles = 3,
   colors = ["rgba(255, 0, 150, 0.7)", "rgba(0, 150, 255, 0.7)"],
   minSize = 200,
@@ -27,29 +28,49 @@ const BackgroundCircles: React.FC<AnimatedBackgroundProps> = ({
   moveDistances = [],
   sides = [],
   scrollSpeedFactor = 300,
-  sectionRef,
-  enableAnimation = true, // Default to true
-  enableScrollAnimation = true, // Default to true
 }) => {
   const [scrollOffset, setScrollOffset] = useState(0);
   const [isInView, setIsInView] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
 
+  // Handle screen size detection
   useEffect(() => {
+    const checkScreenSize = () => setIsMobile(window.innerWidth < 800);
+    checkScreenSize();
+    window.addEventListener("resize", checkScreenSize);
+    return () => window.removeEventListener("resize", checkScreenSize);
+  }, []);
+
+  // Intersection Observer for visibility detection
+  useEffect(() => {
+    if (!parentRef.current) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => setIsInView(entry.isIntersecting),
+      { threshold: 0.1 }
+    );
+
+    observer.observe(parentRef.current);
+    return () => observer.disconnect();
+  }, [parentRef]);
+
+  // Scroll handler with parent-relative calculations
+  useEffect(() => {
+    if (!isInView || !parentRef.current) return;
+
     const handleScroll = () => {
-      if (sectionRef.current) {
-        const rect = sectionRef.current.getBoundingClientRect();
-        const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
-        setIsInView(isVisible);
-        setScrollOffset(window.scrollY - sectionRef.current.offsetTop);
+      const section = parentRef.current;
+      if (section) {
+        setScrollOffset(window.scrollY - section.offsetTop);
       }
     };
 
-    window.addEventListener("scroll", handleScroll);
-    handleScroll(); // Run once on mount
-
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
     return () => window.removeEventListener("scroll", handleScroll);
-  }, [sectionRef]);
+  }, [isInView, parentRef]);
 
+  // Memoized circles configuration
   const circles = useMemo(() => {
     const allSides: ("left" | "right" | "top" | "bottom")[] = [
       "left",
@@ -74,8 +95,8 @@ const BackgroundCircles: React.FC<AnimatedBackgroundProps> = ({
           : assignedSide === "bottom"
           ? moveDistances[index]?.y ?? 50
           : 0;
-
       const colorIndex = index % colors.length;
+
       return {
         size: Math.random() * (maxSize - minSize) + minSize,
         top: assignedTop,
@@ -99,32 +120,23 @@ const BackgroundCircles: React.FC<AnimatedBackgroundProps> = ({
   return (
     <div className="backgroundAnimationCirclesContainer">
       {isInView &&
-        enableAnimation && // ✅ Only render circles when section is visible and animation is enabled
-        circles.map((circle, index) => {
-          const moveX = enableScrollAnimation
-            ? (scrollOffset / scrollSpeedFactor) * circle.moveX
-            : 0;
-          const moveY = enableScrollAnimation
-            ? (scrollOffset / scrollSpeedFactor) * circle.moveY
-            : 0;
-
-          return (
-            <motion.div
-              key={index}
-              className="backgroundAnimationCircles"
-              style={{
-                width: circle.size,
-                height: circle.size,
-                top: `${circle.top}%`,
-                left: `${circle.left}%`,
-                background: circle.background,
-                filter: `blur(${blurAmount}px)`,
-                x: moveX,
-                y: moveY,
-              }}
-            />
-          );
-        })}
+        !isMobile &&
+        circles.map((circle, index) => (
+          <motion.div
+            key={index}
+            className="backgroundAnimationCircles"
+            style={{
+              width: circle.size,
+              height: circle.size,
+              top: `${circle.top}%`,
+              left: `${circle.left}%`,
+              background: circle.background,
+              filter: `blur(${blurAmount}px)`,
+              x: (scrollOffset / scrollSpeedFactor) * circle.moveX,
+              y: (scrollOffset / scrollSpeedFactor) * circle.moveY,
+            }}
+          />
+        ))}
     </div>
   );
 };
