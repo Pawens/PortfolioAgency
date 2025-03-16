@@ -1,4 +1,3 @@
-import LanguageSelector from "@/components/LanguageSelector/LanguageSelector";
 import SectionAdvantagesCards from "@/components/Sections/SectionAdvantagesCards";
 import SectionContact from "@/components/Sections/SectionContact";
 import SectionFaq from "@/components/Sections/SectionFaq";
@@ -13,12 +12,14 @@ import ConfirmationPopup from "@/components/ConfirmationPopup/ConfirmationPopup"
 import SectionExpertise from "@/components/Sections/SectionExpertise";
 import SectionMainValuesCards from "@/components/Sections/SectionMainValuesCards";
 
+import DynamicLanguageSelector from "@/components/LanguageSelector/DynamicLanguageSelector";
+
 export default async function Home() {
   return (
     <div style={{ position: "relative" }}>
       <FormProvider>
         <ConfirmationPopup />
-        <LanguageSelector />
+        <DynamicLanguageSelector />
         <SectionHero />
         <SectionAdvantagesCards />
         <SectionMainValuesCards />

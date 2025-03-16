@@ -105,11 +105,11 @@ export const CustomButton: React.FC<CustomButtonProps> = ({
   return (
     <Button
       onClick={handleClick}
-      sx={{
-        ...styleTypes[styleType], // Apply styles based on the styleType prop
-        ...styles[variant], // Apply styles based on the variant prop
-        ...sx, // Merge additional styles passed via the sx prop
-      }}
+      sx={(theme) => ({
+        ...(styleTypes[styleType] as SxProps<Theme>), // Apply styles based on the styleType prop
+        ...(styles[variant] as SxProps<Theme>), // Apply styles based on the variant prop
+        ...(sx ? (typeof sx === "function" ? sx(theme) : sx) : {}), // Merge additional styles passed via the sx prop
+      })}
       variant="outlined"
     >
       {children || value}{" "}
