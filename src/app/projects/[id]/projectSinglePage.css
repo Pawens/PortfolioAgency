@@ -30,6 +30,10 @@
   font-size: 20px;
 }
 
+.project-info-description {
+  padding-right: 64px;
+}
+
 .features {
   display: flex;
   flex-direction: column;
@@ -80,6 +84,12 @@
   object-position: top;
   border-radius: 8px;
   cursor: pointer;
+}
+
+.visitWebsiteButton {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .project-media {
@@ -136,4 +146,27 @@
   justify-content: center;
   align-items: center;
   background: #121212;
+}
+
+@media (max-width: 900px) {
+  .project-content {
+    flex-direction: column;
+    padding: 32px;
+    padding-top: 64px;
+  }
+  .project-info {
+    width: 100%;
+  }
+  .project-media {
+    width: 100%;
+  }
+  .image-gallery {
+    padding-right: 0;
+  }
+  .project-info-description {
+    padding-right: 0;
+  }
+  .project-media {
+    padding-top: 32px;
+  }
 }

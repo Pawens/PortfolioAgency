@@ -101,7 +101,7 @@ export default function ProjectDetailPage() {
         {/* Left: Project Info */}
         <section className="project-info">
           <h1>{project.Title}</h1>
-          <p style={{ paddingRight: "64px" }}>
+          <p className="project-info-description">
             {project.Description || "No description available."}
           </p>
 
@@ -148,11 +148,7 @@ export default function ProjectDetailPage() {
               href={project.websiteUrl}
               target="_blank"
               rel="noopener noreferrer"
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-              }}
+              className="visitWebsiteButton"
             >
               <CustomButton value="Visit Website" variant="small" />
             </a>
