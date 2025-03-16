@@ -52,7 +52,7 @@ function MainValueCard({
 
   useEffect(() => {
     if (isInView) {
-      const controls = animate(count, numericValue, { duration: 3 });
+      const controls = animate(count, numericValue, { duration: 1 });
       return () => controls.stop();
     }
   }, [isInView]);

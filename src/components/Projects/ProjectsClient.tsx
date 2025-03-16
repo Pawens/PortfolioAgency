@@ -11,7 +11,7 @@ import { CustomButton } from "../CustomButton/CustomButton";
 
 interface Stack {
   id: number;
-  name: string;
+  Name: string;
 }
 
 interface Feature {
@@ -21,12 +21,11 @@ interface Feature {
 
 interface ImageData {
   id: number;
-  name: string;
   url: string;
 }
 
 interface Project {
-  id: number;
+  documentId: string;
   Title: string;
   Description?: string;
   videoUrl?: string | null;
@@ -40,14 +39,13 @@ export default function ProjectsClient() {
   const { selectedLanguage } = useLanguage();
   const [visibleCount, setVisibleCount] = useState<number>(2);
 
-  // ✅ Use SWR to fetch projects with 24h caching
   const fetcher = async () => {
     console.log(`Fetching projects for language: ${selectedLanguage}`);
     const response = await getProjectsData(selectedLanguage);
-    return response.data;
+    return response.data || [];
   };
 
-  const { data: projects = [], isLoading } = useSWR(
+  const { data: projects = [] } = useSWR(
     [`projects`, selectedLanguage],
     fetcher,
     { revalidateOnFocus: false, revalidateOnReconnect: false }
@@ -60,36 +58,18 @@ export default function ProjectsClient() {
   return (
     <div className="projectsContainer">
       <div className="projectsGrid">
-        {isLoading
-          ? Array.from({ length: visibleCount }).map((_, index) => (
-              <div key={index} className="projectCardLoader">
-                {/* Placeholder for loading animation */}
-              </div>
-            ))
-          : projects.slice(0, visibleCount).map((project: Project) => (
-              <ProjectCard
-                key={project.id}
-                name={project.Title}
-                imageUrl={project.Images?.[0]?.url || undefined}
-                videoUrl={project.videoUrl}
-                projectId={project.id.toString()}
-                description={project.Description}
-                features={
-                  project.features
-                    ?.map((f) => (f ? { id: f.id, Name: f.Name } : null))
-                    .filter((f): f is Feature => f !== null) || []
-                }
-                stack={project.stacks || []}
-                images={
-                  project.Images?.map((img, index) => ({
-                    id: index,
-                    name: img.url.split("/").pop() || "Image",
-                    url: img.url,
-                  })) || []
-                }
-                websiteUrl={project.websiteUrl}
-              />
-            ))}
+        {projects.slice(0, visibleCount).map((project: Project) => (
+          <ProjectCard
+            key={project.documentId}
+            documentId={project.documentId}
+            name={project.Title}
+            imageUrl={project.Images?.[0]?.url || undefined}
+            features={project.features || []}
+            stack={project.stacks || []}
+            images={project.Images || []}
+            websiteUrl={project.websiteUrl}
+          />
+        ))}
       </div>
 
       {visibleCount < projects.length && (

@@ -11,7 +11,11 @@ function SectionProjects() {
   const sectionRef = useRef<HTMLElement>(null);
 
   return (
-    <section className="section sectionFlex sectionProjects" ref={sectionRef}>
+    <section
+      id="projects"
+      className="section sectionFlex sectionProjects"
+      ref={sectionRef}
+    >
       <BackgroundCircles
         parentRef={sectionRef}
         numCircles={2}
