@@ -209,27 +209,27 @@ const translations = {
     hero: {
       titleH1: "Obtenez un site web professionnel personnalisé juste pour vous",
       descriptionHero:
-        "On accompagne les entreprises dans leur transformation digitale de la phase de conception à la mise en ligne. Notre objectif transformer vos idées en réalité.",
+        "On accompagne les entreprises dans leur transformation digitale, de la phase de conception à la mise en ligne. Notre objectif : transformer vos idées en réalité.",
       ourRealizations: "Nos réalisations",
-      getQuote: "Obtenir un devis en 48h!",
+      getQuote: "Obtenir un devis en 48h !",
       by: "Par",
     },
     advantagesCards: {
       title1: "Services de développement Web",
       title2: "Nos garanties",
       items1: [
-        "Développement de sites Web personnalisés",
-        "Site vitrine et E-commerce",
+        "Développement de sites web personnalisés",
+        "Site vitrine et e-commerce",
         "Adaptation mobile",
-        "Intégration d'interface administrateur",
-        "Maintenance de site Web",
+        "Intégration d'une interface administrateur",
+        "Maintenance de site web",
         "Optimisation SEO",
         "Développement de fonctionnalités sur mesure",
       ],
       items2: [
         "Délai de réalisation rapide",
         "Support technique 24/7",
-        "Développement axé sur les objectifs clients",
+        "Développement axé sur les objectifs des clients",
         "Respect des délais",
         "Sécurité et protection des données",
         "Mises à jour techniques régulières",
@@ -238,20 +238,20 @@ const translations = {
     },
     projectsSteps: {
       title: "Notre méthode de travail",
-      clientValidation: "+ Validation Client",
+      clientValidation: "+ Validation client",
       steps1: {
-        title: "Prise de Contact",
+        title: "Prise de contact",
         description: [
           "+ Mise en contexte par rapport au marché.",
           "+ Analyse des besoins.",
-          "+ Définnition des objectifs.",
+          "+ Définition des objectifs.",
         ],
       },
       steps2: {
         title: "Évaluation & Conceptualisation",
         description: [
-          "+ Arboressance des pages.",
-          "+ Formalisation des fonctionalité attendu.",
+          "+ Arborescence des pages.",
+          "+ Formalisation des fonctionnalités attendues.",
           "+ Présentation du devis.",
         ],
       },
@@ -259,22 +259,22 @@ const translations = {
         title: "Design",
         description: [
           "+ Charte graphique.",
-          "+ Creation des Mockups.",
-          "+ Défintion des animations.",
+          "+ Création des mockups.",
+          "+ Définition des animations.",
         ],
       },
       steps4: {
         title: "Développement",
         description: [
-          "+ Développement des fonctionalités mentionnés.",
+          "+ Développement des fonctionnalités mentionnées.",
           "+ Intégration du design.",
           "+ Mise en place des animations.",
         ],
       },
       steps5: {
-        title: "Déploiment & Correctifs",
+        title: "Déploiement & Correctifs",
         description: [
-          "+ Test de l'ensemble des fonctionalités.",
+          "+ Tests de l'ensemble des fonctionnalités.",
           "+ Correction des bugs.",
           "+ Mise en ligne.",
         ],
@@ -283,7 +283,7 @@ const translations = {
         title: "Livraison & Formation",
         description: [
           "+ Formation à l'administration.",
-          "+ Livraison des clés.",
+          "+ Livraison des accès.",
           "+ Support après livraison.",
         ],
       },
@@ -291,15 +291,15 @@ const translations = {
         title: "Maintenance & Sécurité",
         description: [
           "+ Mise à jour des stacks.",
-          "+ Veiles et correction des nouvelles vulnérabilités.",
-          "+ Backup des données.",
+          "+ Veille et correction des nouvelles vulnérabilités.",
+          "+ Sauvegarde des données.",
         ],
       },
     },
     expertise: {
-      title: "Notre Expertise",
+      title: "Notre expertise",
       description:
-        "Notre équipe est spécialisée dans 3 domaines pour couvrir tous les aspects du web, de la conception à la maintenance !",
+        "Notre équipe est spécialisée dans trois domaines pour couvrir tous les aspects du web, de la conception à la maintenance !",
       expertise1: {
         title: "Développement Web",
         description:
@@ -317,29 +317,29 @@ const translations = {
       },
     },
     projects: {
-      title: "Nos Projets",
-      viewProject: "Voir le Projet",
+      title: "Nos projets",
+      viewProject: "Voir le projet",
       features: "Fonctionnalités :",
       stack: "Technologies :",
-      showMore: "Voir Plus",
+      showMore: "Voir plus",
       visitWebsite: "Visiter le site",
       notHostedMessage:
         "🌱 Ce projet n'est pas hébergé en ligne pour des raisons économiques et écologiques. Si besoin, je peux le présenter sur ma machine locale.",
     },
     testimonials: {
       title: "Témoignages",
-      seeGoogleReview: "Voir les Avis sur Google",
+      seeGoogleReview: "Voir les avis sur Google",
     },
     team: {
-      title: "Présentation de l'Équipe",
+      title: "Présentation de l'équipe",
       jobTitle: "Développeur Full Stack",
     },
     stack: {
-      title: "Notre Stack",
+      title: "Notre stack",
     },
     faq: {
       title: "FAQ",
-      description: "Vos questions les plus courantes:",
+      description: "Vos questions les plus courantes :",
       panels: [
         {
           id: "panel1",
@@ -411,7 +411,6 @@ const translations = {
       errorMessage: "Erreur lors de l'envoi du message. Veuillez réessayer.",
     },
   },
-
   // German
   de: {
     hero: {
