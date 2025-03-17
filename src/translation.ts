@@ -399,6 +399,17 @@ const translations = {
         },
       ],
     },
+    contact: {
+      title: "Contactez-nous",
+      name: "Nom",
+      email: "Email",
+      message: "Message",
+      send: "Envoyer",
+    },
+    confirmationPopup: {
+      successMessage: "Message envoyé avec succès !",
+      errorMessage: "Erreur lors de l'envoi du message. Veuillez réessayer.",
+    },
   },
   // German
   de: {
