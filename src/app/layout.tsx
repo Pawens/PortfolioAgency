@@ -4,7 +4,7 @@ import "./reset.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
-  title: "Portfolio Romain & Adam",
+  title: "PAWENS l'agence pour TPE PME",
   description:
     "Création de sites web sur mesure pour TPE & PME – Développeur web indépendant spécialisé en sites vitrines et e-commerce performants. Design personnalisé, UX optimisée, SEO avancé pour un meilleur référencement Google. Profitez d’une approche transparente et d’un accompagnement complet : analyse des besoins, développement, optimisation SEO, maintenance et sécurité. Boostez votre visibilité en ligne dès aujourd’hui !",
   keywords: [
