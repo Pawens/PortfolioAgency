@@ -12,7 +12,7 @@ const Calendly = () => {
 
   return (
     <Link
-      href="https://calendly.com/romainparisot-pro"
+      href="https://calendly.com/romainparisot-pro/30min"
       target="_blank"
       rel="noopener noreferrer"
       className="calendly-widget"
