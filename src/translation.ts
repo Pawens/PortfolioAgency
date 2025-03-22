@@ -218,7 +218,7 @@ const translations = {
       by: "Par",
     },
     calendly: {
-      label: "Book a call",
+      label: "Réserver un appel",
     },    
     advantagesCards: {
       title1: "Services de développement Web",
@@ -429,8 +429,8 @@ const translations = {
       by: "Durch",
     },
     calendly: {
-      label: "Book a call",
-    },    
+      label: "Termin buchen",
+    },      
     advantagesCards: {
       title1: "Webentwicklungsdienste",
       title2: "Unsere Garantien",
@@ -640,8 +640,8 @@ const translations = {
       by: "Por",
     },
     calendly: {
-      label: "Book a call",
-    },    
+      label: "Reservar una llamada",
+    },      
     advantagesCards: {
       title1: "Servicios de desarrollo web",
       title2: "Nuestras garantías",
@@ -850,8 +850,8 @@ const translations = {
       by: "Di",
     },
     calendly: {
-      label: "Book a call",
-    },    
+      label: "Prenota una chiamata",
+    },      
     advantagesCards: {
       title1: "Servizi di sviluppo Web",
       title2: "Le nostre garanzie",
