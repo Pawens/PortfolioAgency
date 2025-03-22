@@ -9,6 +9,9 @@ const translations = {
       getQuote: "Get a quote in 48h!",
       by: "By",
     },
+    calendly: {
+      label: "Book a call",
+    },    
     advantagesCards: {
       title1: "Web Development Services",
       title2: "Our Guarantees",
@@ -214,6 +217,9 @@ const translations = {
       getQuote: "Obtenir un devis en 48h !",
       by: "Par",
     },
+    calendly: {
+      label: "Book a call",
+    },    
     advantagesCards: {
       title1: "Services de développement Web",
       title2: "Nos garanties",
@@ -422,6 +428,9 @@ const translations = {
       getQuote: "Erhalten Sie in 48 Stunden ein Angebot!",
       by: "Durch",
     },
+    calendly: {
+      label: "Book a call",
+    },    
     advantagesCards: {
       title1: "Webentwicklungsdienste",
       title2: "Unsere Garantien",
@@ -630,6 +639,9 @@ const translations = {
       getQuote: "¡Obtenga un presupuesto en 48 horas!",
       by: "Por",
     },
+    calendly: {
+      label: "Book a call",
+    },    
     advantagesCards: {
       title1: "Servicios de desarrollo web",
       title2: "Nuestras garantías",
@@ -837,6 +849,9 @@ const translations = {
       getQuote: "Ottieni un preventivo in 48 ore!",
       by: "Di",
     },
+    calendly: {
+      label: "Book a call",
+    },    
     advantagesCards: {
       title1: "Servizi di sviluppo Web",
       title2: "Le nostre garanzie",

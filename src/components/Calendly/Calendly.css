@@ -1,0 +1,33 @@
+.calendly-widget {
+  position: sticky;
+  top: 20px;
+  left: 20px;
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  background-color: white;
+  border: 1px solid #e2e8f0;
+  padding: 8px 12px;
+  border-radius: 9999px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+
+  cursor: pointer;
+  transition: box-shadow 0.2s ease;
+}
+
+.calendly-widget:hover {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.calendly-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a202c;
+  text-decoration: none;
+}
+
+.calendly-link:hover {
+  text-decoration: underline;
+}

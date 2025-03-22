@@ -13,6 +13,7 @@ import SectionExpertise from "@/components/Sections/SectionExpertise";
 import SectionMainValuesCards from "@/components/Sections/SectionMainValuesCards";
 
 import DynamicLanguageSelector from "@/components/LanguageSelector/DynamicLanguageSelector";
+import Calendly from "@/components/Calendly/Calendly";
 
 export default async function Home() {
   return (
@@ -20,6 +21,7 @@ export default async function Home() {
       <FormProvider>
         <ConfirmationPopup />
         <DynamicLanguageSelector />
+        <Calendly />
         <SectionHero />
         <SectionAdvantagesCards />
         <SectionMainValuesCards />
