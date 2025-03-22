@@ -11,17 +11,15 @@ const Calendly = () => {
   const label = translations[selectedLanguage]?.calendly?.label || "Book a call";
 
   return (
-    <div className="calendly-widget">
+    <Link
+      href="https://calendly.com/romainparisot-pro"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="calendly-widget"
+    >
       <Calendar size={20} />
-      <Link
-        href="https://calendly.com/romainparisot-pro"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="calendly-link"
-      >
-        {label}
-      </Link>
-    </div>
+      <span className="calendly-link">{label}</span>
+    </Link>
   );
 };
 
