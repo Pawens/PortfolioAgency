@@ -18,9 +18,9 @@ function LanguageSelector() {
   };
 
   return (
-    <div className="relative w-fit h-fit">
+    <div className="relative w-[14px] h-fit ">
       <button
-        className="text-[var(--color-secondary)] text-[12px]"
+        className="text-[var(--color-secondary)] text-[12px] transition duration-200 hover:opacity-80 hover:-translate-y-[2px]"
         onClick={() => setOpen(!open)}
       >
         {language}
@@ -32,7 +32,7 @@ function LanguageSelector() {
             <button
               key={lang}
               onClick={() => handleSelect(lang)}
-              className="text-[var(--color-secondary)] text-[12px] animate-fadeDropIn"
+              className="text-[var(--color-secondary)] text-[12px] animate-fadeDropIn transition duration-200 hover:opacity-80 hover:-translate-y-[2px]"
               style={{
                 animationDelay: `${i * 100}ms`,
                 opacity: 0,
