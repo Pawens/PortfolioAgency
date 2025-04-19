@@ -7,7 +7,11 @@ module.exports = {
     "./context/**/*.{ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        satoshi: ['"Satoshi"', "sans-serif"],
+      },
+    },
   },
   plugins: [],
 };
