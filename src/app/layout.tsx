@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./reset.css";
 import LandingMain from "./page";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
   title: "Pawens",
@@ -40,7 +41,9 @@ export default function RootLayout({}: Readonly<{
   return (
     <html lang="fr">
       <body className="antialiased">
-        <LandingMain></LandingMain>
+        <LanguageProvider>
+          <LandingMain />
+        </LanguageProvider>
       </body>
     </html>
   );
