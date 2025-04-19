@@ -1,5 +1,9 @@
+import HeroButton from "@/components/Atoms/HeroButton";
+
 export default function Home() {
   return (
-    <main className="min-h-[500vh] pt-[136px] text-white text-center text-4xl"></main>
+    <main className="pt-[136px]">
+      <HeroButton />
+    </main>
   );
 }
