@@ -1,9 +1,9 @@
-import PawensLogotype from "@/components/Molecules/PawensLogotype";
+import ButtonDefault from "@/components/Atoms/ButtonDefault";
 
 export default async function LandingMain() {
   return (
     <div>
-      <PawensLogotype />
+      <ButtonDefault>Réserver</ButtonDefault>
     </div>
   );
 }

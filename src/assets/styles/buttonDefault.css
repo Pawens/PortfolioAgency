@@ -1,0 +1,36 @@
+button::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0%;
+  background-color: var(--color-secondary);
+  z-index: 0;
+  transition: height 0.6s ease-out;
+}
+
+button:hover::before {
+  animation: fillFromBottomWithBounce 0.2s ease-out forwards;
+}
+
+@keyframes fillFromBottomWithBounce {
+  0% {
+    height: 0%;
+  }
+  60% {
+    height: 100%;
+  }
+  75% {
+    height: 85%;
+  }
+  85% {
+    height: 100%;
+  }
+  92% {
+    height: 95%;
+  }
+  100% {
+    height: 100%;
+  }
+}
