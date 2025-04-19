@@ -1,0 +1,40 @@
+@keyframes fall-in {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes bounce-hover {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.logotype-letter {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(-20px);
+  animation-name: fall-in;
+  animation-duration: 0.5s;
+  animation-timing-function: ease-out;
+  animation-fill-mode: forwards;
+  animation-delay: calc(var(--i) * 0.1s);
+}
+
+.group:hover .logotype-letter {
+  animation-name: fall-in, bounce-hover;
+  animation-duration: 0s, 0.3s;
+  animation-timing-function: ease-out, ease-out;
+  animation-fill-mode: forwards, both;
+  animation-delay: 0s, calc(var(--i) * 0.1s);
+}
