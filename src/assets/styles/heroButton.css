@@ -44,10 +44,10 @@
 }
 
 .hero-icon-left {
-  transform: translateX(11px) rotate(-90deg);
+  transform: translateX(12px) rotate(-90deg);
 }
 .hero-icon-right {
-  transform: translateX(-11px) rotate(90deg);
+  transform: translateX(-12px) rotate(90deg);
 }
 
 .hero-icon-left,
