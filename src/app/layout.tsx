@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./reset.css";
-import { LanguageProvider } from "@/context/LanguageContext";
+import LandingMain from "./page";
 
 export const metadata: Metadata = {
-  title: "Portfolio Romain & Adam",
+  title: "Pawens",
   description:
-    "Création de sites web sur mesure pour TPE & PME – Développeur web indépendant spécialisé en sites vitrines et e-commerce performants. Design personnalisé, UX optimisée, SEO avancé pour un meilleur référencement Google. Profitez d’une approche transparente et d’un accompagnement complet : analyse des besoins, développement, optimisation SEO, maintenance et sécurité. Boostez votre visibilité en ligne dès aujourd’hui !",
+    "Création de sites web sur mesure pour TPE & PME – Développeur web spécialisé en sites vitrines et e-commerce performants. Design personnalisé, UX optimisée, SEO avancé pour un meilleur référencement Google. Profitez d’une approche transparente et d’un accompagnement complet : analyse des besoins, développement, optimisation SEO, maintenance et sécurité. Boostez votre visibilité en ligne dès aujourd’hui !",
   keywords: [
     "création site web",
     "site web professionnel",
@@ -30,19 +30,17 @@ export const metadata: Metadata = {
     "agence web pour TPE et PME",
   ],
   icons: {
-    icon: "/faviconPortfolio.svg",
+    icon: "/PawensLogo.svg",
   },
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+export default function RootLayout({}: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
     <html lang="fr">
       <body className="antialiased">
-        <LanguageProvider>{children}</LanguageProvider>
+        <LandingMain></LandingMain>
       </body>
     </html>
   );
