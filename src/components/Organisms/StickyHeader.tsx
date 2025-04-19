@@ -25,7 +25,7 @@ export default function StickyHeader() {
     <header
       className={`fixed top-0 left-0 w-full z-50 h-[136px] transition-transform duration-300 will-change-transform ${
         visible ? "translate-y-0" : "-translate-y-[136px]"
-      } bg-[var(--color-primary)]`}
+      } `}
     >
       <Header />
     </header>

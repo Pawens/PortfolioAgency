@@ -1,9 +1,9 @@
-import HeroButton from "@/components/Atoms/HeroButton";
+import Hero from "@/components/Organisms/Hero";
 
 export default function Home() {
   return (
-    <main className="pt-[136px]">
-      <HeroButton />
+    <main className="flex align-center justify-center min-h-screen ">
+      <Hero />
     </main>
   );
 }

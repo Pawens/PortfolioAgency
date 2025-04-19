@@ -42,7 +42,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="fr">
-      <body className="antialiased bg-[var(--color-primary)]">
+      <body className="antialiased ">
         <LanguageProvider>
           <StickyHeader />
           {children}
