@@ -1,12 +1,30 @@
 "use client";
 
 import React from "react";
+import { usePathname, useRouter } from "next/navigation";
 import PawensLogo from "../../assets/icons/PawensLogo.svg";
 
 function PawensLogotype() {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  const handleClick = () => {
+    if (pathname === "/") {
+      // Scroll animé vers le top
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } else {
+      // Redirection vers la home
+      router.push("/");
+    }
+  };
+
   return (
     <div
-      className="flex items-center gap-[12px]"
+      onClick={handleClick}
+      className="flex items-center gap-[12px] cursor-pointer"
       style={{ color: "var(--color-secondary)" }}
     >
       <PawensLogo className="block fill-current" />

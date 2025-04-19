@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./reset.css";
-import LandingMain from "./page";
 import { LanguageProvider } from "@/context/LanguageContext";
+import StickyHeader from "@/components/Organisms/StickyHeader";
 
 export const metadata: Metadata = {
   title: "Pawens",
@@ -35,14 +35,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({}: Readonly<{
+export default function RootLayout({
+  children,
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="fr">
-      <body className="antialiased">
+      <body className="antialiased bg-[var(--color-primary)]">
         <LanguageProvider>
-          <LandingMain />
+          <StickyHeader />
+          {children}
         </LanguageProvider>
       </body>
     </html>

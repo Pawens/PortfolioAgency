@@ -18,7 +18,7 @@ function LanguageSelector() {
   };
 
   return (
-    <div className="relative w-fit">
+    <div className="relative w-fit h-fit">
       <button
         className="text-[var(--color-secondary)] text-[12px]"
         onClick={() => setOpen(!open)}
@@ -27,7 +27,7 @@ function LanguageSelector() {
       </button>
 
       {open && (
-        <div className="flex flex-col gap-[8px] mt-[4px]">
+        <div className="absolute left-0 top-full mt-[4px] flex flex-col gap-[8px]">
           {otherLanguages.map((lang, i) => (
             <button
               key={lang}
@@ -35,7 +35,7 @@ function LanguageSelector() {
               className="text-[var(--color-secondary)] text-[12px] animate-fadeDropIn"
               style={{
                 animationDelay: `${i * 100}ms`,
-                opacity: 0, // <- ça garde le bouton invisible avant son tour
+                opacity: 0,
               }}
             >
               {lang}

@@ -1,4 +1,4 @@
-button::before {
+.button-default::before {
   content: "";
   position: absolute;
   bottom: 0;
@@ -10,8 +10,8 @@ button::before {
   transition: height 0.6s ease-out;
 }
 
-button:hover::before {
-  animation: fillFromBottomWithBounce 0.3s ease-out forwards;
+.button-default:hover::before {
+  animation: fillFromBottomWithBounce 0.2s ease-out forwards;
 }
 
 @keyframes fillFromBottomWithBounce {

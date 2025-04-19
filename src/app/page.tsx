@@ -1,14 +1,5 @@
-import LanguageSelector from "@/components/Atoms/LanguageSelector";
-
-export default async function LandingMain() {
+export default function Home() {
   return (
-    <div
-      style={{
-        background: "var(--color-primary)",
-        height: "100vh",
-      }}
-    >
-      <LanguageSelector />
-    </div>
+    <main className="min-h-[500vh] pt-[136px] text-white text-center text-4xl"></main>
   );
 }
