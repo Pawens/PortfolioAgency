@@ -1,0 +1,25 @@
+@keyframes arrow-bounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  10% {
+    transform: translateY(6px);
+  }
+  20% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(4px);
+  }
+  40% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.animate-arrow-bounce {
+  animation: arrow-bounce 2.5s ease-in-out infinite;
+}
