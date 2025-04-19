@@ -17,9 +17,11 @@ function ButtonDefault({
   return (
     <button
       onClick={onClick}
-      className={`relative overflow-hidden p-[12px] border border-[var(--color-secondary)] text-[var(--color-secondary)] font-medium group ${className}`}
+      className={`relative overflow-hidden p-[12px] border border-[var(--color-secondary)] text-[var(--color-secondary)] text-[12px] group ${className}`}
     >
-      <span className="relative z-10">{children}</span>
+      <span className="relative z-10 transition-colors duration-300 group-hover:text-[var(--color-primary)]">
+        {children}
+      </span>
     </button>
   );
 }
