@@ -1,3 +1,9 @@
+import PawensLogotype from "@/components/Molecules/PawensLogotype";
+
 export default async function LandingMain() {
-  return <div>Pawens</div>;
+  return (
+    <div>
+      <PawensLogotype />
+    </div>
+  );
 }
