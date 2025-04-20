@@ -1,4 +1,3 @@
-import { KeyMetricsResponse } from "@/components/Organisms/KeyMetrics";
 import {
   getMainValuesData,
   getTestimonialsData,
@@ -31,9 +30,7 @@ async function fetchWithCache<T>(
 
 // Wrappers pour chaque call
 export function fetchMainValues(lang: string) {
-  return fetchWithCache<KeyMetricsResponse>(`mainValues_${lang}`, () =>
-    getMainValuesData(lang)
-  );
+  return fetchWithCache(`mainValues_${lang}`, () => getMainValuesData(lang));
 }
 
 export function fetchTestimonials(lang: string) {

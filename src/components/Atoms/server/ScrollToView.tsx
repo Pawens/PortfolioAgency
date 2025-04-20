@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import ArrowPawens from "../../../assets/icons/ArrowPawens.svg";
 import "../../../assets/styles/scrollToView.css";

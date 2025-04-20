@@ -1,6 +1,6 @@
 import React from "react";
-import HeroButton from "../../Atoms/client/HeroButton";
-import ScrollToView from "../../Atoms/client/ScrollToView";
+import HeroButton from "../../Atoms/server/HeroButton";
+import ScrollToView from "../../Atoms/server/ScrollToView";
 import "../../../assets/styles/animation.css";
 
 function Hero() {
