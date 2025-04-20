@@ -1,6 +1,9 @@
+"use client";
+
 import React from "react";
 import HeroButton from "../Atoms/HeroButton";
 import ScrollToView from "../Atoms/ScrollToView";
+import "../../assets/styles/animation.css";
 
 function Hero() {
   return (
@@ -16,11 +19,31 @@ function Hero() {
       }}
     >
       <div className="flex flex-col items-center justify-center text-[80px] text-[var(--color-secondary)] uppercase font-thin">
-        <h2 className="font-thin">L&apos;agence créative</h2>
-        <div className="flex items-center justify-center gap-[42px]">
-          <h2>Pour</h2>
-          <HeroButton />
-          <h2>Vous</h2>
+        <h2
+          className="font-thin opacity-0 animate-fade-in-down"
+          style={{ animationDelay: "0.2s" }}
+        >
+          L&apos;agence créative
+        </h2>
+        <div className="flex items-center justify-center gap-[42px] mt-[20px]">
+          <h2
+            className="opacity-0 animate-fade-in-left"
+            style={{ animationDelay: "0.4s" }}
+          >
+            Pour
+          </h2>
+          <div
+            className="opacity-0 animate-fade-in-up"
+            style={{ animationDelay: "0.4s" }}
+          >
+            <HeroButton />
+          </div>
+          <h2
+            className="opacity-0 animate-fade-in-right"
+            style={{ animationDelay: "0.4s" }}
+          >
+            Vous
+          </h2>
         </div>
       </div>
       <ScrollToView />

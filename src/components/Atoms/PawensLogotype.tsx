@@ -4,6 +4,7 @@ import React from "react";
 import { usePathname, useRouter } from "next/navigation";
 import PawensLogo from "../../assets/icons/PawensLogo.svg";
 import "../../assets/styles/pawensLogotype.css";
+import "../../assets/styles/animation.css";
 
 const letters = ["P", "A", "W", "E", "N", "S"];
 
@@ -25,7 +26,7 @@ function PawensLogotype() {
       className="flex items-center gap-[12px] cursor-pointer group"
       style={{ color: "var(--color-secondary)" }}
     >
-      <PawensLogo className="block fill-current transition-transform duration-300 group-hover:translate-x-[4px]" />
+      <PawensLogo className="block fill-current transition-transform duration-300 group-hover:translate-x-[4px] opacity-0 animate-fade-in-left" />
       <div className="flex">
         {letters.map((letter, i) => (
           <h3
