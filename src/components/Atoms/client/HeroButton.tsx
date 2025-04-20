@@ -1,8 +1,8 @@
 "use client";
 
 import React from "react";
-import "../../assets/styles/heroButton.css";
-import ArrowPawens from "../../assets/icons/ArrowPawens.svg";
+import "../../../assets/styles/heroButton.css";
+import ArrowPawens from "../../../assets/icons/ArrowPawens.svg";
 function HeroButton() {
   return (
     <button className="hero-button group">

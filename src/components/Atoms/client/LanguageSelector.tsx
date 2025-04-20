@@ -1,8 +1,8 @@
 "use client";
 
 import React, { useState } from "react";
-import { Language, useLanguage } from "../../context/LanguageContext";
-import "../../assets/styles/languageSelector.css";
+import { Language, useLanguage } from "../../../context/LanguageContext";
+import "../../../assets/styles/languageSelector.css";
 
 const allLanguages = ["Fr", "En", "Es", "De", "It"];
 

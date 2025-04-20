@@ -1,7 +1,7 @@
 import React from "react";
-import NavBar from "../Molecules/NavBar";
-import LanguageSelector from "../Atoms/LanguageSelector";
-import PawensLogotype from "../Atoms/PawensLogotype";
+import NavBar from "../../Molecules/NavBar";
+import LanguageSelector from "../../Atoms/client/LanguageSelector";
+import PawensLogotype from "../../Atoms/client/PawensLogotype";
 
 function Header() {
   return (

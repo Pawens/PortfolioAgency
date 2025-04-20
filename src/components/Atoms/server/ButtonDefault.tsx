@@ -1,5 +1,5 @@
 import React from "react";
-import "../../assets/styles/ButtonDefault.css";
+import "../../../assets/styles/ButtonDefault.css";
 
 type ButtonDefaultProps = {
   href?: string;

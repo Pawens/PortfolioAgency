@@ -1,9 +1,7 @@
-"use client";
-
 import React from "react";
-import HeroButton from "../Atoms/HeroButton";
-import ScrollToView from "../Atoms/ScrollToView";
-import "../../assets/styles/animation.css";
+import HeroButton from "../../Atoms/client/HeroButton";
+import ScrollToView from "../../Atoms/client/ScrollToView";
+import "../../../assets/styles/animation.css";
 
 function Hero() {
   return (
@@ -12,7 +10,7 @@ function Hero() {
       style={{
         backgroundImage: "url('/backgroundDarkToLight.png')",
         backgroundSize: "100% 100%",
-        backgroundPosition: "top",
+        backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         width: "100%",
         height: "100vh",
