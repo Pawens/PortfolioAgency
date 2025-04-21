@@ -16,7 +16,6 @@ interface Metric {
   id: number;
   label: string;
   value: number;
-  isPercent?: boolean;
 }
 
 export default function KeyMetricsClient() {
@@ -29,31 +28,15 @@ export default function KeyMetricsClient() {
     fetchMainValues(language.toLowerCase())
       .then((resp) => {
         const raw: RawMetric[] = resp.data || [];
-
         const order = ["work", "check", "star"];
-
         const ordered: Metric[] = order
           .map((icon) => raw.find((r) => r.iconName === icon))
           .filter((r): r is RawMetric => !!r)
-          .map((r) => {
-            let num: number;
-            let percent = false;
-
-            if (r.iconName === "star" && r.Value.includes("/")) {
-              num = parseInt(r.Value.split("/")[0], 10);
-              percent = true;
-            } else {
-              num = parseInt(r.Value.replace(/\D/g, ""), 10);
-            }
-
-            return {
-              id: r.id,
-              label: r.Label,
-              value: num,
-              isPercent: percent,
-            };
-          });
-
+          .map((r) => ({
+            id: r.id,
+            label: r.Label,
+            value: parseInt(r.Value.replace(/\D/g, ""), 10),
+          }));
         setMetrics(ordered);
       })
       .catch(console.error)
@@ -66,7 +49,7 @@ export default function KeyMetricsClient() {
     <div className="flex gap-[32px] w-full justify-between text-center">
       {metrics.map((m, idx) => {
         const prefix = idx < 2 ? "+" : "";
-        const suffix = m.isPercent ? "/5" : "";
+        const suffix = idx === 2 ? "/5" : "";
         const alignClass =
           idx === 0 ? "text-left" : idx === 1 ? "text-center" : "text-right";
 
@@ -80,14 +63,8 @@ export default function KeyMetricsClient() {
               suffix={suffix}
               enableScrollSpy
               scrollSpyOnce
-            >
-              {({ countUpRef }) => (
-                <span
-                  ref={countUpRef}
-                  className="text-[38px] font-bold text-[var(--color-primary)]"
-                />
-              )}
-            </CountUp>
+              className="text-[38px] font-bold text-[var(--color-primary)]"
+            />
             <span className="text-[14px] text-[var(--color-black)]">
               {m.label}
             </span>

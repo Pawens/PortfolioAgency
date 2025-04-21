@@ -1,5 +1,5 @@
 import React from "react";
-import NavBar from "../../Molecules/NavBar";
+import NavBar from "../../Molecules/server/NavBar";
 import LanguageSelector from "../../Atoms/client/LanguageSelector";
 import PawensLogotype from "../../Atoms/client/PawensLogotype";
 
