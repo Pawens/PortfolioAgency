@@ -5,11 +5,18 @@ type ButtonDefaultProps = {
   href?: string;
   children: React.ReactNode;
   className?: string;
+  type?: "button" | "submit"
 };
 
-function ButtonDefault({ href, children, className = "" }: ButtonDefaultProps) {
+function ButtonDefault({
+  href,
+  children,
+  className = "",
+  type = "button",
+}: ButtonDefaultProps) {
   return (
     <button
+      type={type}
       className={`button-default relative overflow-hidden p-[12px] border border-[var(--color-secondary)] text-[var(--color-secondary)] text-[12px] group ${className}`}
     >
       {href ? (
