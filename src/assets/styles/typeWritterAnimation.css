@@ -1,0 +1,37 @@
+.typewriter {
+  white-space: pre;
+  display: inline-block;
+}
+
+.typewriter .cursor {
+  display: inline-block;
+  width: 10px;
+  height: 300px;
+  vertical-align: bottom;
+  background: linear-gradient(
+    180deg,
+    rgba(45, 83, 111, 0.99) 0%,
+    rgba(124, 164, 192, 1) 100%
+  );
+  -webkit-mask: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  mask: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 100%);
+  -webkit-mask-composite: destination-in;
+  mask-composite: intersect;
+
+  animation: blink 1s steps(1) infinite;
+  margin-left: 0.05em;
+}
+
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}

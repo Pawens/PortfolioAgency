@@ -1,0 +1,11 @@
+/* in your CSS file (e.g. ButtonDefault.css or a new ProjectBox.css) */
+.project-box img {
+  filter: grayscale(100%);
+  transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.project-box:hover img {
+  filter: none;
+  transform: scale(1.01);
+  cursor: pointer;
+}

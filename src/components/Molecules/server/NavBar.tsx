@@ -7,7 +7,7 @@ const navItems = ["Projets", "Services", "Contact"];
 
 function NavBar() {
   return (
-    <nav className="flex items-center gap-[32px] text-[var(--color-secondary)] text-[12px]">
+    <nav className="flex items-center gap-[32px] text-[var(--color-secondary)] text-[14px]">
       {navItems.map((item, i) => (
         <Link
           key={item}

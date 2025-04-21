@@ -1,6 +1,7 @@
 import Customer from "@/components/Organisms/server/Customer";
 import Hero from "@/components/Organisms/server/Hero";
 import KeyMetricsServer from "@/components/Organisms/server/KeyMetricsServer";
+import Projects from "@/components/Organisms/server/Projects";
 
 export default function Home() {
   return (
@@ -8,6 +9,7 @@ export default function Home() {
       <Hero />
       <KeyMetricsServer />
       <Customer />
+      <Projects />
     </main>
   );
 }
