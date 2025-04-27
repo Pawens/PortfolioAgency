@@ -11,7 +11,7 @@ type FaqItemProps = {
 
 const FaqItem = ({ question, answer, isFirst }: FaqItemProps) => {
   const [isOpen, setIsOpen] = useState(false)
-  const [height, setHeight] = useState('80px') // 🆙 hauteur initiale
+  const [height, setHeight] = useState('80px')
   const contentRef = useRef<HTMLDivElement>(null)
 
   const toggleOpen = () => {
@@ -20,7 +20,7 @@ const FaqItem = ({ question, answer, isFirst }: FaqItemProps) => {
 
   useEffect(() => {
     if (isOpen && contentRef.current) {
-      const fullHeight = 80 + contentRef.current.scrollHeight + 16 // 80 = nouvelle hauteur
+      const fullHeight = 80 + contentRef.current.scrollHeight + 16
       setHeight(`${fullHeight}px`)
     } else {
       setHeight('80px')

@@ -3,6 +3,7 @@ import Hero from "@/components/Organisms/server/Hero";
 import KeyMetricsServer from "@/components/Organisms/server/KeyMetricsServer";
 import ContactSection from "@/components/Organisms/client/ContactSection";
 import FaqSection from "@/components/Organisms/server/FaqSection";
+import WhoAreWe from "@/components/Organisms/server/WhoAreWe";
 
 import Projects from "@/components/Organisms/server/Projects";
 
@@ -13,7 +14,7 @@ export default function Home() {
       <KeyMetricsServer />
       <Customer />
       <Projects />
-
+      <WhoAreWe />
       <FaqSection />
       <ContactSection />
     </main>
