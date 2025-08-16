@@ -34,3 +34,24 @@
     height: 100%;
   }
 }
+
+/* SVG styling for footer variant - default state */
+.button-default.footer-variant svg path {
+  fill: var(--color-secondary) !important;
+  transition: fill 0.3s ease-in-out !important;
+}
+
+/* SVG styling for footer variant - hover state */
+.button-default.footer-variant:hover svg path {
+  fill: var(--color-primary) !important;
+}
+
+/* More specific fallback selectors */
+button.button-default.footer-variant svg path {
+  fill: var(--color-secondary) !important;
+  transition: fill 0.3s ease-in-out !important;
+}
+
+button.button-default.footer-variant:hover svg path {
+  fill: var(--color-primary) !important;
+}

@@ -11,6 +11,11 @@
   --color-secondary-opa50: rgba(214, 246, 253, 0.5);
 }
 
+/* Smooth scrolling for the entire document */
+html {
+  scroll-behavior: smooth;
+}
+
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
 /* Font Satoshi */
 /* ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- */
@@ -167,4 +172,18 @@
 
 body {
   font-family: "Satoshi", sans-serif;
+}
+
+/* Footer Button SVG Styling - Override hardcoded SVG fills */
+.footer-variant svg path,
+.button-default.footer-variant svg path,
+button.button-default.footer-variant svg path {
+  fill: var(--color-secondary) !important;
+  transition: fill 0.2s ease-in-out !important;
+}
+
+.footer-variant:hover svg path,
+.button-default.footer-variant:hover svg path,
+button.button-default.footer-variant:hover svg path {
+  fill: var(--color-primary) !important;
 }
