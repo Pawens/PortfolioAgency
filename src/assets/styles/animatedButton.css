@@ -1,0 +1,81 @@
+.animated-button {
+    width: 400px;   /* wider */
+    height: 48px;   /* less tall */
+    background-color: transparent;
+    overflow: hidden;
+    transition: width 0.33s ease-in-out;
+    cursor: pointer;
+  }
+  
+  .animated-button:hover {
+    width: 100px; /* shrinks smaller */
+  }
+  
+  
+  
+  /* Content inside the button */
+  .animated-content {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 16px;
+    height: 100%;
+    color: var(--color-secondary);
+    font-size: 14px;
+    z-index: 2;
+    width: 100%;
+    font-weight: 400;
+  }
+  
+  /* Text initially visible */
+  .animated-text-wrapper {
+    display: inline-block;
+    max-width: 1000px;
+    opacity: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    flex: 1;
+    text-align: center;
+    transition: max-width 0s ease 0.66s, opacity 0.33s ease 0s;
+  }
+  
+  /* On hover, text disappears */
+  .animated-button:hover .animated-text-wrapper {
+    max-width: 0;
+    opacity: 0;
+    transition: max-width 0s ease 0s, opacity 0.33s ease 0s;
+  }
+  
+  /* Icons default position */
+  .animated-icon-left {
+    transform: translateX(0px) rotate(-90deg);
+  }
+  .animated-icon-right {
+    transform: translateX(0px) rotate(90deg);
+  }
+  
+  .animated-icon-left,
+  .animated-icon-right {
+    display: inline-block;
+    min-width: 24px;
+    transition: transform 0.33s ease;
+    fill: var(--color-secondary);
+  }
+  
+  /* On hover, icons move to center */
+  .animated-button:hover .animated-icon-left {
+    transform: translateX(12px) rotate(-90deg);
+  }
+  .animated-button:hover .animated-icon-right {
+    transform: translateX(-12px) rotate(90deg);
+  }
+  
+  /* Optional background animation (if you still want it) */
+  .animated-background {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+  }
+  

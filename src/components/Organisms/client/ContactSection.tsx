@@ -69,7 +69,6 @@ const ContactSection = () => {
 
   return (
     <section className="bg-[var(--color-primary)] py-16 px-4 text-center relative overflow-hidden">
-      {/* BG ICON */}
       <div
         className="absolute top-[-150px] left-[-250px] w-[600px] opacity-10 z-[10] pointer-events-none transition-transform duration-300 ease-out"
         style={{ transform: `translateX(${offset}px)` }}
@@ -77,12 +76,10 @@ const ContactSection = () => {
         <PawensLogo className="block w-full h-auto fill-[var(--color-secondary)]" />
       </div>
 
-      {/* Titre */}
       <h2 className="text-[var(--color-secondary)] text-[32px] italic mb-10">
         Contactez-nous !
       </h2>
 
-      {/* Form */}
       <form
         onSubmit={handleSubmit}
         className="mt-[30px] mx-auto flex flex-col gap-[10px] pl-[25%] pr-[25%]"

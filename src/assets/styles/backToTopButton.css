@@ -1,0 +1,33 @@
+.back-to-top-button {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    background-color: var(--color-primary);
+    border: 1px solid var(--color-secondary);
+    border-radius: 0px;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.4s ease, transform 0.4s ease;
+  }
+
+  .back-to-top-icon {
+    width: 24px;
+    height: 24px;
+    fill: var(--color-secondary);
+    transform: rotate(-180deg);
+    transition: transform 0.3s ease, fill 0.3s ease;
+  }
+  
+  .back-to-top-button:hover {
+    background-color: var(--color-secondary);
+  }
+  
+  .back-to-top-button:hover .back-to-top-icon {
+    transform: translateY(-8px) rotate(-180deg);
+    fill: var(--color-primary);
+  }
+  
+  

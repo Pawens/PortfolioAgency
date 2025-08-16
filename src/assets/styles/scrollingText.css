@@ -1,0 +1,20 @@
+.scrolling-text-wrapper {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    background-color: transparent;
+}
+  
+.scrolling-text {
+    display: inline-flex;
+    white-space: nowrap;
+}
+  
+.scrolling-text span {
+    font-size: 20px;
+    font-weight: 500;
+    color: var(--color-secondary);
+    letter-spacing: 2px;
+}
+  
+  
