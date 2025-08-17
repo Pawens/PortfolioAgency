@@ -1,38 +1,40 @@
-'use client'
+"use client";
 
-import React, { useState, useEffect } from 'react'
-import FormField from '@/components/Molecules/FormField'
-import ButtonDefault from '@/components/Atoms/server/ButtonDefault'
-import emailjs from '@emailjs/browser'
-import PawensLogo from '@/assets/icons/PawensLogo.svg'
+import React, { useState, useEffect } from "react";
+import FormField from "@/components/Molecules/FormField";
+import ButtonDefault from "@/components/Atoms/server/ButtonDefault";
+import emailjs from "@emailjs/browser";
+import PawensLogo from "@/assets/icons/PawensLogo.svg";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    message: '',
-  })
+    name: "",
+    email: "",
+    message: "",
+  });
 
-  const [feedback, setFeedback] = useState<string | null>(null)
-  const [offset, setOffset] = useState(0)
+  const [feedback, setFeedback] = useState<string | null>(null);
+  const [offset, setOffset] = useState(0);
 
   useEffect(() => {
     const handleScroll = () => {
-      const scroll = window.scrollY
-      setOffset(scroll * 0.2)
-    }
+      const scroll = window.scrollY;
+      setOffset(scroll * 0.2);
+    };
 
-    window.addEventListener('scroll', handleScroll)
-    return () => window.removeEventListener('scroll', handleScroll)
-  }, [])
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData(prev => ({ ...prev, [name]: value }))
-  }
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
+    e.preventDefault();
 
     try {
       await emailjs.send(
@@ -44,7 +46,7 @@ const ContactSection = () => {
           message: formData.message,
         },
         process.env.NEXT_PUBLIC_EMAILJS_USER_ID_ADAM!
-      )
+      );
 
       await emailjs.send(
         process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID_ROMAIN!,
@@ -55,17 +57,17 @@ const ContactSection = () => {
           message: formData.message,
         },
         process.env.NEXT_PUBLIC_EMAILJS_USER_ID_ROMAIN!
-      )
+      );
 
-      setFeedback('Message envoyé avec succès 🎉')
-      setFormData({ name: '', email: '', message: '' })
-      setTimeout(() => setFeedback(null), 3000)
+      setFeedback("Message envoyé avec succès 🎉");
+      setFormData({ name: "", email: "", message: "" });
+      setTimeout(() => setFeedback(null), 3000);
     } catch (error) {
-      console.error('Erreur EmailJS ❌', error)
-      setFeedback("Une erreur s'est produite, réessayez.")
-      setTimeout(() => setFeedback(null), 3000)
+      console.error("Erreur EmailJS ❌", error);
+      setFeedback("Une erreur s'est produite, réessayez.");
+      setTimeout(() => setFeedback(null), 3000);
     }
-  }
+  };
 
   return (
     <section className="bg-[var(--color-primary)] py-16 px-4 text-center relative overflow-hidden">
@@ -120,7 +122,7 @@ const ContactSection = () => {
         </div>
       )}
     </section>
-  )
-}
+  );
+};
 
-export default ContactSection
+export default ContactSection;
