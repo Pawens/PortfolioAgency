@@ -5,7 +5,7 @@ import React from "react";
 
 function Footer() {
   return (
-    <div className="flex flex-col justify-between gap-[32px] bg-[var(--color-primary)] px-[88px] pb-[32px]">
+    <div className="flex flex-col justify-between gap-[32px] px-[88px] pb-[32px]">
       <div className="flex self-end">
         <ButtonDefault variant="footer" type="backToTop" href="#">
           <ArrowPawensBig />

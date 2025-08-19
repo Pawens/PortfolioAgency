@@ -5,7 +5,7 @@ import { faqData } from "../../../utils/MocksFaq";
 
 const FaqSection = () => {
   return (
-    <section className="pt-[40px] pb-[100px] bg-[var(--color-primary)] px-4 py-20 text-[var(--color-secondary)]">
+    <section className="pt-[40px] pb-[100px] px-4 py-20 text-[var(--color-secondary)]">
       <div className="max-w-6xl mx-auto flex flex-row gap-24">
         <div className="w-[25%] flex items-start gap-[10px]">
           <h2 className="ml-[60px] text-[48px] italic">FAQ</h2>

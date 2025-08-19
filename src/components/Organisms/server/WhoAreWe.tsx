@@ -1,13 +1,10 @@
-import React from 'react';
-import MemberCard from '@/components/Molecules/server/MemberCard';
-import ScrollingText from '@/components/Atoms/client/ScrollingText';
+import React from "react";
+import MemberCard from "@/components/Molecules/server/MemberCard";
+import ScrollingText from "@/components/Atoms/client/ScrollingText";
 
 function WhoAreWe() {
   return (
-    <section
-      className="flex flex-col justify-around items-center gap-16 min-h-screen p-8"
-      style={{ backgroundColor: 'var(--color-primary)' }}
-    >
+    <section className="flex flex-col justify-around items-center gap-16 min-h-screen p-8">
       <ScrollingText />
       <div className="flex flex-row justify-around items-center w-full gap-16">
         <MemberCard

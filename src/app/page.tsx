@@ -5,6 +5,7 @@ import ContactSection from "@/components/Organisms/client/ContactSection";
 import FaqSection from "@/components/Organisms/server/FaqSection";
 import WhoAreWe from "@/components/Organisms/server/WhoAreWe";
 import Footer from "@/components/Organisms/server/Footer";
+import LogoFooter from "@/assets/icons/LogoFooter.svg";
 
 import Projects from "@/components/Organisms/server/Projects";
 
@@ -16,10 +17,21 @@ export default function Home() {
         <KeyMetricsServer />
         <Customer />
         <Projects />
-        <WhoAreWe />
-        <FaqSection />
-        <ContactSection />
-        <Footer />
+        <section className="relative bg-gradient-to-t from-[#193345] to-[var(--color-black)]">
+          <div
+            className="absolute z-10 pointer-events-none"
+            style={{ bottom: 0, left: 0 }}
+          >
+            <LogoFooter />
+          </div>
+
+          <div className="relative z-20">
+            <WhoAreWe />
+            <FaqSection />
+            <ContactSection />
+            <Footer />
+          </div>
+        </section>
       </main>
     </>
   );
