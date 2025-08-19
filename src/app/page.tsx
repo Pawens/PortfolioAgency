@@ -8,6 +8,7 @@ import Footer from "@/components/Organisms/server/Footer";
 import LogoFooter from "@/assets/icons/LogoFooter.svg";
 
 import Projects from "@/components/Organisms/server/Projects";
+import Services from "@/components/Organisms/server/Services";
 
 export default function Home() {
   return (
@@ -17,6 +18,7 @@ export default function Home() {
         <KeyMetricsServer />
         <Customer />
         <Projects />
+        <Services />
         <section className="relative bg-gradient-to-t from-[#193345] to-[var(--color-black)]">
           <div
             className="absolute z-10 pointer-events-none"
@@ -24,7 +26,6 @@ export default function Home() {
           >
             <LogoFooter />
           </div>
-
           <div className="relative z-20">
             <WhoAreWe />
             <FaqSection />

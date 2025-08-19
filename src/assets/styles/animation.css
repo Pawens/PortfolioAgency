@@ -57,3 +57,29 @@
 .animate-fade-in-right {
   animation: fade-in-right 0.6s ease-out forwards;
 }
+
+.service-item {
+  /* initial state: slightly left and invisible. keep this class on the element
+     so removing it doesn't cause an instant opacity jump */
+  transform: translateX(-24px);
+  opacity: 0;
+}
+
+@keyframes slide-in-left {
+  0% {
+    transform: translateX(-28px);
+    opacity: 0;
+  }
+  60% {
+    transform: translateX(6px);
+    opacity: 0.85;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-left {
+  animation: slide-in-left 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
