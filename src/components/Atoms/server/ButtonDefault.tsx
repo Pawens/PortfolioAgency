@@ -6,7 +6,7 @@ type ButtonDefaultProps = {
   children: React.ReactNode;
   className?: string;
   type?: "button" | "submit" | "backToTop";
-  variant?: "default" | "footer";
+  variant?: "default" | "footer" | "review";
 };
 
 function ButtonDefault({
@@ -23,12 +23,27 @@ function ButtonDefault({
     default: "p-[12px] text-[12px]",
     footer:
       "footer-variant w-[88px] h-[88px] bg-transparent transition-[width] duration-[0.33s] ease-in-out cursor-pointer flex items-center justify-center",
+    review:
+      "flex items-center justify-center gap-[16px] p-[12px] text-[14px] border border-[var(--color-secondary)] text-[var(--color-secondary)] [&_svg]:fill-[var(--color-secondary)] transition-colors duration-300 group-hover:text-[var(--color-primary)] group [&_svg]:transition-colors [&_svg]:duration-300 group-hover:[&_svg]:fill-[var(--color-primary)]",
   };
+
+  if (variant === "review" && href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${baseClasses} ${className}`}
+      >
+        <div className={variantClasses[variant]}>{children}</div>
+      </a>
+    );
+  }
 
   return (
     <button
       type={type === "backToTop" ? "button" : type}
-      className={`${baseClasses} ${variantClasses[variant]} ${className}`}
+      className={`${baseClasses} ${className}`}
     >
       {href && type !== "backToTop" ? (
         <a
@@ -41,8 +56,10 @@ function ButtonDefault({
         <a href={href} className="absolute inset-0 z-20 block w-full h-full" />
       ) : null}
 
-      {variant === "footer" ? (
-        <div className="relative z-50">{children}</div>
+      {variant === "footer" || variant === "review" ? (
+        <div className={variantClasses[variant] + " relative z-50"}>
+          {children}
+        </div>
       ) : (
         <span className="relative z-10 transition-colors duration-300 group-hover:text-[var(--color-primary)]">
           {children}

@@ -32,7 +32,6 @@ function Process() {
               </div>
             );
           })}
-          {/* Client-side animation observer */}
           <AnimateProcessObserver selector=".process-square" stagger={120} />
         </div>
       </div>
