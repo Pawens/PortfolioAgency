@@ -40,20 +40,33 @@ function ButtonDefault({
     );
   }
 
+  if (type === "backToTop" && href) {
+    return (
+      <a
+        href={href}
+        className={`${baseClasses} ${className} ${variantClasses[variant]}`}
+      >
+        <span className="relative z-10 transition-colors duration-300 group-hover:text-[var(--color-primary)]">
+          {children}
+        </span>
+      </a>
+    );
+  }
+
   return (
     <button
       type={type === "backToTop" ? "button" : type}
-      className={`${baseClasses} ${className}`}
+      className={`${baseClasses} ${className} ${
+        variant !== "review" ? variantClasses[variant] : ""
+      }`}
     >
-      {href && type !== "backToTop" ? (
+      {href ? (
         <a
           href={href}
           target="_blank"
           rel="noopener noreferrer"
           className="absolute inset-0 z-20 block w-full h-full"
         />
-      ) : href && type === "backToTop" ? (
-        <a href={href} className="absolute inset-0 z-20 block w-full h-full" />
       ) : null}
 
       {variant === "footer" || variant === "review" ? (

@@ -109,7 +109,11 @@ const ContactSection = () => {
         />
 
         <div className="mt-6">
-          <ButtonDefault className="mt-[10px] px-[100px]" type="submit">
+          <ButtonDefault
+            variant="default"
+            className="mt-[10px] px-[100px]"
+            type="submit"
+          >
             ENVOYER
           </ButtonDefault>
         </div>
