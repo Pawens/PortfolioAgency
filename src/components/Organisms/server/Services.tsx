@@ -34,7 +34,6 @@ const Services = () => {
             />
           ))}
         </div>
-        {/* client-side observer to trigger staggered slide-in animations once */}
         <AnimateListObserver selector=".service-item" stagger={120} />
       </div>
     </section>
