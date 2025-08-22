@@ -6,7 +6,7 @@ import TestimonialsSlider from "@/components/Molecules/client/TestimonialsSlider
 
 function Reviews() {
   return (
-    <section className="text-[var(--color-secondary)] bg-[var(--color-primary)] pt-[176px]">
+    <section className="text-[var(--color-secondary)] pt-[176px]">
       <div className="flex flex-col items-center justify-center gap-[88px] max-w-[760px] mx-auto">
         <div>
           <h2 className="text-[46px] italic">ILS PARLENT DE NOUS</h2>

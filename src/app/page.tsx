@@ -6,6 +6,7 @@ import FaqSection from "@/components/Organisms/server/FaqSection";
 import WhoAreWe from "@/components/Organisms/server/WhoAreWe";
 import Footer from "@/components/Organisms/server/Footer";
 import LogoFooter from "@/assets/icons/LogoFooter.svg";
+import BackgroundProcess from "@/assets/icons/BackgroundProcess.svg";
 import Review from "@/components/Organisms/server/Reviews";
 import Projects from "@/components/Organisms/server/Projects";
 import Services from "@/components/Organisms/server/Services";
@@ -18,10 +19,18 @@ export default function Home() {
         <Hero />
         <KeyMetricsServer />
         <Customer />
-        <Projects />
-        <Services />
-        <Process />
-        <Review />
+        <section className="relative" style={{ backgroundColor: "#010101" }}>
+          <div className="absolute inset-0 pointer-events-none">
+            <BackgroundProcess className="w-full h-full object-cover" />
+          </div>
+          <div className="relative z-10">
+            <Projects />
+            <Services />
+            <Process />
+            <Review />
+          </div>
+        </section>
+
         <section className="relative bg-gradient-to-t from-[#193345] to-[var(--color-black)]">
           <div
             className="absolute z-10 pointer-events-none"

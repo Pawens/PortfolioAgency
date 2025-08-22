@@ -6,7 +6,7 @@ import AnimateListObserver from "@/components/Molecules/client/AnimateListObserv
 
 const Services = () => {
   return (
-    <section className="text-[var(--color-secondary)] bg-[var(--color-primary)]">
+    <section className="text-[var(--color-secondary)]">
       <div className="px-[88px]">
         <div className="flex justify-between items-center pb-[64px]">
           <div className="flex items-top justify-center gap-[8px]">

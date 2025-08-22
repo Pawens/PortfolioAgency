@@ -6,7 +6,7 @@ import AnimateProcessObserver from "@/components/Molecules/client/AnimateProcess
 
 function Process() {
   return (
-    <section className="text-[var(--color-secondary)] bg-[var(--color-primary)] pt-[192px]">
+    <section className="text-[var(--color-secondary)] pt-[192px]">
       <div className="px-[88px] flex flex-col gap-[64px]">
         <div className="flex items-top justify-start gap-[8px]">
           <h2 className="text-[46px] italic">PROCESS DE TRAVAIL</h2>
