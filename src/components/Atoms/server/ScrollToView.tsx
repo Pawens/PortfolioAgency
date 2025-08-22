@@ -1,12 +1,14 @@
 import React from "react";
 import ArrowPawens from "../../../assets/icons/ArrowPawens.svg";
 import "../../../assets/styles/scrollToView.css";
+import { t } from "@/utils/serverTranslations";
+import { Language } from "@/context/LanguageContext";
 
-function ScrollToView() {
+function ScrollToView({ language }: { language: Language }) {
   return (
     <div className="absolute bottom-[32px] flex items-center justify-center flex-col bg-transparent gap-[8px]">
       <p className="uppercase font-[500] text-[var(--color-primary)] ">
-        Scroll Pour Découvrir
+        {t(language, "hero.scroll")}
       </p>
       <ArrowPawens
         className="animate-arrow-bounce"

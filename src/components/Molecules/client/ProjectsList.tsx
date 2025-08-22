@@ -6,6 +6,7 @@ import { fetchProjects } from "@/utils/clientCache";
 import { motion, useInView } from "motion/react";
 import ButtonDefaultClient from "@/components/Atoms/client/ButtonDefaultClient";
 import ProjectBox from "@/components/Atoms/server/ProjectBox";
+import { t } from "@/utils/serverTranslations";
 
 type RawProject = {
   id: number;
@@ -56,7 +57,7 @@ export default function ProjectsList() {
       {visibleCount < total && (
         <div className="w-full text-center pt-[88px]">
           <ButtonDefaultClient onClick={loadMore}>
-            Voir plus
+            {t(language, "projects.seeMore")}
           </ButtonDefaultClient>
         </div>
       )}
@@ -94,7 +95,6 @@ function ProjectListItem({
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{
         duration: 0.6,
-        easing: "ease-out",
       }}
     >
       <ProjectBox

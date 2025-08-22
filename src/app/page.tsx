@@ -11,23 +11,29 @@ import Review from "@/components/Organisms/server/Reviews";
 import Projects from "@/components/Organisms/server/Projects";
 import Services from "@/components/Organisms/server/Services";
 import Process from "@/components/Organisms/server/Process";
+import { getLanguageFromSearchParams } from "@/utils/serverTranslations";
 
-export default function Home() {
+type Props = {
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export default function Home({ searchParams }: Props) {
+  const language = getLanguageFromSearchParams(searchParams);
   return (
     <>
       <main className="flex align-center justify-center flex-col">
-        <Hero />
-        <KeyMetricsServer />
-        <Customer />
+        <Hero language={language} />
+        <KeyMetricsServer language={language} />
+        <Customer language={language} />
         <section className="relative" style={{ backgroundColor: "#010101" }}>
           <div className="absolute inset-0 pointer-events-none">
             <BackgroundProcess className="w-full h-full object-cover" />
           </div>
           <div className="relative z-10">
-            <Projects />
-            <Services />
-            <Process />
-            <Review />
+            <Projects language={language} />
+            <Services language={language} />
+            <Process language={language} />
+            <Review language={language} />
           </div>
         </section>
 
@@ -40,8 +46,8 @@ export default function Home() {
           </div>
           <div className="relative z-20">
             <WhoAreWe />
-            <FaqSection />
-            <ContactSection />
+            <FaqSection language={language} />
+            <ContactSection language={language} />
             <Footer />
           </div>
         </section>

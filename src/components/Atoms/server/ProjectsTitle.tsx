@@ -1,7 +1,9 @@
 import React from "react";
 import TypeWritterAnimation from "../client/TypeWritterAnimation";
+import { t } from "@/utils/serverTranslations";
+import { Language } from "@/context/LanguageContext";
 
-export default function ProjectsTitle() {
+export default function ProjectsTitle({ language }: { language: Language }) {
   return (
     <div
       className="flex flex-col items-center"
@@ -25,7 +27,10 @@ export default function ProjectsTitle() {
           lineHeight: 1,
         }}
       >
-        <TypeWritterAnimation text="PROJETS" speed={120} />
+        <TypeWritterAnimation
+          text={t(language, "projects.title")}
+          speed={120}
+        />
       </h2>
     </div>
   );

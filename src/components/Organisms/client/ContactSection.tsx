@@ -5,8 +5,9 @@ import FormField from "@/components/Molecules/FormField";
 import ButtonDefault from "@/components/Atoms/server/ButtonDefault";
 import emailjs from "@emailjs/browser";
 import PawensLogo from "@/assets/icons/PawensLogo.svg";
+import { Language, t } from "@/utils/serverTranslations";
 
-const ContactSection = () => {
+const ContactSection = ({ language }: { language: Language }) => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -59,12 +60,12 @@ const ContactSection = () => {
         process.env.NEXT_PUBLIC_EMAILJS_USER_ID_ROMAIN!
       );
 
-      setFeedback("Message envoyé avec succès 🎉");
+      setFeedback(t(language, "confirmationPopup.successMessage"));
       setFormData({ name: "", email: "", message: "" });
       setTimeout(() => setFeedback(null), 3000);
     } catch (error) {
       console.error("Erreur EmailJS ❌", error);
-      setFeedback("Une erreur s'est produite, réessayez.");
+      setFeedback(t(language, "confirmationPopup.errorMessage"));
       setTimeout(() => setFeedback(null), 3000);
     }
   };
@@ -94,21 +95,21 @@ const ContactSection = () => {
           type="text"
           value={formData.name}
           onChange={handleChange}
-          placeholder="Nom"
+          placeholder={t(language, "contact.name")}
         />
         <FormField
           name="email"
           type="email"
           value={formData.email}
           onChange={handleChange}
-          placeholder="Email"
+          placeholder={t(language, "contact.email")}
         />
         <FormField
           name="message"
           type="textarea"
           value={formData.message}
           onChange={handleChange}
-          placeholder="Message"
+          placeholder={t(language, "contact.message")}
         />
 
         <div className="mt-6">
@@ -117,7 +118,7 @@ const ContactSection = () => {
             className="mt-[10px] px-[100px]"
             type="submit"
           >
-            ENVOYER
+            {t(language, "contact.send")}
           </ButtonDefault>
         </div>
       </form>

@@ -3,13 +3,14 @@ import ArrowPawensBig from "@/assets/icons/ArrowPawensBig.svg";
 import GoogleLogo from "@/assets/icons/GoogleLogo.svg";
 import ButtonDefault from "@/components/Atoms/server/ButtonDefault";
 import TestimonialsSlider from "@/components/Molecules/client/TestimonialsSlider";
+import { Language, t } from "@/utils/serverTranslations";
 
-function Reviews() {
+function Reviews({ language }: { language: Language }) {
   return (
     <section className="text-[var(--color-secondary)] pt-[176px]">
       <div className="flex flex-col items-center justify-center gap-[88px] max-w-[760px] mx-auto">
         <div>
-          <h2 className="text-[46px] italic">ILS PARLENT DE NOUS</h2>
+          <h2 className="text-[46px] italic">{t(language, "review.title")}</h2>
         </div>
 
         <div>
@@ -21,7 +22,7 @@ function Reviews() {
           variant="review"
           className="w-[300px]"
         >
-          <p>VOIR TOUT LES AVIS</p>
+          <p>{t(language, "review.seeGoogleReview")}</p>
           <GoogleLogo />
         </ButtonDefault>
       </div>

@@ -1,14 +1,19 @@
 import React from "react";
 import Count from "@/components/Atoms/client/Count";
 import FaqItem from "@/components/Molecules/client/FaqItem";
-import { faqData } from "../../../utils/MocksFaq";
+import { Language, t, getTranslations } from "@/utils/serverTranslations";
 
-const FaqSection = () => {
+const FaqSection = ({ language }: { language: Language }) => {
+  const translations = getTranslations(language);
+  const faqData = translations.faq.faqData;
+
   return (
     <section className="pt-[40px] pb-[100px] px-4 py-20 text-[var(--color-secondary)]">
       <div className="max-w-6xl mx-auto flex flex-row gap-24">
         <div className="w-[25%] flex items-start gap-[10px]">
-          <h2 className="ml-[60px] text-[48px] italic">FAQ</h2>
+          <h2 className="ml-[60px] text-[48px] italic">
+            {t(language, "faq.title")}
+          </h2>
           <Count manualCount={faqData.length} />
         </div>
 

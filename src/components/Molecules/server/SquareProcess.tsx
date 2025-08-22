@@ -1,13 +1,16 @@
 import React from "react";
 import ArrowPawensBig from "@/assets/icons/ArrowPawensBig.svg";
+import { Language } from "@/context/LanguageContext";
+import { t } from "@/utils/serverTranslations";
 
 type SquareProcessProps = {
   title: string;
   list: { text: string }[];
   index: number;
+  language: Language;
 };
 
-function SquareProcess({ title, list, index }: SquareProcessProps) {
+function SquareProcess({ title, list, index, language }: SquareProcessProps) {
   return (
     <div className="p-[36px] border border-[var(--color-secondary)] w-[418px] h-[418px] flex flex-col justify-between">
       <div className="flex flex-col gap-[44px]">
@@ -34,7 +37,7 @@ function SquareProcess({ title, list, index }: SquareProcessProps) {
           className="rotate-90"
           style={{ fill: "var(--color-secondary)" }}
         />
-        <p className="text-[20px]">VALIDATION CLIENT</p>
+        <p className="text-[20px]">{t(language, "process.confirmation")}</p>
         <ArrowPawensBig
           className="rotate-270"
           style={{ fill: "var(--color-secondary)" }}

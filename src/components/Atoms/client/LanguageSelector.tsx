@@ -14,6 +14,8 @@ function LanguageSelector() {
 
   const handleSelect = (lang: string) => {
     setLanguage(lang as Language);
+    console.log(`Language changed to: ${lang}`);
+
     setOpen(false);
   };
 
