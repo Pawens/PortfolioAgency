@@ -29,7 +29,7 @@ export default function ProjectsList() {
 
   return (
     <>
-      <div className="flex flex-wrap mt-[-5px] px-[88px]">
+      <div className="flex flex-wrap mt-[-5px] px-[88px] gap-[32px]">
         {projects.slice(0, visibleCount).map((p, i) => {
           const imageUrl = p.Images[0]?.url ?? "";
           const variant = ((i % 4) + 1) as 1 | 2 | 3 | 4;
@@ -54,7 +54,7 @@ export default function ProjectsList() {
       </div>
 
       {visibleCount < total && (
-        <div className="w-full text-center py-[88px]">
+        <div className="w-full text-center pt-[88px]">
           <ButtonDefaultClient onClick={loadMore}>
             Voir plus
           </ButtonDefaultClient>
