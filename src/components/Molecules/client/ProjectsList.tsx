@@ -3,21 +3,30 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { fetchProjects } from "@/utils/clientCache";
-import { motion, useInView } from "motion/react";
+import { motion, useInView } from "framer-motion";
 import ButtonDefaultClient from "@/components/Atoms/client/ButtonDefaultClient";
 import ProjectBox from "@/components/Atoms/server/ProjectBox";
+import ProjectPopup from "./ProjectPopup";
 import { t } from "@/utils/serverTranslations";
 
 type RawProject = {
   id: number;
   Title: string;
   Images: Array<{ url: string }>;
+  Description?: string;
+  features?: Array<{ Name: string }>;
+  stacks?: Array<{ Name: string }>;
+  videoUrl?: string;
 };
 
 export default function ProjectsList() {
   const { language } = useLanguage();
   const [projects, setProjects] = useState<RawProject[]>([]);
   const [visibleCount, setVisibleCount] = useState(4);
+  const [selectedProject, setSelectedProject] = useState<RawProject | null>(
+    null
+  );
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   useEffect(() => {
     fetchProjects(language.toLowerCase())
@@ -27,6 +36,27 @@ export default function ProjectsList() {
 
   const total = projects.length;
   const loadMore = () => setVisibleCount((v) => Math.min(v + 2, total));
+
+  const handleProjectClick = (project: RawProject) => {
+    console.log("Project clicked:", project);
+    console.log("Setting selectedProject to:", project);
+    console.log("Setting isPopupOpen to: true");
+    setSelectedProject(project);
+    setIsPopupOpen(true);
+  };
+
+  const closePopup = () => {
+    console.log("Closing popup");
+    setIsPopupOpen(false);
+    setSelectedProject(null);
+  };
+
+  console.log(
+    "ProjectsList render - isPopupOpen:",
+    isPopupOpen,
+    "selectedProject:",
+    selectedProject
+  );
 
   return (
     <>
@@ -48,6 +78,7 @@ export default function ProjectsList() {
                 index={i}
                 variant={variant}
                 align={align}
+                onProjectClick={handleProjectClick}
               />
             </div>
           );
@@ -61,6 +92,16 @@ export default function ProjectsList() {
           </ButtonDefaultClient>
         </div>
       )}
+
+      {console.log("About to render ProjectPopup with:", {
+        selectedProject,
+        isPopupOpen,
+      })}
+      <ProjectPopup
+        project={selectedProject}
+        isOpen={isPopupOpen}
+        onClose={closePopup}
+      />
     </>
   );
 }
@@ -70,6 +111,7 @@ interface ProjectListItemProps {
   index: number;
   variant: 1 | 2 | 3 | 4;
   align: "left" | "right";
+  onProjectClick: (project: RawProject) => void;
 }
 
 function ProjectListItem({
@@ -77,6 +119,7 @@ function ProjectListItem({
   index,
   variant,
   align,
+  onProjectClick,
 }: ProjectListItemProps) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, {
@@ -87,6 +130,11 @@ function ProjectListItem({
   const number = index + 1;
   const title = project.Title;
   const imageUrl = project.Images[0]?.url ?? "";
+
+  const handleClick = () => {
+    console.log("ProjectBox clicked, calling onProjectClick"); // Debug log
+    onProjectClick(project);
+  };
 
   return (
     <motion.div
@@ -102,6 +150,7 @@ function ProjectListItem({
         title={title}
         imageUrl={imageUrl}
         variant={variant}
+        onClick={handleClick}
       />
     </motion.div>
   );

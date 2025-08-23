@@ -30,6 +30,9 @@ const translations = {
     projects: {
       title: "PROJECTS",
       seeMore: "See more",
+      features: "FEATURES",
+      techs: "TECHS",
+      visitWebsite: "VISIT WEBSITE",
     },
     services: {
       title: "SERVICES",
@@ -237,6 +240,9 @@ const translations = {
     projects: {
       title: "PROJETS",
       seeMore: "Voir plus",
+      features: "FONCTIONNALITÉS",
+      techs: "TECHS",
+      visitWebsite: "VISITER LE SITE",
     },
     services: {
       title: "SERVICES",
@@ -443,6 +449,9 @@ const translations = {
     projects: {
       title: "PROJEKTE",
       seeMore: "Mehr ansehen",
+      features: "FUNKTIONEN",
+      techs: "TECHS",
+      visitWebsite: "WEBSITE BESUCHEN",
     },
     services: {
       title: "DIENSTLEISTUNGEN",
@@ -650,6 +659,9 @@ const translations = {
     projects: {
       title: "PROYECTOS",
       seeMore: "Ver más",
+      features: "FUNCIONALIDADES",
+      techs: "TECHS",
+      visitWebsite: "VISITAR SITIO WEB",
     },
     services: {
       title: "SERVICIOS",
@@ -835,7 +847,7 @@ const translations = {
       bookCall: "Prenota una chiamata",
     },
     hero: {
-      creativeAgency: "L'AGENZIA CREATIVA",
+      creativeAgency: "L'AGENZIA CRREATIVA",
       for: "PER",
       you: "TE",
       buttonHero: "OTTENI UN PREVENTIVO IN 48H",
@@ -857,6 +869,9 @@ const translations = {
     projects: {
       title: "PROGETTI",
       seeMore: "Vedi di più",
+      features: "FUNZIONALITÀ",
+      techs: "TECHS",
+      visitWebsite: "VISITA IL SITO",
     },
     services: {
       title: "SERVIZI",

@@ -7,6 +7,7 @@ type ProjectBoxProps = {
   title: string;
   imageUrl: string;
   variant: 1 | 2 | 3 | 4;
+  onClick?: () => void;
 };
 
 const SIZE_MAP = {
@@ -21,13 +22,15 @@ export default function ProjectBox({
   title,
   imageUrl,
   variant,
+  onClick,
 }: ProjectBoxProps) {
   const { width } = SIZE_MAP[variant];
 
   return (
     <div
-      className="project-box flex flex-col gap-[20px]"
+      className="project-box flex flex-col gap-[20px] cursor-pointer"
       style={{ width: `${width}px` }}
+      onClick={onClick}
     >
       <Image
         src={imageUrl}
