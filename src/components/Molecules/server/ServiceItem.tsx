@@ -16,10 +16,10 @@ const ServiceItem = ({ title, isFirst, index }: ServiceItemProps) => {
     >
       <div className="flex items-center justify-between group">
         <div className="flex items-center justify-between w-full py-[40px]">
-          <p className="text-[20px] pl-[60px]">
+          <p className="service-item-title text-[20px] pl-[60px]">
             {String((index ?? 0) + 1).padStart(2, "0")}/
           </p>
-          <p className="text-[20px] uppercase">{title}</p>
+          <p className="service-item-title text-[20px] uppercase">{title}</p>
         </div>
       </div>
     </div>
