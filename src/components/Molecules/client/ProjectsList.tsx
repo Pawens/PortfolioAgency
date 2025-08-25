@@ -30,7 +30,7 @@ export default function ProjectsList() {
 
   return (
     <>
-      <div className="flex flex-wrap mt-[-5px] px-[88px] gap-[32px]">
+      <div className="project-list-container flex flex-wrap mt-[-5px] px-[88px] gap-[32px]">
         {projects.slice(0, visibleCount).map((p, i) => {
           const imageUrl = p.Images[0]?.url ?? "";
           const variant = ((i % 4) + 1) as 1 | 2 | 3 | 4;
@@ -39,7 +39,7 @@ export default function ProjectsList() {
           return (
             <div
               key={p.id}
-              className={`w-full sm:w-1/2 lg:w-1/4 flex ${
+              className={`project-wrapper w-full sm:w-1/2 lg:w-1/4 flex ${
                 align === "left" ? "justify-start" : "justify-end"
               }`}
             >

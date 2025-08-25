@@ -18,28 +18,34 @@ function Hero({ language }: { language: Language }) {
         height: "100vh",
       }}
     >
-      <div className="flex flex-col items-center justify-center text-[80px] text-[var(--color-secondary)] uppercase font-thin">
+      <div className="flex flex-col items-center justify-center text-[var(--color-secondary)] uppercase font-thin">
         <h2
-          className="font-thin opacity-0 animate-fade-in-down"
+          className="hero-title font-thin opacity-0 animate-fade-in-down text-[80px]"
           style={{ animationDelay: "0.2s" }}
         >
           {t(language, "hero.creativeAgency")}
         </h2>
-        <div className="flex items-center justify-center gap-[42px] mt-[20px]">
+        <div
+          className="hero-button-mobile-wrapper opacity-0 animate-fade-in-up"
+          style={{ animationDelay: "0.4s" }}
+        >
+          <HeroButton language={language} />
+        </div>
+        <div className="hero-subrow flex items-center justify-center gap-[42px] mt-[20px]">
           <h2
-            className="opacity-0 animate-fade-in-left"
+            className="opacity-0 animate-fade-in-left text-[80px]"
             style={{ animationDelay: "0.4s" }}
           >
             {t(language, "hero.for")}
           </h2>
           <div
-            className="opacity-0 animate-fade-in-up"
+            className="hero-button-inline opacity-0 animate-fade-in-up"
             style={{ animationDelay: "0.4s" }}
           >
             <HeroButton language={language} />
           </div>
           <h2
-            className="opacity-0 animate-fade-in-right"
+            className="opacity-0 animate-fade-in-right text-[80px]"
             style={{ animationDelay: "0.4s" }}
           >
             {t(language, "hero.you")}

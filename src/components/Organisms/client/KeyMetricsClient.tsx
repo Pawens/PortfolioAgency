@@ -46,7 +46,7 @@ export default function KeyMetricsClient() {
   if (loading) return <p>Chargement…</p>;
 
   return (
-    <div className="flex gap-[32px] w-full justify-between text-center">
+    <div className="keymetrics-row flex gap-[32px] w-full justify-between text-center">
       {metrics.map((m, idx) => {
         const prefix = idx < 2 ? "+" : "";
         const suffix = idx === 2 ? "/5" : "";
@@ -63,7 +63,7 @@ export default function KeyMetricsClient() {
               suffix={suffix}
               enableScrollSpy
               scrollSpyOnce
-              className="text-[38px] font-bold text-[var(--color-primary)]"
+              className="keymetrics-count text-[38px] font-bold text-[var(--color-primary)]"
             />
             <span className="text-[14px] text-[var(--color-black)]">
               {m.label}

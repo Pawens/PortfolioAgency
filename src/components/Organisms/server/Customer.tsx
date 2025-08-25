@@ -8,9 +8,9 @@ export default function Customer({ language }: { language: Language }) {
   return (
     <section className="pt-[80px] pb-[96px] ">
       <div>
-        <div className="flex justify-between items-center px-[88px] pb-[48px]">
+        <div className="customer-wrapper flex justify-between items-center px-[88px] pb-[48px]">
           <div className="flex items-top justify-center gap-[8px]">
-            <h2 className="text-[46px] italic font-[450]">
+            <h2 className="customer-title text-[46px] italic font-[450]">
               {t(language, "customer.ourClients")}
             </h2>
             <Count />

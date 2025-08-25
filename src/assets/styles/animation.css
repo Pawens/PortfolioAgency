@@ -118,8 +118,14 @@
 }
 
 @keyframes testimonial-in {
-  0% { opacity: 0; transform: translateX(24px); }
-  100% { opacity: 1; transform: translateX(0); }
+  0% {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 .animate-testimonial-in {
   animation: testimonial-in 500ms ease-out both;
@@ -143,6 +149,10 @@
   animation-fill-mode: forwards;
 }
 @keyframes testimonial-progress-fill {
-  from { width: 0%; }
-  to { width: 100%; }
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
 }

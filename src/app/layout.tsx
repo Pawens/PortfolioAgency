@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import "./reset.css";
+import "../assets/styles/responsive.css";
 import { LanguageProvider } from "@/context/LanguageContext";
 import StickyHeader from "@/components/Organisms/client/StickyHeader";
 

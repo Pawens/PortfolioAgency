@@ -105,3 +105,37 @@
 .hero-button:hover .hero-background::after {
   transform: scaleX(1);
 }
+
+@media (max-width: 768px) {
+  .hero-button {
+    width: 280px;
+    height: 48px;
+  }
+
+  .hero-button .hero-text-wrapper {
+    max-width: 1000px;
+    opacity: 1;
+    /* remove hover delays so content appears immediately on mobile */
+    transition: max-width 0s ease 0s, opacity 0.33s ease 0s;
+  }
+
+  .hero-button .hero-icon-left {
+    transform: translateX(-4px) rotate(-90deg) scale(0.7);
+    fill: var(--color-primary);
+  }
+
+  .hero-button .hero-icon-right {
+    transform: translateX(4px) rotate(90deg) scale(0.7);
+    fill: var(--color-primary);
+  }
+
+  .hero-button .hero-content {
+    color: var(--color-primary);
+  }
+
+  .hero-button .hero-background::before,
+  .hero-button .hero-background::after {
+    transform: scaleX(1);
+    transition: transform 0.33s ease-in-out 0s;
+  }
+}

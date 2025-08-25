@@ -9,7 +9,7 @@ export default function ProjectsTitle({ language }: { language: Language }) {
       className="flex flex-col items-center"
       style={{
         backgroundImage: "url('/backgroundLightToDark.png')",
-        backgroundSize: "100% 100%",
+        backgroundSize: "100% 101%",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
         width: "100%",
@@ -17,7 +17,7 @@ export default function ProjectsTitle({ language }: { language: Language }) {
       }}
     >
       <h2
-        className="text-[400px] font-bold uppercase pt-[64px]"
+        className="projects-title text-[360px] font-bold uppercase pt-[64px]"
         style={{
           background:
             "linear-gradient(180deg, rgba(45, 83, 111, 0.99) 0%, rgba(124, 164, 192, 1) 100%)",
