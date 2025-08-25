@@ -75,6 +75,9 @@
     align-items: start;
     gap: 8px;
   }
+  .customer-title {
+    font-size: 36px !important;
+  }
   .projects-title {
     font-size: 180px !important;
   }
@@ -216,7 +219,6 @@
   .projects-title {
     font-size: 90px !important;
   }
-
   .typewriter .cursor {
     height: 90px !important;
   }
