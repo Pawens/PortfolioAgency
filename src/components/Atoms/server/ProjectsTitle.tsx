@@ -6,7 +6,7 @@ import { Language } from "@/context/LanguageContext";
 export default function ProjectsTitle({ language }: { language: Language }) {
   return (
     <div
-      className="flex flex-col items-center"
+      className="project-title-container flex flex-col items-center"
       style={{
         backgroundImage: "url('/backgroundLightToDark.png')",
         backgroundSize: "100% 101%",

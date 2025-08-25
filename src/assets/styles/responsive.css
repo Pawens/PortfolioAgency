@@ -37,12 +37,25 @@
   .typewriter .cursor {
     height: 240px !important;
   }
+
+  .project-wrapper {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
   .project-box {
     flex-grow: 1;
-    width: 100% !important;
+    width: calc(100vw - 176px) !important;
+    max-width: none !important;
   }
-  .project-wrapper {
-    justify-content: center;
+
+  .project-box img,
+  .project-box .object-cover {
+    width: 100% !important;
+    height: 600px !important;
+    object-fit: cover !important;
+    object-position: top !important;
+    display: block;
   }
 }
 
@@ -69,7 +82,12 @@
     height: 180px !important;
     width: 5px !important;
   }
-  .project-wrapper {
+  .project-box img,
+  .project-box .object-cover {
+    height: 400px !important;
+  }
+  .project-title-container {
+    height: 50vh !important;
   }
 }
 
@@ -134,6 +152,17 @@
   .typewriter .cursor {
     height: 140px !important;
   }
+  .project-box img,
+  .project-box .object-cover {
+    height: 300px !important;
+  }
+  .project-list-container {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+  .project-box {
+    width: calc(100vw - 128px) !important;
+  }
 }
 
 @media (max-width: 640px) {
@@ -160,6 +189,16 @@
   .typewriter .cursor {
     height: 90px !important;
   }
+  .project-list-container {
+    padding-left: 36px;
+    padding-right: 36px;
+  }
+  .project-box {
+    width: calc(100vw - 72px) !important;
+  }
+  .project-title-container {
+    height: 30vh !important;
+  }
 }
 
 @media (max-width: 425px) {
@@ -183,6 +222,13 @@
   }
   .typewriter .cursor {
     height: 70px !important;
+  }
+  .project-list-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .project-box {
+    width: calc(100vw - 48px) !important;
   }
 }
 
