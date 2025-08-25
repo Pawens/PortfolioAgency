@@ -11,13 +11,15 @@ function Process({ language }: { language: Language }) {
 
   return (
     <section className="text-[var(--color-secondary)] pt-[192px]">
-      <div className="px-[88px] flex flex-col gap-[64px]">
-        <div className="flex items-top justify-start gap-[8px]">
-          <h2 className="text-[46px] italic">{t(language, "process.title")}</h2>
+      <div className="process-container px-[88px] flex flex-col gap-[64px]">
+        <div className="process-title-container flex items-top justify-start gap-[8px]">
+          <h2 className="process-title text-[46px] italic">
+            {t(language, "process.title")}
+          </h2>
           <Count manualCount={7} />
         </div>
 
-        <div className="grid grid-cols-2 w-max mx-auto">
+        <div className="process-grid-container grid grid-cols-2 w-max mx-auto">
           {processData.map((item, i) => {
             const colClass = i % 2 === 0 ? "col-start-1" : "col-start-2";
             const rowClass =
