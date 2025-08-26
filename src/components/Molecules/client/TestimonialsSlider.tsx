@@ -101,15 +101,15 @@ export default function TestimonialsSlider() {
                   </p>
                 </div>
 
-                <div className="flex items-center justify-between w-full">
-                  <div className="flex items-center gap-[32px]">
+                <div className="testimonial-footer flex items-center justify-between w-full">
+                  <div className="testimonial-arrow-container flex items-center gap-[32px]">
                     <ArrowPawensBig
                       className="testimonial-arrow rotate-90 scale-[0.8]"
                       style={{ fill: "var(--color-secondary)" }}
                     />
                     <p className="testimonial-footer-names">{item.FullName}</p>
                   </div>
-                  <div className="flex items-center gap-[32px]">
+                  <div className="testimonial-arrow-container flex items-center gap-[32px]">
                     <p className="testimonial-footer-names">{item.JobTitle}</p>
                     <ArrowPawensBig
                       className="testimonial-arrow rotate-270 scale-[0.8]"

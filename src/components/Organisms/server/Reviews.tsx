@@ -10,7 +10,9 @@ function Reviews({ language }: { language: Language }) {
     <section className="review-section text-[var(--color-secondary)] pt-[176px]">
       <div className="reviews-container flex flex-col items-center justify-center gap-[88px] max-w-[760px] mx-auto px-[128px]">
         <div>
-          <h2 className="text-[46px] italic">{t(language, "review.title")}</h2>
+          <h2 className="review-title text-[46px] italic">
+            {t(language, "review.title")}
+          </h2>
         </div>
 
         <div className="reviews-slider">

@@ -161,6 +161,12 @@
   .testimonial-arrow {
     transform: scale(0.6) !important;
   }
+  .testimonial-arrow-container {
+    gap: 16px;
+  }
+  .review-title {
+    font-size: 36px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -260,6 +266,12 @@
     padding-left: 64px;
     padding-right: 64px;
   }
+  .testimonial-arrow-container {
+    gap: 8px;
+  }
+  .review-title {
+    font-size: 28px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -331,6 +343,14 @@
   .reviews-container {
     padding-left: 36px;
     padding-right: 36px;
+  }
+  .testimonial-arrow {
+    display: none;
+  }
+  .testimonial-footer {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
   }
 }
 
