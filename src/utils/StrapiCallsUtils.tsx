@@ -28,11 +28,11 @@ export async function getTestimonialsData(lang: string) {
   return res.json();
 }
 
-export async function getTeamMembersData() {
-  console.log(`Fetching team members data`);
+export async function getTeamMembersData(lang: string) {
+  console.log(`Fetching team members data for language: ${lang}`);
 
   const res = await fetch(
-    `${process.env.BASE_URL}/api/team-members?populate=*`,
+    `${process.env.BASE_URL}/api/team-members?populate=*&locale=${lang}`,
     {
       next: { revalidate: 86400 },
     }

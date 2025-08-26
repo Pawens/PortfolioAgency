@@ -39,8 +39,10 @@ export function fetchTestimonials(lang: string) {
   );
 }
 
-export function fetchTeamMembers() {
-  return fetchWithCache<any>("teamMembers", () => getTeamMembersData());
+export function fetchTeamMembers(lang: string) {
+  return fetchWithCache<any>(`teamMembers_${lang}`, () =>
+    getTeamMembersData(lang)
+  );
 }
 
 export function fetchProjects(lang: string) {
