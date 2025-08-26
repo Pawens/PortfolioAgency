@@ -10,6 +10,7 @@ import { t } from "@/utils/serverTranslations";
 
 type RawProject = {
   id: number;
+  documentId: string;
   Title: string;
   Images: Array<{ url: string }>;
 };
@@ -48,6 +49,7 @@ export default function ProjectsList() {
                 index={i}
                 variant={variant}
                 align={align}
+                language={language}
               />
             </div>
           );
@@ -70,6 +72,7 @@ interface ProjectListItemProps {
   index: number;
   variant: 1 | 2 | 3 | 4;
   align: "left" | "right";
+  language: string;
 }
 
 function ProjectListItem({
@@ -77,6 +80,7 @@ function ProjectListItem({
   index,
   variant,
   align,
+  language,
 }: ProjectListItemProps) {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, {
@@ -102,6 +106,8 @@ function ProjectListItem({
         title={title}
         imageUrl={imageUrl}
         variant={variant}
+        documentId={project.documentId}
+        language={language.toLowerCase()}
       />
     </motion.div>
   );
