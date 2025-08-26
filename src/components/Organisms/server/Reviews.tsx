@@ -7,13 +7,13 @@ import { Language, t } from "@/utils/serverTranslations";
 
 function Reviews({ language }: { language: Language }) {
   return (
-    <section className="text-[var(--color-secondary)] pt-[176px]">
-      <div className="flex flex-col items-center justify-center gap-[88px] max-w-[760px] mx-auto">
+    <section className="review-section text-[var(--color-secondary)] pt-[176px]">
+      <div className="reviews-container flex flex-col items-center justify-center gap-[88px] max-w-[760px] mx-auto px-[128px]">
         <div>
           <h2 className="text-[46px] italic">{t(language, "review.title")}</h2>
         </div>
 
-        <div>
+        <div className="reviews-slider">
           <TestimonialsSlider />
         </div>
 

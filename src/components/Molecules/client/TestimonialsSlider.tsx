@@ -13,7 +13,7 @@ type Testimonial = {
 };
 
 const INTERVAL_MS = 3000;
-const SIDE_PEEK = 30; // 20px gap + 10px of neighboring slide content
+const SIDE_PEEK = 30;
 
 export default function TestimonialsSlider() {
   const { language } = useLanguage();
@@ -80,7 +80,7 @@ export default function TestimonialsSlider() {
           {items.map((item, idx) => (
             <div
               key={item.id}
-              className="flex-shrink-0"
+              className="testimonial-item flex-shrink-0"
               style={{
                 width: `calc(100% - ${SIDE_PEEK * 2}px)`,
               }}
@@ -88,7 +88,7 @@ export default function TestimonialsSlider() {
               <div className="flex flex-col gap-[32px] items-center">
                 <div className="h-[100px] w-full overflow-hidden">
                   <p
-                    className="text-center leading-[20px]"
+                    className="testimonial-message text-center leading-[20px]"
                     style={{
                       display: "-webkit-box",
                       WebkitLineClamp: 5,
@@ -104,15 +104,15 @@ export default function TestimonialsSlider() {
                 <div className="flex items-center justify-between w-full">
                   <div className="flex items-center gap-[32px]">
                     <ArrowPawensBig
-                      className="rotate-90 scale-[0.8]"
+                      className="testimonial-arrow rotate-90 scale-[0.8]"
                       style={{ fill: "var(--color-secondary)" }}
                     />
-                    <p>{item.FullName}</p>
+                    <p className="testimonial-footer-names">{item.FullName}</p>
                   </div>
                   <div className="flex items-center gap-[32px]">
-                    <p>{item.JobTitle}</p>
+                    <p className="testimonial-footer-names">{item.JobTitle}</p>
                     <ArrowPawensBig
-                      className="rotate-270 scale-[0.8]"
+                      className="testimonial-arrow rotate-270 scale-[0.8]"
                       style={{ fill: "var(--color-secondary)" }}
                     />
                   </div>
