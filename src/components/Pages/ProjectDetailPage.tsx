@@ -5,6 +5,7 @@ import { Language } from "@/context/LanguageContext";
 import { t } from "@/utils/serverTranslations";
 import Link from "next/link";
 import Image from "next/image";
+import "@/assets/styles/projectDetailResponsive.css";
 
 type ProjectDetailProps = {
   project: any;
@@ -31,11 +32,11 @@ export default function ProjectDetailPage({
   return (
     <main className="min-h-screen bg-[var(--color-black)] text-[var(--color-secondary)]">
       {/* Container with margins and top spacing */}
-      <div className="mx-[90px] pt-[70px]">
+      <div className="mx-[90px] pt-[70px] project-detail-container">
         {/* Split Layout */}
-        <div className="flex gap-[120px] mt-[80px] pb-[120px] items-center">
+        <div className="flex gap-[120px] mt-[80px] pb-[120px] items-center project-detail-layout">
           {/* Left Side - Project Info */}
-          <div className="flex-1 flex flex-col">
+          <div className="flex-1 flex flex-col project-detail-info">
             {/* Back Link */}
             <Link
               href={`/?lang=${language.toLowerCase()}#projects`}
@@ -45,16 +46,16 @@ export default function ProjectDetailPage({
             </Link>
 
             <div className="flex items-center justify-center flex-1">
-              <div className="max-h-[400px] overflow-y-auto pr-[20px] scrollbar-custom">
+              <div className="max-h-[400px] overflow-y-auto pr-[20px] scrollbar-custom project-detail-info-content">
                 {/* Project Title */}
-                <h1 className="text-[24px] font-bold mb-[20px] uppercase">
+                <h1 className="text-[24px] font-bold mb-[20px] uppercase project-detail-title">
                   {projectData.Title}
                 </h1>
 
                 {/* Project Description */}
                 {projectData.Description && (
                   <div className="mb-[32px]">
-                    <div className="text-[16px] leading-relaxed">
+                    <div className="text-[16px] leading-relaxed project-detail-description">
                       {projectData.Description.split("\n").map(
                         (paragraph: string, index: number) => (
                           <p key={index} className="mb-[16px]">
@@ -69,10 +70,10 @@ export default function ProjectDetailPage({
                 {/* Project Features */}
                 {projectData.features && projectData.features.length > 0 && (
                   <div className="mb-[32px]">
-                    <h2 className="text-[16px] font-semibold mb-[16px] uppercase">
+                    <h2 className="text-[16px] font-semibold mb-[16px] uppercase project-detail-section-title">
                       {t(language, "projects.features")}
                     </h2>
-                    <div className="text-[16px]">
+                    <div className="text-[16px] project-detail-features">
                       {projectData.features.map(
                         (feature: any, index: number) => (
                           <span key={index}>
@@ -92,10 +93,10 @@ export default function ProjectDetailPage({
                 {/* Project Stacks */}
                 {projectData.stacks && projectData.stacks.length > 0 && (
                   <div className="mb-[32px]">
-                    <h2 className="text-[16px] font-semibold mb-[16px] uppercase">
+                    <h2 className="text-[16px] font-semibold mb-[16px] uppercase project-detail-section-title">
                       {t(language, "projects.technologies")}
                     </h2>
-                    <div className="text-[16px]">
+                    <div className="text-[16px] project-detail-stacks">
                       {projectData.stacks.map((stack: any, index: number) => (
                         <span key={index}>
                           {stack.Name}
@@ -117,7 +118,7 @@ export default function ProjectDetailPage({
                       href={projectData.websiteUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="bg-[var(--color-accent)] text-[var(--color-black)] px-[24px] py-[12px] rounded-lg font-medium hover:opacity-90 transition-opacity"
+                      className="bg-[var(--color-accent)] text-[var(--color-black)] px-[24px] py-[12px] rounded-lg font-medium hover:opacity-90 transition-opacity project-detail-button"
                     >
                       {t(language, "projects.viewLive")}
                     </a>
@@ -130,14 +131,16 @@ export default function ProjectDetailPage({
             {!projectData.videoUrl &&
               projectData.Images &&
               projectData.Images.length > 0 && (
-                <div className="flex gap-[12px] mt-[32px] flex-wrap">
+                <div className="flex gap-[12px] mt-[32px] flex-wrap project-detail-thumbnail-gallery">
                   {projectData.Images.map((image: any, index: number) => (
                     <div
                       key={index}
                       onClick={() => setActiveImageIndex(index)}
                       className={`${
-                        activeImageIndex === index ? "w-[90px]" : "w-[72px]"
-                      } h-[50px] cursor-pointer rounded-lg overflow-hidden border-2 transition-all ${
+                        activeImageIndex === index
+                          ? "w-[90px] active"
+                          : "w-[72px]"
+                      } h-[50px] cursor-pointer rounded-lg overflow-hidden border-2 transition-all project-detail-thumbnail ${
                         activeImageIndex === index
                           ? "border-[var(--color-accent)]"
                           : "border-transparent hover:border-[var(--color-accent)] hover:opacity-80"
@@ -157,7 +160,7 @@ export default function ProjectDetailPage({
           </div>
 
           {/* Right Side - YouTube Video or Image */}
-          <div className="flex-1">
+          <div className="flex-1 project-detail-media">
             {projectData.videoUrl ? (
               <div className="w-full aspect-square">
                 <iframe
