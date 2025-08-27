@@ -8,7 +8,7 @@ interface MemberImageProps {
 
 function MemberImage({ src, alt }: MemberImageProps) {
   return (
-    <div className="w-[400px] overflow-hidden rounded-md relative">
+    <div className="w-[400px] overflow-hidden rounded-md relative team-member-image">
       <div className="absolute inset-0 bg-[#00000040] w-full h-full" />
       <Image
         src={src}

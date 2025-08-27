@@ -26,7 +26,7 @@ function MemberCard({
 
   return (
     <div
-      className="flex flex-col items-center gap-4 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105 group"
+      className="flex flex-col items-center gap-4 cursor-pointer transition-transform duration-300 ease-in-out hover:scale-105 group team-member-card"
       onClick={handleClick}
     >
       <AnimatedButton text={name} />

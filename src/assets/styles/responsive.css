@@ -272,6 +272,10 @@
   .review-title {
     font-size: 28px;
   }
+  .team-members-container {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -352,6 +356,21 @@
     gap: 4px;
     text-align: center;
   }
+  .team-member-card {
+    width: 100% !important;
+    max-width: calc(100vw - 64px) !important;
+  }
+  .team-member-image {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .animated-button {
+    width: 100% !important;
+  }
+  .team-members-container {
+    padding-left: 36px;
+    padding-right: 36px;
+  }
 }
 
 @media (max-width: 425px) {
@@ -395,6 +414,10 @@
     padding-right: 24px;
   }
   .reviews-container {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .team-members-container {
     padding-left: 24px;
     padding-right: 24px;
   }

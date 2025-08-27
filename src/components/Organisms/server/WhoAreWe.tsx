@@ -38,7 +38,7 @@ export default function WhoAreWe() {
 
   return (
     <section className="flex py-[128px]">
-      <div className="flex flex-row flex-wrap justify-around items-center w-full gap-16">
+      <div className="team-members-container flex flex-row flex-wrap justify-around items-center w-full gap-[32px]">
         {teamMembers.length === 0 ? (
           <p>Try to refresh the page.</p>
         ) : (
