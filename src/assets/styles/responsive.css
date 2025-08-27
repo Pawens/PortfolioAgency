@@ -196,6 +196,16 @@
   .contact-title {
     font-size: 36px;
   }
+  .footer-button-backtotop {
+    margin-top: 64px;
+  }
+  .footer-button-backtotop a {
+    width: 48px;
+    height: 48px;
+  }
+  .footer-button-backtotop svg {
+    transform: scale(0.7);
+  }
 }
 
 @media (max-width: 768px) {
@@ -322,6 +332,13 @@
   .contact-title {
     font-size: 28px;
   }
+  .footer-container {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+  .footer-text {
+    font-size: 12px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -425,6 +442,10 @@
     padding-left: 36px;
     padding-right: 36px;
   }
+  .footer-container {
+    padding-left: 36px;
+    padding-right: 36px;
+  }
 }
 
 @media (max-width: 425px) {
@@ -477,6 +498,10 @@
     padding-right: 24px;
   }
   .contact-form {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .footer-container {
     padding-left: 24px;
     padding-right: 24px;
   }
