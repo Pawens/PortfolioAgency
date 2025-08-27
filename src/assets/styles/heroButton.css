@@ -10,7 +10,7 @@
 }
 
 .hero-button:hover {
-  width: 280px;
+  width: 360px;
 }
 
 .hero-content {
@@ -108,7 +108,7 @@
 
 @media (max-width: 768px) {
   .hero-button {
-    width: 280px;
+    width: unset;
     height: 48px;
   }
 
