@@ -189,6 +189,13 @@
   .faq-icon {
     transform: scale(0.8);
   }
+  .contact-form {
+    padding-left: 128px;
+    padding-right: 128px;
+  }
+  .contact-title {
+    font-size: 36px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -267,6 +274,9 @@
     padding-left: 64px;
     padding-right: 64px;
   }
+  .customer-title {
+    font-size: 28px !important;
+  }
   .service-title {
     font-size: 28px;
   }
@@ -298,9 +308,19 @@
     padding-left: 64px;
     padding-right: 64px;
   }
+  .faq-title {
+    font-size: 28px;
+  }
   .faq-section {
     padding-left: 64px;
     padding-right: 64px;
+  }
+  .contact-form {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+  .contact-title {
+    font-size: 28px;
   }
 }
 
@@ -401,6 +421,10 @@
     padding-left: 36px;
     padding-right: 36px;
   }
+  .contact-form {
+    padding-left: 36px;
+    padding-right: 36px;
+  }
 }
 
 @media (max-width: 425px) {
@@ -415,9 +439,6 @@
   .customer-wrapper {
     padding-left: 24px;
     padding-right: 24px;
-  }
-  .customer-title {
-    font-size: 28px !important;
   }
   .projects-title {
     font-size: 70px !important;
@@ -455,8 +476,9 @@
     padding-left: 24px;
     padding-right: 24px;
   }
-  .faq-title {
-    font-size: 28px;
+  .contact-form {
+    padding-left: 24px;
+    padding-right: 24px;
   }
 }
 

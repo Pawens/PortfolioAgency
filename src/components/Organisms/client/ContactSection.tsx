@@ -71,10 +71,7 @@ const ContactSection = ({ language }: { language: Language }) => {
   };
 
   return (
-    <section
-      id="contact"
-      className="py-16 px-4 text-center relative overflow-hidden"
-    >
+    <section id="contact" className="text-center relative overflow-hidden">
       <div
         className="absolute top-[-150px] left-[-250px] w-[600px] opacity-10 z-[10] pointer-events-none transition-transform duration-300 ease-out"
         style={{ transform: `translateX(${offset}px)` }}
@@ -82,13 +79,13 @@ const ContactSection = ({ language }: { language: Language }) => {
         <PawensLogo className="block w-full h-auto fill-[var(--color-secondary)]" />
       </div>
 
-      <h2 className="text-[var(--color-secondary)] text-[32px] italic mb-10">
+      <h2 className="contact-title text-[var(--color-secondary)] text-[46px] italic">
         Contactez-nous !
       </h2>
 
       <form
         onSubmit={handleSubmit}
-        className="mt-[30px] mx-auto flex flex-col gap-[10px] pl-[25%] pr-[25%]"
+        className="contact-form mt-[30px] mx-auto flex flex-col gap-[10px] pl-[25%] pr-[25%]"
       >
         <FormField
           name="name"
