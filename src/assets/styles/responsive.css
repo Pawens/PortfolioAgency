@@ -167,6 +167,28 @@
   .review-title {
     font-size: 36px;
   }
+  .faq-container {
+    flex-direction: column;
+    gap: 34px;
+  }
+  .faq-section {
+    padding-left: 128px;
+    padding-right: 128px;
+  }
+  .faq-title {
+    font-size: 36px;
+    margin-left: 0px;
+  }
+  .faq-list-container {
+    width: 100% !important;
+    padding-right: 0px;
+  }
+  .faq-text {
+    font-size: 14px;
+  }
+  .faq-icon {
+    transform: scale(0.8);
+  }
 }
 
 @media (max-width: 768px) {
@@ -276,6 +298,10 @@
     padding-left: 64px;
     padding-right: 64px;
   }
+  .faq-section {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -371,6 +397,10 @@
     padding-left: 36px;
     padding-right: 36px;
   }
+  .faq-section {
+    padding-left: 36px;
+    padding-right: 36px;
+  }
 }
 
 @media (max-width: 425px) {
@@ -421,10 +451,16 @@
     padding-left: 24px;
     padding-right: 24px;
   }
+  .faq-section {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+  .faq-title {
+    font-size: 28px;
+  }
 }
 
 @media (max-width: 375px) {
-  /* hero */
   .hero-title {
     font-size: 32px !important;
   }
