@@ -1,0 +1,142 @@
+@media (max-width: 1280px) {
+  .project-detail-container {
+    padding-left: 88px !important;
+    padding-right: 88px !important;
+  }
+}
+
+@media (max-width: 1024px) {
+  .project-detail-container {
+    padding-left: 64px !important;
+    padding-right: 64px !important;
+  }
+
+  .project-detail-layout {
+    flex-direction: column !important;
+    gap: 60px !important;
+    align-items: stretch !important;
+  }
+
+  .project-detail-info {
+    flex: none !important;
+  }
+
+  .project-detail-media {
+    flex: none !important;
+  }
+
+  .project-detail-info-content {
+    max-height: none !important;
+    overflow-y: visible !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .project-detail-container {
+    padding-left: 64px !important;
+    padding-right: 64px !important;
+    padding-top: 50px !important;
+  }
+
+  .project-detail-layout {
+    margin-top: 40px !important;
+    padding-bottom: 80px !important;
+    gap: 40px !important;
+  }
+
+  .project-detail-title {
+    font-size: 20px !important;
+  }
+
+  .project-detail-description {
+    font-size: 14px !important;
+  }
+
+  .project-detail-section-title {
+    font-size: 14px !important;
+  }
+
+  .project-detail-features,
+  .project-detail-stacks {
+    font-size: 14px !important;
+  }
+
+  .project-detail-button {
+    padding: 10px 20px !important;
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .project-detail-container {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
+
+  .project-detail-layout {
+    gap: 32px !important;
+  }
+
+  .project-detail-title {
+    font-size: 18px !important;
+  }
+
+  .project-detail-thumbnail-gallery {
+    gap: 8px !important;
+  }
+
+  .project-detail-thumbnail {
+    width: 60px !important;
+    height: 40px !important;
+  }
+
+  .project-detail-thumbnail.active {
+    width: 72px !important;
+    height: 48px !important;
+  }
+}
+
+@media (max-width: 425px) {
+  .project-detail-container {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+
+  .project-detail-layout {
+    gap: 24px !important;
+  }
+
+  .project-detail-title {
+    font-size: 16px !important;
+  }
+
+  .project-detail-description {
+    font-size: 12px !important;
+  }
+
+  .project-detail-section-title {
+    font-size: 12px !important;
+  }
+
+  .project-detail-features,
+  .project-detail-stacks {
+    font-size: 12px !important;
+  }
+
+  .project-detail-button {
+    padding: 8px 16px !important;
+    font-size: 12px !important;
+  }
+}
+
+@media (max-width: 375px) {
+  .project-detail-title {
+    font-size: 14px !important;
+  }
+}
+
+@media (max-width: 320px) {
+  .project-detail-title {
+    font-size: 12px !important;
+  }
+}

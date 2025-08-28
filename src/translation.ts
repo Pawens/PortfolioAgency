@@ -30,6 +30,12 @@ const translations = {
     projects: {
       title: "PROJECTS",
       seeMore: "See more",
+      backToProjects: "Back to Projects",
+      description: "Description",
+      technologies: "Technologies",
+      features: "Features",
+      viewLive: "View Live",
+      viewCode: "View Code",
     },
     services: {
       title: "SERVICES",
@@ -237,6 +243,12 @@ const translations = {
     projects: {
       title: "PROJETS",
       seeMore: "Voir plus",
+      backToProjects: "Retour aux Projets",
+      description: "Description",
+      technologies: "Technologies",
+      features: "Fonctionnalités",
+      viewLive: "Voir en Direct",
+      viewCode: "Voir le Code",
     },
     services: {
       title: "SERVICES",
@@ -443,6 +455,12 @@ const translations = {
     projects: {
       title: "PROJEKTE",
       seeMore: "Mehr ansehen",
+      backToProjects: "Zurück zu Projekten",
+      description: "Beschreibung",
+      technologies: "Technologien",
+      features: "Funktionen",
+      viewLive: "Live ansehen",
+      viewCode: "Code ansehen",
     },
     services: {
       title: "DIENSTLEISTUNGEN",
@@ -650,6 +668,12 @@ const translations = {
     projects: {
       title: "PROYECTOS",
       seeMore: "Ver más",
+      backToProjects: "Volver a Proyectos",
+      description: "Descripción",
+      technologies: "Tecnologías",
+      features: "Funcionalidades",
+      viewLive: "Ver en Vivo",
+      viewCode: "Ver Código",
     },
     services: {
       title: "SERVICIOS",
@@ -835,7 +859,7 @@ const translations = {
       bookCall: "Prenota una chiamata",
     },
     hero: {
-      creativeAgency: "L'AGENZIA CREATIVA",
+      creativeAgency: "L'AGENZIA CRREATIVA",
       for: "PER",
       you: "TE",
       buttonHero: "OTTENI UN PREVENTIVO IN 48H",
@@ -857,6 +881,12 @@ const translations = {
     projects: {
       title: "PROGETTI",
       seeMore: "Vedi di più",
+      backToProjects: "Torna ai Progetti",
+      description: "Descrizione",
+      technologies: "Tecnologie",
+      features: "Funzionalità",
+      viewLive: "Vedi Live",
+      viewCode: "Vedi Codice",
     },
     services: {
       title: "SERVIZI",

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Header from "../server/Header";
+import Header from "./Header";
 
 export default function StickyHeader() {
   const [visible, setVisible] = useState(true);
