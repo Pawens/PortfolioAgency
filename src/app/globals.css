@@ -197,21 +197,49 @@ button.button-default.footer-variant:hover svg path {
   fill: var(--color-primary) !important;
 }
 
-/* Custom scrollbar styles */
-.scrollbar-custom::-webkit-scrollbar {
-  width: 8px;
+/* Custom Scrollbar Styles */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
 }
 
-.scrollbar-custom::-webkit-scrollbar-track {
+::-webkit-scrollbar-track {
   background: transparent;
 }
 
-.scrollbar-custom::-webkit-scrollbar-thumb {
-  background: var(--color-accent);
-  border-radius: 4px;
+::-webkit-scrollbar-thumb {
+  background: var(--color-secondary);
+  border-radius: 3px;
 }
 
-.scrollbar-custom::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent);
-  opacity: 0.8;
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-secondary-opa50);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+::-webkit-scrollbar-button {
+  display: none;
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-secondary) transparent;
+}
+
+/* Spinner animation for loader */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.loader-spin {
+  animation: spin 1s linear infinite;
 }

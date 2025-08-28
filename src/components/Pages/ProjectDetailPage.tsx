@@ -17,7 +17,20 @@ export default function ProjectDetailPage({
   language,
 }: ProjectDetailProps) {
   const projectData = project.data;
-  const [activeImageIndex, setActiveImageIndex] = useState(0);
+  // Index of image currently visible to user
+  const [displayedImageIndex, setDisplayedImageIndex] = useState(0);
+  // Index of image currently being loaded (Next.js optimized request), null if none
+  const [pendingImageIndex, setPendingImageIndex] = useState<number | null>(null);
+  // Whether we're in a transition waiting for the new optimized image
+  const [isImageLoading, setIsImageLoading] = useState(false);
+
+  const handleImageChange = (index: number) => {
+    if (index === displayedImageIndex || index === pendingImageIndex) return;
+    if (!projectData?.Images?.[index]) return;
+    // Start transition: keep current image visible, start loading next
+    setPendingImageIndex(index);
+    setIsImageLoading(true);
+  };
 
   if (!projectData) {
     return <div>Project not found</div>;
@@ -30,47 +43,47 @@ export default function ProjectDetailPage({
   };
 
   return (
-    <main className="min-h-screen bg-[var(--color-black)] text-[var(--color-secondary)]">
+    <main className="h-screen bg-[var(--color-black)] text-[var(--color-secondary)] overflow-hidden">
       {/* Container with margins and top spacing */}
-      <div className="mx-[90px] pt-[70px] project-detail-container">
+      <div className="px-[124px] pt-[148px] pb-[124px] h-full project-detail-container">
         {/* Split Layout */}
-        <div className="flex gap-[120px] mt-[80px] pb-[120px] items-center project-detail-layout">
+        <div className="flex gap-[124px] h-full project-detail-layout">
           {/* Left Side - Project Info */}
-          <div className="flex-1 flex flex-col project-detail-info">
+          <div className="w-[50%] h-full flex flex-col project-detail-info">
             {/* Back Link */}
             <Link
               href={`/?lang=${language.toLowerCase()}#projects`}
-              className="text-[var(--color-accent)] hover:underline mb-[32px] inline-block"
+              className="text-[var(--color-accent)] hover:underline inline-block"
             >
               ← {t(language, "projects.backToProjects")}
             </Link>
 
-            <div className="flex items-center justify-center flex-1">
-              <div className="max-h-[400px] overflow-y-auto pr-[20px] scrollbar-custom project-detail-info-content">
-                {/* Project Title */}
-                <h1 className="text-[24px] font-bold mb-[20px] uppercase project-detail-title">
-                  {projectData.Title}
-                </h1>
+            <div className="flex flex-col flex-1 justify-center">
+              <div className="scrollbar-custom project-detail-info-content">
+                <div className="flex flex-col gap-[24px]">
+                  {/* Project Title */}
+                  <h2 className="text-[20px] font-bold uppercase project-detail-title">
+                    {projectData.Title}
+                  </h2>
 
-                {/* Project Description */}
-                {projectData.Description && (
-                  <div className="mb-[32px]">
-                    <div className="text-[16px] leading-relaxed project-detail-description">
-                      {projectData.Description.split("\n").map(
-                        (paragraph: string, index: number) => (
-                          <p key={index} className="mb-[16px]">
-                            {paragraph}
-                          </p>
-                        )
-                      )}
+                  {/* Project Description */}
+                  {projectData.Description && (
+                    <div>
+                      <div className="flex flex-col gap-[16px] text-[16px] leading-relaxed project-detail-description">
+                        {projectData.Description.split("\n").map(
+                          (paragraph: string, index: number) => (
+                            <p key={index}>{paragraph}</p>
+                          )
+                        )}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  )}
+                </div>
 
                 {/* Project Features */}
                 {projectData.features && projectData.features.length > 0 && (
-                  <div className="mb-[32px]">
-                    <h2 className="text-[16px] font-semibold mb-[16px] uppercase project-detail-section-title">
+                  <div className="flex flex-col gap-[24px] pt-[32px]">
+                    <h2 className="text-[20px] font-semibold uppercase project-detail-section-title">
                       {t(language, "projects.features")}
                     </h2>
                     <div className="text-[16px] project-detail-features">
@@ -92,8 +105,8 @@ export default function ProjectDetailPage({
 
                 {/* Project Stacks */}
                 {projectData.stacks && projectData.stacks.length > 0 && (
-                  <div className="mb-[32px]">
-                    <h2 className="text-[16px] font-semibold mb-[16px] uppercase project-detail-section-title">
+                  <div className="flex flex-col gap-[24px] pt-[32px]">
+                    <h2 className="text-[20px] font-semibold uppercase project-detail-section-title">
                       {t(language, "projects.technologies")}
                     </h2>
                     <div className="text-[16px] project-detail-stacks">
@@ -125,48 +138,50 @@ export default function ProjectDetailPage({
                   )}
                 </div>
               </div>
-            </div>
 
-            {/* Thumbnail Gallery - Only show if no video and has images */}
-            {!projectData.videoUrl &&
-              projectData.Images &&
-              projectData.Images.length > 0 && (
-                <div className="flex gap-[12px] mt-[32px] flex-wrap project-detail-thumbnail-gallery">
-                  {projectData.Images.map((image: any, index: number) => (
-                    <div
-                      key={index}
-                      onClick={() => setActiveImageIndex(index)}
-                      className={`${
-                        activeImageIndex === index
-                          ? "w-[90px] active"
-                          : "w-[72px]"
-                      } h-[50px] cursor-pointer rounded-lg overflow-hidden border-2 transition-all project-detail-thumbnail ${
-                        activeImageIndex === index
-                          ? "border-[var(--color-accent)]"
-                          : "border-transparent hover:border-[var(--color-accent)] hover:opacity-80"
-                      }`}
-                    >
-                      <Image
-                        src={image.url}
-                        alt={`${projectData.Title} thumbnail ${index + 1}`}
-                        width={activeImageIndex === index ? 90 : 72}
-                        height={activeImageIndex === index ? 65 : 50}
-                        className="w-full h-full object-cover object-top"
-                      />
-                    </div>
-                  ))}
-                </div>
-              )}
+              {/* Thumbnail Gallery - Only show if no video and has images */}
+              {!projectData.videoUrl &&
+                projectData.Images &&
+                projectData.Images.length > 0 && (
+                  <div className="flex gap-[12px] mt-[32px] flex-wrap project-detail-thumbnail-gallery">
+                    {projectData.Images.map((image: any, index: number) => {
+                      const isActive = index === displayedImageIndex;
+                      const isPending = index === pendingImageIndex;
+                      return (
+                        <div
+                          key={index}
+                          onClick={() => handleImageChange(index)}
+                          className={`${
+                            isActive || isPending ? "w-[90px] active" : "w-[72px]"
+                          } h-[50px] cursor-pointer rounded-lg overflow-hidden border-2 transition-all project-detail-thumbnail ${
+                            isActive || isPending
+                              ? "border-[var(--color-accent)]"
+                              : "border-transparent hover:border-[var(--color-accent)] hover:opacity-80"
+                          }`}
+                        >
+                          <Image
+                            src={image.url}
+                            alt={`${projectData.Title} thumbnail ${index + 1}`}
+                            width={isActive || isPending ? 90 : 72}
+                            height={isActive || isPending ? 65 : 50}
+                            className="w-full h-full object-cover object-top"
+                          />
+                        </div>
+                      );
+                    })}
+                  </div>
+                )}
+            </div>
           </div>
 
           {/* Right Side - YouTube Video or Image */}
-          <div className="flex-1 project-detail-media">
+          <div className="w-[50%] h-full project-detail-media ">
             {projectData.videoUrl ? (
-              <div className="w-full aspect-square">
+              <div className="w-full h-full">
                 <iframe
                   src={getYouTubeEmbedUrl(projectData.videoUrl)}
                   title={projectData.Title}
-                  className="w-full h-full rounded-lg"
+                  className="w-full h-full"
                   allowFullScreen
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -175,14 +190,44 @@ export default function ProjectDetailPage({
             ) : (
               projectData.Images &&
               projectData.Images.length > 0 && (
-                <div className="w-full aspect-[3/4] overflow-y-auto scrollbar-custom rounded-lg">
+                <div className={`w-full h-full aspect-[3/4] overflow-y-auto scrollbar-custom relative flex ${isImageLoading ? 'items-center justify-center' : 'items-start justify-start'}`}>
+                  {/* Currently displayed image */}
                   <Image
-                    src={projectData.Images[activeImageIndex].url}
+                    key={`displayed-${displayedImageIndex}`}
+                    src={projectData.Images[displayedImageIndex].url}
                     alt={projectData.Title}
-                    width={projectData.Images[activeImageIndex].width}
-                    height={projectData.Images[activeImageIndex].height}
-                    className="w-full h-auto object-top rounded-lg"
+                    width={projectData.Images[displayedImageIndex].width}
+                    height={projectData.Images[displayedImageIndex].height}
+                    className={`w-full h-auto object-top transition-opacity duration-300 ${pendingImageIndex !== null ? "opacity-60" : "opacity-100"}`}
+                    priority={displayedImageIndex === 0}
                   />
+
+                  {/* Incoming image (hidden until loaded) */}
+                  {pendingImageIndex !== null && (
+                    <Image
+                      key={`pending-${pendingImageIndex}`}
+                      src={projectData.Images[pendingImageIndex].url}
+                      alt={projectData.Title}
+                      width={projectData.Images[pendingImageIndex].width}
+                      height={projectData.Images[pendingImageIndex].height}
+                      className="w-full h-auto object-top absolute top-0 left-0 opacity-0"
+                      onLoadingComplete={() => {
+                        // Swap now that Next optimized image fully loaded
+                        setDisplayedImageIndex(pendingImageIndex);
+                        setPendingImageIndex(null);
+                        setIsImageLoading(false);
+                      }}
+                      // Ensure no pointer events before visible
+                      priority={pendingImageIndex === 0}
+                    />
+                  )}
+
+                  {isImageLoading && (
+                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-[16px] pointer-events-none bg-[var(--color-black)]/40">
+                      <div className="w-[32px] h-[32px] border-2 border-[var(--color-secondary)] border-t-transparent rounded-full loader-spin" />
+                      <span className="text-[var(--color-secondary)] text-[14px]">Loading...</span>
+                    </div>
+                  )}
                 </div>
               )
             )}
