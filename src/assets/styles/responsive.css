@@ -152,6 +152,68 @@
     width: 350px !important;
     height: 350px !important;
   }
+
+  /* Header responsive styles */
+  .desktop-navigation {
+    display: none !important;
+  }
+
+  .burger-menu-button {
+    display: flex !important;
+  }
+
+  .mobile-menu-dropdown {
+    display: flex !important;
+  }
+
+  /* Burger menu animations */
+  .burger-menu-open .burger-line-1 {
+    transform: rotate(45deg) translateY(8px);
+  }
+
+  .burger-menu-open .burger-line-2 {
+    opacity: 0;
+  }
+
+  .burger-menu-open .burger-line-3 {
+    transform: rotate(-45deg) translateY(-8px);
+  }
+
+  /* Navbar mobile styles */
+  .navbar {
+    flex-direction: column !important;
+    gap: 24px !important;
+  }
+
+  .navbar-item,
+  .navbar-button {
+    text-align: center !important;
+  }
+
+  /* Mobile menu overlay animation */
+  .mobile-menu-overlay {
+    animation: fadeInDown 0.3s ease-in-out;
+  }
+
+  @keyframes fadeInDown {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* Desktop styles (default) */
+.burger-menu-button {
+  display: none;
+}
+
+.mobile-menu-dropdown {
+  display: none;
 }
 
 @media (max-width: 768px) {
