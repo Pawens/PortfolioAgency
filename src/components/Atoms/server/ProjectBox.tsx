@@ -39,7 +39,7 @@ export default function ProjectBox({
           alt={title}
           width={width}
           height={Math.floor(width * (9 / 16))}
-          className="object-cover object-top w-full"
+          className="project-image object-cover object-top w-full"
         />
 
         <div className="text-[var(--color-secondary)] text-[16px] flex items-center justify-between">
