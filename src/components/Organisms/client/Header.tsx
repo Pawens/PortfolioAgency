@@ -8,17 +8,34 @@ import BurgerMenu from "../../Atoms/client/BurgerMenu";
 
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
 
   const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
+    if (isMobileMenuOpen) {
+      // Animation de fermeture
+      setIsAnimating(true);
+      setTimeout(() => {
+        setIsMobileMenuOpen(false);
+        setIsAnimating(false);
+      }, 300); // Durée de l'animation en ms
+    } else {
+      // Animation d'ouverture
+      setIsMobileMenuOpen(true);
+    }
   };
 
   // Close menu when clicking outside
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        setIsMobileMenuOpen(false);
+        if (isMobileMenuOpen) {
+          setIsAnimating(true);
+          setTimeout(() => {
+            setIsMobileMenuOpen(false);
+            setIsAnimating(false);
+          }, 300);
+        }
       }
     };
 
@@ -36,6 +53,7 @@ function Header() {
     const handleResize = () => {
       if (window.innerWidth >= 1024) {
         setIsMobileMenuOpen(false);
+        setIsAnimating(false);
       }
     };
 
@@ -60,9 +78,14 @@ function Header() {
       <BurgerMenu isOpen={isMobileMenuOpen} onClick={toggleMobileMenu} />
 
       {/* Mobile Navigation Menu */}
-      {isMobileMenuOpen && (
-        <div className="mobile-menu-dropdown absolute top-full right-0 bg-[var(--color-primary)] flex flex-col items-center z-50 mobile-menu-overlay top-px right-px">
-          <div className="flex flex-col items-center gap-[32px]">
+      {(isMobileMenuOpen || isAnimating) && (
+        <div
+          className={`mobile-menu-dropdown absolute bg-[var(--color-primary)] flex flex-col items-center z-50 top-[0px] right-[0px] h-screen w-[40vw] ${
+            isAnimating ? "mobile-menu-closing" : "mobile-menu-overlay"
+          }`}
+        >
+          {/* mt calc 12px + 32px + 24px */}
+          <div className="flex flex-col items-center gap-[24px] mt-[68px]">
             <NavBar />
             <LanguageSelector />
           </div>

@@ -8,16 +8,28 @@ interface BurgerMenuProps {
 }
 
 function BurgerMenu({ isOpen, onClick }: BurgerMenuProps) {
+  const buttonStyle = isOpen
+    ? {
+        position: "absolute" as const,
+        right: "calc(40vw - 34px - 12px)",
+        top: "12px",
+        zIndex: 60,
+        alignItems: "center",
+        justifyContent: "center",
+      }
+    : {};
+
   return (
     <button
-      className={`burger-menu-button flex flex-col justify-center items-center w-[32px] h-[32px] cursor-pointer transition-all duration-300 ${
+      className={`burger-menu-button flex flex-col justify-center items-start w-[32px] h-[32px] cursor-pointer transition-all duration-300 ${
         isOpen ? "burger-menu-open" : ""
       }`}
+      style={buttonStyle}
       onClick={onClick}
       aria-label="Toggle menu"
     >
       <span className="burger-line burger-line-1 w-[24px] h-[2px] bg-[var(--color-secondary)] transition-all duration-300" />
-      <span className="burger-line burger-line-2 w-[24px] h-[2px] bg-[var(--color-secondary)] mt-[4px] transition-all duration-300" />
+      <span className="burger-line burger-line-2 w-[16px] h-[2px] bg-[var(--color-secondary)] mt-[4px] transition-all duration-300" />
       <span className="burger-line burger-line-3 w-[24px] h-[2px] bg-[var(--color-secondary)] mt-[4px] transition-all duration-300" />
     </button>
   );

@@ -172,6 +172,7 @@ html {
 
 body {
   font-family: "Satoshi", sans-serif;
+  overflow-x: hidden;
 }
 
 /* Ensure placeholders use Satoshi where appropriate */
