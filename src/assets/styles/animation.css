@@ -179,3 +179,78 @@
 .loader-spin {
   animation: spin 1s linear infinite;
 }
+
+/* Project link hover animations */
+.project-link-container {
+  position: relative;
+}
+
+.project-link-arrow {
+  transform: rotate(-90deg) scale(0.8);
+  transition: transform 300ms ease-in-out;
+}
+
+.project-link-container:hover .project-link-arrow {
+  transform: translateX(8px) rotate(-90deg) scale(0.8);
+}
+
+.project-link-text {
+  position: relative !important;
+  display: inline-block !important;
+  text-decoration: none !important;
+}
+
+.project-link-text::after {
+  content: "" !important;
+  position: absolute !important;
+  bottom: -4px !important;
+  left: 0 !important;
+  width: 0 !important;
+  height: 2px !important;
+  background: var(--color-secondary) !important;
+  transition: width 300ms ease-in-out !important;
+  border-radius: 2px !important;
+  z-index: 10 !important;
+}
+
+.project-link-container:hover .project-link-text::after {
+  width: 100% !important;
+}
+
+/* Back link hover animation */
+.project-back-link {
+  position: relative !important;
+  display: inline-block !important;
+  text-decoration: none !important;
+}
+
+.project-back-link::after {
+  content: "" !important;
+  position: absolute !important;
+  bottom: -4px !important;
+  left: 0 !important;
+  width: 0 !important;
+  height: 2px !important;
+  background: var(--color-secondary) !important;
+  transition: width 300ms ease-in-out !important;
+  border-radius: 2px !important;
+  z-index: 10 !important;
+}
+
+.project-back-link:hover::after {
+  width: 100% !important;
+}
+
+/* Back link container hover animation */
+.project-back-link-container {
+  position: relative;
+}
+
+.project-back-link-arrow {
+  transform: rotate(90deg) scale(0.8);
+  transition: transform 300ms ease-in-out;
+}
+
+.project-back-link-container:hover .project-back-link-arrow {
+  transform: translateX(-8px) rotate(90deg) scale(0.8);
+}
