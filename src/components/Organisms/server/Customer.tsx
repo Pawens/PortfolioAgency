@@ -2,8 +2,25 @@ import Count from "@/components/Atoms/client/Count";
 import CustomerSlider from "@/components/Molecules/client/CustomerSlider";
 import { Language } from "@/context/LanguageContext";
 import { t } from "@/utils/serverTranslations";
+import { getProjectsData } from "@/utils/StrapiCallsUtils";
 
-export default function Customer({ language }: { language: Language }) {
+interface RawProject {
+  id: number;
+  Title: string;
+  Icon: { url: string; alternativeText: string | null } | null;
+}
+
+export default async function Customer({ language }: { language: Language }) {
+  // Fetch côté serveur pour éviter le loader côté client et améliorer SEO.
+  let projects: RawProject[] = [];
+  try {
+    const resp: any = await getProjectsData(language.toLowerCase());
+    projects = resp?.data || [];
+  } catch (e) {
+    console.error("Failed to fetch projects for Customer section", e);
+    // On laisse projects = [] (fallback silencieux)
+  }
+
   return (
     <section className="pt-[80px] pb-[96px] ">
       <div>
@@ -24,7 +41,7 @@ export default function Customer({ language }: { language: Language }) {
           </div>
         </div>
 
-        <CustomerSlider />
+        <CustomerSlider projects={projects} language={language} />
       </div>
     </section>
   );

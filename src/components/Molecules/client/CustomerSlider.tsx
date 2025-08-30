@@ -1,9 +1,8 @@
 "use client";
 
 import CustomerBox from "@/components/Atoms/server/CustomerBox";
-import { useLanguage } from "@/context/LanguageContext";
-import { fetchProjects } from "@/utils/clientCache";
-import { useEffect, useState } from "react";
+import { Language } from "@/context/LanguageContext";
+import { t } from "@/utils/serverTranslations"; // Réutilisable côté client (pas marqué use server)
 import "../../../assets/styles/slider.css";
 
 type RawProject = {
@@ -12,23 +11,24 @@ type RawProject = {
   Icon: { url: string; alternativeText: string | null } | null;
 };
 
-export default function CustomerSlider() {
-  const { language } = useLanguage();
-  const [projects, setProjects] = useState<RawProject[]>([]);
-  const [loading, setLoading] = useState(true);
+interface CustomerSliderProps {
+  projects: RawProject[];
+  language: Language;
+}
 
-  useEffect(() => {
-    setLoading(true);
-    fetchProjects(language.toLowerCase())
-      .then((resp) => setProjects(resp.data || []))
-      .catch(console.error)
-      .finally(() => setLoading(false));
-  }, [language]);
-
-  if (loading) {
-    return <p className="text-center py-4">Chargement …</p>;
+export default function CustomerSlider({
+  projects,
+  language,
+}: CustomerSliderProps) {
+  if (!projects || projects.length === 0) {
+    return (
+      <div className="border-t border-b border-[var(--color-primary)] py-8 text-center text-sm opacity-70">
+        {t(language, "customer.noProjects") || "Chargement ..."}
+      </div>
+    );
   }
 
+  // Duplique pour effet infini
   const items = [...projects, ...projects];
 
   return (

@@ -2,11 +2,10 @@
 
 import ButtonDefaultClient from "@/components/Atoms/client/ButtonDefaultClient";
 import ProjectBox from "@/components/Atoms/server/ProjectBox";
-import { useLanguage } from "@/context/LanguageContext";
-import { fetchProjects } from "@/utils/clientCache";
+import { Language } from "@/context/LanguageContext";
 import { t } from "@/utils/serverTranslations";
 import { motion, useInView } from "motion/react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 type RawProject = {
   id: number;
@@ -15,19 +14,27 @@ type RawProject = {
   Images: Array<{ url: string }>;
 };
 
-export default function ProjectsList() {
-  const { language } = useLanguage();
-  const [projects, setProjects] = useState<RawProject[]>([]);
-  const [visibleCount, setVisibleCount] = useState(4);
+interface ProjectsListProps {
+  projects: RawProject[];
+  language: Language;
+}
 
-  useEffect(() => {
-    fetchProjects(language.toLowerCase())
-      .then((resp) => setProjects(resp.data || []))
-      .catch(console.error);
-  }, [language]);
+export default function ProjectsList({
+  projects,
+  language,
+}: ProjectsListProps) {
+  const [visibleCount, setVisibleCount] = useState(4);
 
   const total = projects.length;
   const loadMore = () => setVisibleCount((v) => Math.min(v + 2, total));
+
+  if (!projects || projects.length === 0) {
+    return (
+      <p className="px-[88px] pt-8 text-sm opacity-70">
+        {t(language, "projects.none") || "Chargement ..."}
+      </p>
+    );
+  }
 
   return (
     <>
@@ -71,7 +78,7 @@ interface ProjectListItemProps {
   index: number;
   variant: 1 | 2 | 3 | 4;
   align: "left" | "right";
-  language: string;
+  language: Language;
 }
 
 function ProjectListItem({
