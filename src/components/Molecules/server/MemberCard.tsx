@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import AnimatedButton from "@/components/Atoms/client/AnimatedButton";
 import MemberImage from "@/components/Atoms/server/MemberImage";

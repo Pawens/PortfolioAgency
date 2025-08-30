@@ -48,7 +48,7 @@ export default function Home({ searchParams }: Props) {
             <LogoFooter />
           </div>
           <div className="relative z-20">
-            <WhoAreWe />
+            <WhoAreWe language={language} />
             <FaqSection language={language} />
             <ContactSection language={language} />
             <Footer />

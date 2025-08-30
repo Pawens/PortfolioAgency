@@ -29,7 +29,7 @@ export default async function Customer({ language }: { language: Language }) {
             <h2 className="customer-title text-[46px] italic font-[450]">
               {t(language, "customer.ourClients")}
             </h2>
-            <Count />
+            <Count manualCount={projects.length} />
           </div>
           <div>
             <p>{t(language, "customer.description1")}</p>

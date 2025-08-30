@@ -1,10 +1,21 @@
 import React from "react";
 import GoogleLogo from "@/assets/icons/GoogleLogo.svg";
 import ButtonDefault from "@/components/Atoms/server/ButtonDefault";
-import TestimonialsSlider from "@/components/Molecules/client/TestimonialsSlider";
+import TestimonialsSlider, {
+  Testimonial,
+} from "@/components/Molecules/client/TestimonialsSlider";
 import { Language, t } from "@/utils/serverTranslations";
+import { getTestimonialsData } from "@/utils/StrapiCallsUtils";
 
-function Reviews({ language }: { language: Language }) {
+async function Reviews({ language }: { language: Language }) {
+  let testimonials: Testimonial[] = [];
+  try {
+    const resp: any = await getTestimonialsData(language.toLowerCase());
+    testimonials = resp?.data || [];
+  } catch (e) {
+    console.error("Reviews: failed to fetch testimonials", e);
+  }
+
   return (
     <section className="review-section text-[var(--color-secondary)] pt-[176px]">
       <div className="reviews-container flex flex-col items-center justify-center gap-[88px] max-w-[760px] mx-auto px-[128px]">
@@ -14,8 +25,15 @@ function Reviews({ language }: { language: Language }) {
           </h2>
         </div>
 
-        <div className="reviews-slider">
-          <TestimonialsSlider />
+        <div className="reviews-slider w-full">
+          {testimonials.length > 0 ? (
+            <TestimonialsSlider
+              testimonials={testimonials}
+              language={language}
+            />
+          ) : (
+            <p className="text-sm opacity-70">No testimonials available.</p>
+          )}
         </div>
 
         <ButtonDefault

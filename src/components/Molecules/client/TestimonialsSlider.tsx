@@ -1,11 +1,10 @@
 "use client";
 
 import ArrowPawensBig from "@/assets/icons/ArrowPawensBig.svg";
-import { useLanguage } from "@/context/LanguageContext";
-import { fetchTestimonials } from "@/utils/clientCache";
+import { Language } from "@/context/LanguageContext";
 import { useEffect, useMemo, useRef, useState } from "react";
 
-type Testimonial = {
+export type Testimonial = {
   id: number;
   Message: string;
   FullName: string;
@@ -15,23 +14,25 @@ type Testimonial = {
 const INTERVAL_MS = 3000;
 const SIDE_PEEK = 30;
 
-export default function TestimonialsSlider() {
-  const { language } = useLanguage();
-  const [items, setItems] = useState<Testimonial[]>([]);
+interface TestimonialsSliderProps {
+  testimonials: Testimonial[];
+  language: Language; // si besoin futur (aria labels, etc.)
+}
+
+export default function TestimonialsSlider({
+  testimonials,
+}: TestimonialsSliderProps) {
+  const [items, setItems] = useState<Testimonial[]>(testimonials || []);
   const [current, setCurrent] = useState(0);
   const [isRewinding, setIsRewinding] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // If testimonials prop changes (language switch), reset.
   useEffect(() => {
-    fetchTestimonials(language.toLowerCase())
-      .then((resp) => {
-        const data = (resp?.data || []) as Testimonial[];
-        setItems(data);
-        setCurrent(0);
-      })
-      .catch(console.error);
-  }, [language]);
+    setItems(testimonials || []);
+    setCurrent(0);
+  }, [testimonials]);
 
   useEffect(() => {
     if (!items.length) return;

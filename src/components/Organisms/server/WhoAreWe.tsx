@@ -1,65 +1,51 @@
-"use client";
-
 import MemberCard from "@/components/Molecules/server/MemberCard";
-import { useLanguage } from "@/context/LanguageContext";
-import { fetchTeamMembers } from "@/utils/clientCache";
-import { useEffect, useState } from "react";
+import { Language } from "@/context/LanguageContext";
+import { getTeamMembersData } from "@/utils/StrapiCallsUtils";
 
-type TeamMember = {
+interface TeamMemberRaw {
   id: number;
-  FullName: string;
+  FullName?: string;
   JobTitle?: string;
   JobPosition?: string;
   ProfilePicture?: any;
-  linkedInUrl?: string;
-};
+  LinkedinUrl?: string;
+}
 
-export default function WhoAreWe() {
-  const { language } = useLanguage();
-  const [teamMembers, setTeamMembers] = useState<TeamMember[]>([]);
-  const [loading, setLoading] = useState(true);
+interface WhoAreWeProps {
+  language: Language;
+}
 
-  useEffect(() => {
-    setLoading(true);
-    fetchTeamMembers(language.toLowerCase())
-      .then((resp) => {
-        const data = resp?.data || [];
-        setTeamMembers(data);
-      })
-      .catch((err) => {
-        console.error("WhoAreWe: fetchTeamMembers failed", err);
-        setTeamMembers([]);
-      })
-      .finally(() => setLoading(false));
-  }, [language]);
-
-  if (loading) return <p>Chargement…</p>;
+async function WhoAreWe({ language }: WhoAreWeProps) {
+  let team: TeamMemberRaw[] = [];
+  try {
+    const resp: any = await getTeamMembersData(language.toLowerCase());
+    team = resp?.data || [];
+  } catch (e) {
+    console.error("WhoAreWe: failed to fetch team members", e);
+  }
 
   return (
     <section className="flex py-[128px]">
       <div className="team-members-container flex flex-row flex-wrap justify-around items-center w-full gap-[32px]">
-        {teamMembers.length === 0 ? (
-          <p>Try to refresh the page.</p>
+        {team.length === 0 ? (
+          <p className="opacity-70 text-sm">Team unavailable.</p>
         ) : (
-          teamMembers.map((m) => {
-            const profile = (m as any).ProfilePicture || {};
+          team.map((m) => {
+            const profile: any = (m as any).ProfilePicture || {};
             const thumb =
               profile?.formats?.medium?.url ||
               profile?.formats?.small?.url ||
               profile?.url ||
-              profile?.formats?.thumbnail?.url;
-            const name = (m as any).FullName || "";
-            const role = (m as any).JobTitle || "";
-            const job = (m as any).JobPosition || "";
-            const LinkedinUrl = (m as any).LinkedinUrl || "";
+              profile?.formats?.thumbnail?.url ||
+              "";
             return (
               <MemberCard
                 key={(m as any).id}
-                name={name}
-                role={role}
-                job={job}
+                name={(m as any).FullName || ""}
+                role={(m as any).JobTitle || ""}
+                job={(m as any).JobPosition || ""}
                 imageUrl={thumb}
-                linkedInUrl={LinkedinUrl}
+                linkedInUrl={(m as any).LinkedinUrl || ""}
               />
             );
           })
@@ -68,3 +54,5 @@ export default function WhoAreWe() {
     </section>
   );
 }
+
+export default WhoAreWe;
