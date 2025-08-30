@@ -63,7 +63,7 @@ function Header() {
 
   return (
     <div
-      className="header-container flex items-center justify-between pt-[64px] px-[92px] pb-[32px] bg-white relative"
+      className="header-container flex items-center justify-between pt-[64px] px-[64px] pb-[32px] bg-white relative"
       ref={menuRef}
     >
       <PawensLogotype />

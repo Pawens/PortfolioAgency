@@ -197,14 +197,14 @@ button.button-default.footer-variant:hover svg path {
   fill: var(--color-primary) !important;
 }
 
-/* Custom Scrollbar Styles */
+/* Global Custom Scrollbar Styles (applied everywhere) */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: var(--color-black);
 }
 
 ::-webkit-scrollbar-thumb {
@@ -217,17 +217,25 @@ button.button-default.footer-variant:hover svg path {
 }
 
 ::-webkit-scrollbar-corner {
-  background: transparent;
+  background: var(--color-black);
 }
 
 ::-webkit-scrollbar-button {
   display: none;
 }
 
-/* Firefox scrollbar */
+/* Firefox global scrollbar */
 * {
   scrollbar-width: thin;
-  scrollbar-color: var(--color-secondary) transparent;
+  scrollbar-color: var(--color-secondary) var(--color-black);
+}
+
+/* Utility: opt-out (use on elements needing transparent track) */
+.scrollbar-track-transparent::-webkit-scrollbar-track {
+  background: transparent !important;
+}
+.scrollbar-track-transparent {
+  scrollbar-color: var(--color-secondary) transparent !important;
 }
 
 /* Spinner animation for loader */

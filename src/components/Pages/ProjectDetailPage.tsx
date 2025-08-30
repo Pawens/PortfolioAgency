@@ -47,16 +47,16 @@ export default function ProjectDetailPage({
   };
 
   return (
-    <main className="h-screen bg-[var(--color-black)] text-[var(--color-secondary)] overflow-hidden">
+    <main className="bg-[var(--color-black)] text-[var(--color-secondary)] min-h-screen">
       {/* Container with margins and top spacing */}
-      <div className="px-[124px] pt-[148px] pb-[124px] h-full project-detail-container">
+      <div className="px-[64px] pt-[148px] h-full project-detail-container">
         {/* Split Layout */}
         <div className="flex gap-[124px] h-full project-detail-layout">
           {/* Left Side - Project Info */}
           <div className="w-[50%] h-full flex flex-col project-detail-info">
             {/* Back Link */}
 
-            <div className="flex items-center gap-[8px] pb-[4px] project-back-link-container">
+            <div className="flex items-center gap-[8px] pb-[4px] project-back-link-container z-51">
               <ArrowPawens
                 className={`project-back-link-arrow flex items-center justify-center fill-current`}
               />
@@ -69,7 +69,7 @@ export default function ProjectDetailPage({
             </div>
 
             <div className="flex flex-col flex-1 justify-center pt-[28px]">
-              <div className="scrollbar-custom project-detail-info-content flex flex-col h-full justify-between">
+              <div className="scrollbar-custom project-detail-info-content flex flex-col justify-between">
                 <div>
                   <div className="flex flex-col gap-[24px]">
                     {/* Project Title */}
@@ -139,7 +139,7 @@ export default function ProjectDetailPage({
                 </div>
 
                 {/* Project Links */}
-                <div className="flex gap-[16px] flex-wrap w-full justify-end">
+                <div className="flex gap-[16px] py-[32px] flex-wrap w-full justify-end">
                   <div className="flex gap-[16px] justify-end items-center project-link-container">
                     <ArrowPawens
                       className={`project-link-arrow flex items-center justify-center fill-current`}
@@ -198,9 +198,9 @@ export default function ProjectDetailPage({
           </div>
 
           {/* Right Side - YouTube Video or Image */}
-          <div className="w-[50%] h-full project-detail-media ">
+          <div className="w-[50%] project-detail-media max-h-[calc(100vh-12px-148px)] pb-[12px]">
             {projectData.videoUrl ? (
-              <div className="w-full h-full">
+              <div className="w-full h-full project-detail-video">
                 <iframe
                   src={getYouTubeEmbedUrl(projectData.videoUrl)}
                   title={projectData.Title}
