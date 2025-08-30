@@ -13,18 +13,25 @@ export function getTranslations(language: Language) {
 }
 
 // Helper to get language from URL search params
-export function getLanguageFromSearchParams(searchParams: URLSearchParams | { [key: string]: string | string[] | undefined }): Language {
-  let langParam: string | null = null;
-  
-  if (searchParams instanceof URLSearchParams) {
-    langParam = searchParams.get('lang');
-  } else {
+export function getLanguageFromSearchParams(
+  searchParams: URLSearchParams | { [key: string]: string | string[] | undefined }
+): Language {
+  let raw: string | null = null;
+  if (searchParams instanceof URLSearchParams) raw = searchParams.get("lang");
+  else {
     const lang = searchParams.lang;
-    langParam = Array.isArray(lang) ? lang[0] : lang || null;
+    raw = Array.isArray(lang) ? lang[0] : lang || null;
   }
-  
-  const validLanguages: Language[] = ["Fr", "En", "Es", "De", "It"];
-  return validLanguages.includes(langParam as Language) ? (langParam as Language) : "Fr";
+  if (!raw) return "Fr";
+  const normalized = raw.trim().toLowerCase();
+  const map: Record<string, Language> = {
+    fr: "Fr",
+    en: "En",
+    es: "Es",
+    de: "De",
+    it: "It",
+  };
+  return map[normalized] || "Fr";
 }
 
 // Simple function to get translated text for server components

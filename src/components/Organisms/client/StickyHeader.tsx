@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, Suspense } from "react";
 import Header from "./Header";
 
 export default function StickyHeader() {
@@ -22,12 +22,14 @@ export default function StickyHeader() {
   }, [lastY]);
 
   return (
-    <header
-      className={`fixed top-0 left-0 w-full z-50 h-[136px] transition-transform duration-300 will-change-transform ${
-        visible ? "translate-y-0" : "-translate-y-[136px]"
-      } `}
-    >
-      <Header />
-    </header>
+    <Suspense fallback={null}>
+      <header
+        className={`fixed top-0 left-0 w-full z-50 h-[136px] transition-transform duration-300 will-change-transform ${
+          visible ? "translate-y-0" : "-translate-y-[136px]"
+        } `}
+      >
+        <Header />
+      </header>
+    </Suspense>
   );
 }

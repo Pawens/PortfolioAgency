@@ -1,8 +1,6 @@
-import StickyHeader from "@/components/Organisms/client/StickyHeader";
-import { LanguageProvider } from "@/context/LanguageContext";
 import type { Metadata } from "next";
-import "../assets/styles/responsive.css";
 import "./globals.css";
+import "../assets/styles/responsive.css";
 import "./reset.css";
 
 export const metadata: Metadata = {
@@ -44,10 +42,8 @@ export default function RootLayout({
   return (
     <html lang="fr">
       <body className="antialiased font-satoshi">
-        <LanguageProvider>
-          <StickyHeader />
-          {children}
-        </LanguageProvider>
+        {/* StickyHeader rendu dans chaque page avec son LanguageProvider */}
+        {children}
       </body>
     </html>
   );

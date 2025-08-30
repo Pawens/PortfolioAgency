@@ -1,6 +1,7 @@
 "use client";
 
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useLanguage } from "@/context/LanguageContext";
 import React from "react";
 import PawensLogo from "../../../assets/icons/PawensLogo.svg";
 import "../../../assets/styles/animation.css";
@@ -11,12 +12,15 @@ const letters = ["P", "A", "W", "E", "N", "S"];
 function PawensLogotype() {
   const pathname = usePathname();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const { language } = useLanguage();
 
   const handleClick = () => {
+    const currentLang = (searchParams.get("lang") || language).toLowerCase();
     if (pathname === "/") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      router.push("/");
+      router.push(`/?lang=${currentLang}`);
     }
   };
 

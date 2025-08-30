@@ -11,6 +11,8 @@ import Projects from "@/components/Organisms/server/Projects";
 import Review from "@/components/Organisms/server/Reviews";
 import Services from "@/components/Organisms/server/Services";
 import WhoAreWe from "@/components/Organisms/server/WhoAreWe";
+import StickyHeader from "@/components/Organisms/client/StickyHeader";
+import { LanguageProvider } from "@/context/LanguageContext";
 import { getLanguageFromSearchParams } from "@/utils/serverTranslations";
 
 type Props = {
@@ -20,7 +22,8 @@ type Props = {
 export default function Home({ searchParams }: Props) {
   const language = getLanguageFromSearchParams(searchParams);
   return (
-    <>
+    <LanguageProvider initialLanguage={language}>
+      <StickyHeader />
       <main className="flex align-center justify-center flex-col">
         <Hero language={language} />
         <KeyMetricsServer language={language} />
@@ -52,6 +55,6 @@ export default function Home({ searchParams }: Props) {
           </div>
         </section>
       </main>
-    </>
+    </LanguageProvider>
   );
 }
