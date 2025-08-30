@@ -18,7 +18,8 @@ async function Reviews({ language }: { language: Language }) {
 
   return (
     <section className="review-section text-[var(--color-secondary)] pt-[176px]">
-      <div className="reviews-container flex flex-col items-center justify-center gap-[88px] max-w-[760px] mx-auto px-[128px]">
+      {/* Option 1 (box-content) à nouveau: padding interne + largeur de contenu restaurée */}
+      <div className="reviews-container box-content flex flex-col items-center justify-center gap-[88px] max-w-[760px] mx-auto px-[128px]">
         <div>
           <h2 className="review-title text-[46px] italic">
             {t(language, "review.title")}
