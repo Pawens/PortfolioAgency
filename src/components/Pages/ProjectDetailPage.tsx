@@ -138,13 +138,13 @@ export default function ProjectDetailPage({
                   )}
                 </div>
 
-                {/* Project Links */}
-                <div className="flex gap-[16px] py-[32px] flex-wrap w-full justify-end">
-                  <div className="flex gap-[16px] justify-end items-center project-link-container">
-                    <ArrowPawens
-                      className={`project-link-arrow flex items-center justify-center fill-current`}
-                    />
-                    {projectData.websiteUrl && (
+                {/* Project Links (render only if a website URL exists) */}
+                {projectData.websiteUrl && (
+                  <div className="flex gap-[16px] py-[32px] flex-wrap w-full justify-end">
+                    <div className="flex gap-[16px] justify-end items-center project-link-container">
+                      <ArrowPawens
+                        className={`project-link-arrow flex items-center justify-center fill-current`}
+                      />
                       <a
                         href={projectData.websiteUrl}
                         target="_blank"
@@ -153,9 +153,9 @@ export default function ProjectDetailPage({
                       >
                         {t(language, "projects.viewLive")}
                       </a>
-                    )}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Thumbnail Gallery - Only show if no video and has images */}
                 {!projectData.videoUrl &&
