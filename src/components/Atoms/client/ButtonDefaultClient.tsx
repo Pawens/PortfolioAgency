@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import "../../../assets/styles/ButtonDefault.css";
+import "../../../assets/styles/buttonDefault.css";
 
 type ButtonDefaultClientProps = {
   href?: string;

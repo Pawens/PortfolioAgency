@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import MemberCard from "@/components/Molecules/server/MemberCard";
-import ScrollingText from "@/components/Atoms/client/ScrollingText";
 import { fetchTeamMembers } from "@/utils/clientCache";
 import { useLanguage } from "@/context/LanguageContext";
 

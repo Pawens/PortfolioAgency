@@ -3,7 +3,7 @@
 import React from "react";
 import { usePathname, useRouter } from "next/navigation";
 import PawensLogo from "../../../assets/icons/PawensLogo.svg";
-import "../../../assets/styles/pawensLogotype.css";
+import "../../../assets/styles/pawensLogoType.css";
 import "../../../assets/styles/animation.css";
 
 const letters = ["P", "A", "W", "E", "N", "S"];

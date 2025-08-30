@@ -33,7 +33,6 @@ export default function ProjectsList() {
     <>
       <div className="project-list-container flex flex-wrap mt-[-5px] px-[88px] gap-[32px]">
         {projects.slice(0, visibleCount).map((p, i) => {
-          const imageUrl = p.Images[0]?.url ?? "";
           const variant = ((i % 4) + 1) as 1 | 2 | 3 | 4;
           const align = variant % 2 === 1 ? "left" : "right";
 

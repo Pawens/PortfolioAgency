@@ -1,0 +1,28 @@
+{
+  "extends": ["next/core-web-vitals"],
+  "plugins": ["import"],
+  "rules": {
+    "import/no-named-as-default": "warn",
+    "import/no-duplicates": "error",
+    "import/no-useless-path-segments": "warn",
+    "import/no-extraneous-dependencies": "error",
+    "import/no-mutable-exports": "error",
+    "import/no-cycle": "warn",
+    "import/first": "error",
+    "import/newline-after-import": "warn",
+    "import/order": ["warn", { "alphabetize": { "order": "asc" } }],
+    "import/no-named-as-default-member": "warn",
+    "import/no-absolute-path": "error",
+    "import/no-dynamic-require": "error",
+    "import/no-relative-packages": "error",
+    "import/no-unresolved": ["error", { "caseSensitive": true }]
+  },
+  "settings": {
+    "import/resolver": {
+      "typescript": {},
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
+}

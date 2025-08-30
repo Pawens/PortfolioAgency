@@ -77,7 +77,7 @@ export default function TestimonialsSlider() {
             transitionDuration: isRewinding ? "900ms" : "700ms",
           }}
         >
-          {items.map((item, idx) => (
+          {items.map((item) => (
             <div
               key={item.id}
               className="testimonial-item flex-shrink-0"

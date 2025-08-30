@@ -1,9 +1,9 @@
+import StickyHeader from "@/components/Organisms/client/StickyHeader";
+import { LanguageProvider } from "@/context/LanguageContext";
 import type { Metadata } from "next";
+import "../assets/styles/responsive.css";
 import "./globals.css";
 import "./reset.css";
-import "../assets/styles/responsive.css";
-import { LanguageProvider } from "@/context/LanguageContext";
-import StickyHeader from "@/components/Organisms/client/StickyHeader";
 
 export const metadata: Metadata = {
   title: "Pawens",

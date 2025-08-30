@@ -1,16 +1,16 @@
+import BackgroundProcess from "@/assets/icons/BackgroundProcess.svg";
+import LogoFooter from "@/assets/icons/LogoFooter.svg";
+import ContactSection from "@/components/Organisms/client/ContactSection";
 import Customer from "@/components/Organisms/server/Customer";
+import FaqSection from "@/components/Organisms/server/FaqSection";
+import Footer from "@/components/Organisms/server/Footer";
 import Hero from "@/components/Organisms/server/Hero";
 import KeyMetricsServer from "@/components/Organisms/server/KeyMetricsServer";
-import ContactSection from "@/components/Organisms/client/ContactSection";
-import FaqSection from "@/components/Organisms/server/FaqSection";
-import WhoAreWe from "@/components/Organisms/server/WhoAreWe";
-import Footer from "@/components/Organisms/server/Footer";
-import LogoFooter from "@/assets/icons/LogoFooter.svg";
-import BackgroundProcess from "@/assets/icons/BackgroundProcess.svg";
-import Review from "@/components/Organisms/server/Reviews";
-import Projects from "@/components/Organisms/server/Projects";
-import Services from "@/components/Organisms/server/Services";
 import Process from "@/components/Organisms/server/Process";
+import Projects from "@/components/Organisms/server/Projects";
+import Review from "@/components/Organisms/server/Reviews";
+import Services from "@/components/Organisms/server/Services";
+import WhoAreWe from "@/components/Organisms/server/WhoAreWe";
 import { getLanguageFromSearchParams } from "@/utils/serverTranslations";
 
 type Props = {

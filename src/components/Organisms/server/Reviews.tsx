@@ -1,5 +1,4 @@
 import React from "react";
-import ArrowPawensBig from "@/assets/icons/ArrowPawensBig.svg";
 import GoogleLogo from "@/assets/icons/GoogleLogo.svg";
 import ButtonDefault from "@/components/Atoms/server/ButtonDefault";
 import TestimonialsSlider from "@/components/Molecules/client/TestimonialsSlider";
