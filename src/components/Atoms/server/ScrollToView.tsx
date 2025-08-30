@@ -1,8 +1,7 @@
-import React from "react";
+import { Language } from "@/context/LanguageContext";
+import { t } from "@/utils/serverTranslations";
 import ArrowPawens from "../../../assets/icons/ArrowPawens.svg";
 import "../../../assets/styles/scrollToView.css";
-import { t } from "@/utils/serverTranslations";
-import { Language } from "@/context/LanguageContext";
 
 function ScrollToView({ language }: { language: Language }) {
   return (

@@ -1,6 +1,6 @@
+import ProjectDetailPage from "@/components/Pages/ProjectDetailPage";
 import { getProjectData } from "@/utils/StrapiCallsUtils";
 import { getLanguageFromSearchParams } from "@/utils/serverTranslations";
-import ProjectDetailPage from "@/components/Pages/ProjectDetailPage";
 
 type Props = {
   params: { id: string };

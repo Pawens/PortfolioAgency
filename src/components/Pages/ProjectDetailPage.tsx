@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useState } from "react";
+import "@/assets/styles/animation.css";
+import "@/assets/styles/projectDetailResponsive.css";
 import { Language } from "@/context/LanguageContext";
 import { t } from "@/utils/serverTranslations";
-import Link from "next/link";
 import Image from "next/image";
-import "@/assets/styles/projectDetailResponsive.css";
-import "@/assets/styles/animation.css";
+import Link from "next/link";
+import { useState } from "react";
 import ArrowPawens from "../../assets/icons/ArrowPawens.svg";
 
 type ProjectDetailProps = {

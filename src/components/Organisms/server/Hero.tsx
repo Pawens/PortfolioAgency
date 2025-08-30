@@ -1,16 +1,15 @@
-import React from "react";
-import HeroButton from "../../Atoms/server/HeroButton";
-import ScrollToView from "../../Atoms/server/ScrollToView";
-import "../../../assets/styles/animation.css";
 import { Language } from "@/context/LanguageContext";
 import { t } from "@/utils/serverTranslations";
+import "../../../assets/styles/animation.css";
+import HeroButton from "../../Atoms/server/HeroButton";
+import ScrollToView from "../../Atoms/server/ScrollToView";
 
 function Hero({ language }: { language: Language }) {
   return (
     <div
       className="relative flex flex-col items-center justify-center w-full h-screen"
       style={{
-        backgroundImage: "url('/backgroundDarkToLight.png')",
+        backgroundImage: "url('/backgroundDarkToLight.webp')",
         backgroundSize: "100% 100%",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

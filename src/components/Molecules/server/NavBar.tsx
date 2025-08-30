@@ -1,7 +1,6 @@
-import React from "react";
 import Link from "next/link";
-import ButtonDefault from "../../Atoms/server/ButtonDefault";
 import "../../../assets/styles/animation.css";
+import ButtonDefault from "../../Atoms/server/ButtonDefault";
 
 const navItems = ["Projects", "Services", "Contact"];
 

@@ -1,10 +1,10 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
-import NavBar from "../../Molecules/server/NavBar";
+import { useEffect, useRef, useState } from "react";
+import BurgerMenu from "../../Atoms/client/BurgerMenu";
 import LanguageSelector from "../../Atoms/client/LanguageSelector";
 import PawensLogotype from "../../Atoms/client/PawensLogotype";
-import BurgerMenu from "../../Atoms/client/BurgerMenu";
+import NavBar from "../../Molecules/server/NavBar";
 
 function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);

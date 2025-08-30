@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect, useMemo, useRef, useState } from "react";
+import ArrowPawensBig from "@/assets/icons/ArrowPawensBig.svg";
 import { useLanguage } from "@/context/LanguageContext";
 import { fetchTestimonials } from "@/utils/clientCache";
-import ArrowPawensBig from "@/assets/icons/ArrowPawensBig.svg";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 type Testimonial = {
   id: number;

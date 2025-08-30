@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import CustomerBox from "@/components/Atoms/server/CustomerBox";
 import { useLanguage } from "@/context/LanguageContext";
 import { fetchProjects } from "@/utils/clientCache";
-import CustomerBox from "@/components/Atoms/server/CustomerBox";
+import { useEffect, useState } from "react";
 import "../../../assets/styles/slider.css";
 
 type RawProject = {

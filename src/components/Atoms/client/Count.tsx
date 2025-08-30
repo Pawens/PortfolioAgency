@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import { useLanguage } from "@/context/LanguageContext";
 import { fetchProjects } from "@/utils/clientCache";
+import { useEffect, useState } from "react";
 import CountUp from "react-countup";
 
 interface CountProps {

@@ -7,6 +7,7 @@ type ButtonDefaultProps = {
   className?: string;
   type?: "button" | "submit" | "backToTop";
   variant?: "default" | "footer" | "review";
+  ariaLabel?: string; // Accessible name for icon-only buttons/links
 };
 
 function ButtonDefault({
@@ -15,6 +16,7 @@ function ButtonDefault({
   className = "",
   type = "button",
   variant = "default",
+  ariaLabel,
 }: ButtonDefaultProps) {
   const baseClasses =
     "button-default relative overflow-hidden border border-[var(--color-secondary)] text-[var(--color-secondary)] group";
@@ -27,11 +29,15 @@ function ButtonDefault({
       "flex items-center justify-center gap-[16px] p-[12px] text-[14px] border border-[var(--color-secondary)] text-[var(--color-secondary)] [&_svg]:fill-[var(--color-secondary)] transition-colors duration-300 group-hover:text-[var(--color-primary)] group [&_svg]:transition-colors [&_svg]:duration-300 group-hover:[&_svg]:fill-[var(--color-primary)]",
   };
 
+  const computedAriaLabel =
+    ariaLabel || (type === "backToTop" ? "Back to top" : undefined);
+
   if (type === "backToTop" && href) {
     return (
       <a
         href={href}
-        className={`${baseClasses} ${className} ${variantClasses[variant]}`}
+        className={`${baseClasses} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-secondary)] ${className} ${variantClasses[variant]}`}
+        aria-label={computedAriaLabel}
       >
         <span className="relative z-10 transition-colors duration-300 group-hover:text-[var(--color-primary)]">
           {children}
@@ -43,7 +49,8 @@ function ButtonDefault({
   return (
     <button
       type={type === "backToTop" ? "button" : type}
-      className={`${baseClasses} ${className} ${
+      aria-label={computedAriaLabel}
+      className={`${baseClasses} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-secondary)] ${className} ${
         variant !== "review" ? variantClasses[variant] : ""
       }`}
     >

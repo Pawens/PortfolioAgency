@@ -1,13 +1,16 @@
-import ButtonDefault from "@/components/Atoms/server/ButtonDefault";
 import ArrowPawensBig from "@/assets/icons/ArrowPawensBig.svg";
-
-import React from "react";
+import ButtonDefault from "@/components/Atoms/server/ButtonDefault";
 
 function Footer() {
   return (
     <div className="footer-container flex flex-col justify-between gap-[32px] px-[88px] pb-[32px]">
       <div className="footer-button-backtotop flex self-end">
-        <ButtonDefault variant="footer" type="backToTop" href="#">
+        <ButtonDefault
+          ariaLabel="Back to top"
+          variant="footer"
+          type="backToTop"
+          href="#"
+        >
           <ArrowPawensBig />
         </ButtonDefault>
       </div>

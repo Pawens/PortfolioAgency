@@ -1,9 +1,8 @@
-import React from "react";
 import Count from "@/components/Atoms/client/Count";
-import ServiceItem from "@/components/Molecules/server/ServiceItem";
 import AnimateListObserver from "@/components/Molecules/client/AnimateListObserver";
+import ServiceItem from "@/components/Molecules/server/ServiceItem";
 import { Language } from "@/context/LanguageContext";
-import { t, getTranslations } from "@/utils/serverTranslations";
+import { getTranslations, t } from "@/utils/serverTranslations";
 
 const Services = ({ language }: { language: Language }) => {
   const translations = getTranslations(language);

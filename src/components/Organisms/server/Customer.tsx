@@ -2,7 +2,6 @@ import Count from "@/components/Atoms/client/Count";
 import CustomerSlider from "@/components/Molecules/client/CustomerSlider";
 import { Language } from "@/context/LanguageContext";
 import { t } from "@/utils/serverTranslations";
-import React from "react";
 
 export default function Customer({ language }: { language: Language }) {
   return (

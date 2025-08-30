@@ -1,12 +1,12 @@
 "use client";
 
-import React, { useEffect, useState, useRef } from "react";
-import { useLanguage } from "@/context/LanguageContext";
-import { fetchProjects } from "@/utils/clientCache";
-import { motion, useInView } from "motion/react";
 import ButtonDefaultClient from "@/components/Atoms/client/ButtonDefaultClient";
 import ProjectBox from "@/components/Atoms/server/ProjectBox";
+import { useLanguage } from "@/context/LanguageContext";
+import { fetchProjects } from "@/utils/clientCache";
 import { t } from "@/utils/serverTranslations";
+import { motion, useInView } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 
 type RawProject = {
   id: number;

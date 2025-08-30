@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
 import { useInView } from "motion/react";
+import { useEffect, useRef, useState } from "react";
 import "../../../assets/styles/typeWritterAnimation.css";
 
 interface TypeWriterAnimationProps {

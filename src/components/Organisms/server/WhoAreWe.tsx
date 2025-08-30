@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import MemberCard from "@/components/Molecules/server/MemberCard";
-import { fetchTeamMembers } from "@/utils/clientCache";
 import { useLanguage } from "@/context/LanguageContext";
+import { fetchTeamMembers } from "@/utils/clientCache";
+import { useEffect, useState } from "react";
 
 type TeamMember = {
   id: number;

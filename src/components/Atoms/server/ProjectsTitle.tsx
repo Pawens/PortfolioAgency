@@ -1,14 +1,13 @@
-import React from "react";
-import TypeWritterAnimation from "../client/TypeWritterAnimation";
-import { t } from "@/utils/serverTranslations";
 import { Language } from "@/context/LanguageContext";
+import { t } from "@/utils/serverTranslations";
+import TypeWritterAnimation from "../client/TypeWritterAnimation";
 
 export default function ProjectsTitle({ language }: { language: Language }) {
   return (
     <div
       className="project-title-container flex flex-col items-center w-full"
       style={{
-        backgroundImage: "url('/backgroundLightToDark.png')",
+        backgroundImage: "url('/backgroundLightToDark.webp')",
         backgroundSize: "100% 101%",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",

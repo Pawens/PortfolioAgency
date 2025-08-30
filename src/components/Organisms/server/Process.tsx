@@ -1,9 +1,8 @@
 import Count from "@/components/Atoms/client/Count";
-import SquareProcess from "@/components/Molecules/server/SquareProcess";
-import React from "react";
 import AnimateProcessObserver from "@/components/Molecules/client/AnimateProcessObserver";
+import SquareProcess from "@/components/Molecules/server/SquareProcess";
 import { Language } from "@/context/LanguageContext";
-import { t, getTranslations } from "@/utils/serverTranslations";
+import { getTranslations, t } from "@/utils/serverTranslations";
 
 function Process({ language }: { language: Language }) {
   const translations = getTranslations(language);

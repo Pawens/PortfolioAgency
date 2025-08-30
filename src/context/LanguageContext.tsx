@@ -1,7 +1,7 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import React, { createContext, useContext, useEffect, useState } from "react";
 
 export type Language = "Fr" | "En" | "Es" | "De" | "It";
 

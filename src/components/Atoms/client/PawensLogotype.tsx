@@ -1,10 +1,10 @@
 "use client";
 
-import React from "react";
 import { usePathname, useRouter } from "next/navigation";
+import React from "react";
 import PawensLogo from "../../../assets/icons/PawensLogo.svg";
-import "../../../assets/styles/pawensLogoType.css";
 import "../../../assets/styles/animation.css";
+import "../../../assets/styles/pawensLogoType.css";
 
 const letters = ["P", "A", "W", "E", "N", "S"];
 
