@@ -529,6 +529,15 @@
     padding-left: 36px;
     padding-right: 36px;
   }
+  .footer-text-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: fit-content;
+  }
+  .footer-text-right a {
+    width: min-content;
+  }
 }
 
 @media (max-width: 425px) {

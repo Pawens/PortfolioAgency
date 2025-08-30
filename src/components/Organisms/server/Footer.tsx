@@ -1,5 +1,6 @@
 import ArrowPawensBig from "@/assets/icons/ArrowPawensBig.svg";
 import ButtonDefault from "@/components/Atoms/server/ButtonDefault";
+import Link from "next/link";
 
 function Footer() {
   return (
@@ -19,8 +20,22 @@ function Footer() {
         <p className="footer-text text-[var(--color-secondary)]">
           Copyright. Pawens @2025
         </p>
-        <p className="footer-text text-[var(--color-secondary)]">
-          Parisot Romain, Simon Adam
+        <p className="footer-text footer-text-right text-[var(--color-secondary)] text-right ">
+          <Link
+            href="/mentions-legales"
+            className="hover:underline hover:opacity-80 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-secondary)] focus-visible:ring-offset-[var(--color-black)] rounded-sm"
+            aria-label="Accéder aux mentions légales"
+          >
+            Mentions légales
+          </Link>
+          <span className="pl-[4px] pr-[4px]"> | </span>
+          <Link
+            href="/politique-de-confidentialite"
+            className="hover:underline hover:opacity-80 transition focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-[var(--color-secondary)] focus-visible:ring-offset-[var(--color-black)] rounded-sm"
+            aria-label="Accéder à la politique de confidentialité"
+          >
+            Politique de confidentialité
+          </Link>
         </p>
       </div>
     </div>
