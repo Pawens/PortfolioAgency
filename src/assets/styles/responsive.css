@@ -417,6 +417,13 @@
     padding-left: 64px;
     padding-right: 64px;
   }
+  .rgpd-page {
+    padding-left: 64px;
+    padding-right: 64px;
+  }
+  .rgpd-page h2 {
+    font-size: 48px !important;
+  }
 }
 
 @media (max-width: 640px) {
@@ -538,6 +545,10 @@
   .footer-text-right a {
     width: min-content;
   }
+  .rgpd-page {
+    padding-left: 36px;
+    padding-right: 36px;
+  }
 }
 
 @media (max-width: 425px) {
@@ -601,6 +612,10 @@
     padding-left: 24px;
     padding-right: 24px;
     padding-top: 24px;
+  }
+  .rgpd-page {
+    padding-left: 24px;
+    padding-right: 24px;
   }
 }
 

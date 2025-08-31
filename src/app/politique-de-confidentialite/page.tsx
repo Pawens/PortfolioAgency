@@ -21,7 +21,7 @@ export default function PolitiqueConfidentialite({
   return (
     <LanguageProvider initialLanguage={language}>
       <StickyHeader />
-      <main className="flex flex-col gap-[32px] px-[88px] pt-[150px] bg-[var(--color-black)] text-[var(--color-secondary)]">
+      <main className="rgpd-page flex flex-col gap-[32px] px-[88px] pt-[150px] bg-[var(--color-black)] text-[var(--color-secondary)]">
         <div className="ml-auto mr-auto text-center">
           <h2 className="text-[60px]">Politique de confidentialité</h2>
           <p className="opacity-70">En vigueur au 30/08/2025</p>

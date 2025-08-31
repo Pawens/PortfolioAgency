@@ -21,7 +21,7 @@ export default function MentionsLegales({
   return (
     <LanguageProvider initialLanguage={language}>
       <StickyHeader />
-      <main className="flex flex-col gap-[32px] px-[88px] pb-[88px] pt-[150px] bg-[var(--color-black)] text-[var(--color-secondary)]">
+      <main className="rgpd-page flex flex-col gap-[32px] px-[88px] pb-[88px] pt-[150px] bg-[var(--color-black)] text-[var(--color-secondary)]">
         <div className="ml-auto mr-auto text-center pb-[64px]">
           <h2 className="text-[60px]">Mentions légales</h2>
           <p className="opacity-70">Dernière mise à jour: 2025</p>
