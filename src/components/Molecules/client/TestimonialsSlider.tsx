@@ -16,7 +16,7 @@ const SIDE_PEEK = 30;
 
 interface TestimonialsSliderProps {
   testimonials: Testimonial[];
-  language: Language; // si besoin futur (aria labels, etc.)
+  language: Language;
 }
 
 export default function TestimonialsSlider({
@@ -25,41 +25,76 @@ export default function TestimonialsSlider({
   const [items, setItems] = useState<Testimonial[]>(testimonials || []);
   const [current, setCurrent] = useState(0);
   const [isRewinding, setIsRewinding] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const startTimeRef = useRef<number>(Date.now());
+  const elapsedTimeRef = useRef<number>(0);
 
   // If testimonials prop changes (language switch), reset.
   useEffect(() => {
     setItems(testimonials || []);
     setCurrent(0);
+    startTimeRef.current = Date.now();
+    elapsedTimeRef.current = 0;
   }, [testimonials]);
 
   useEffect(() => {
     if (!items.length) return;
 
-    const id = setInterval(() => {
-      if (current === items.length - 1) {
-        // At last slide, rewind to start
-        setIsRewinding(true);
-        setCurrent(0);
-      } else {
-        setIsRewinding(false);
-        setCurrent((prev) => prev + 1);
-      }
-    }, INTERVAL_MS);
+    const startTimer = () => {
+      if (isPaused) return;
 
-    return () => clearInterval(id);
-  }, [items.length, current]);
+      const remainingTime = INTERVAL_MS - elapsedTimeRef.current;
+
+      intervalRef.current = setTimeout(() => {
+        if (current === items.length - 1) {
+          setIsRewinding(true);
+          setCurrent(0);
+        } else {
+          setIsRewinding(false);
+          setCurrent((prev) => prev + 1);
+        }
+        elapsedTimeRef.current = 0;
+        startTimeRef.current = Date.now();
+      }, remainingTime);
+    };
+
+    if (!isPaused && elapsedTimeRef.current === 0) {
+      startTimeRef.current = Date.now();
+    }
+
+    startTimer();
+
+    return () => {
+      if (intervalRef.current) {
+        clearTimeout(intervalRef.current);
+      }
+    };
+  }, [items.length, current, isPaused]);
 
   const active = useMemo(
     () => (items.length ? items[current] : null),
     [items, current]
   );
 
+  const handleMouseEnter = () => {
+    if (!isPaused) {
+      elapsedTimeRef.current += Date.now() - startTimeRef.current;
+    }
+    setIsPaused(true);
+  };
+
+  const handleMouseLeave = () => {
+    startTimeRef.current = Date.now();
+    setIsPaused(false);
+  };
+
   if (!active) return null;
 
   return (
-    <div>
+    <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
       {/* Slider viewport */}
       <div
         ref={containerRef}
@@ -127,11 +162,23 @@ export default function TestimonialsSlider({
       <div className="mt-[24px] flex items-center justify-center gap-[12px]">
         {items.map((_, idx) => (
           <span key={`dot-${idx}`} className="testimonial-progress">
-            {idx === current ? (
+            {idx === current && !isPaused ? (
               <span
                 key={`fill-${current}-${isRewinding ? "rewind" : "normal"}`}
                 className="testimonial-progress__fill"
-                style={{ animationDuration: `${INTERVAL_MS}ms` }}
+                style={{
+                  animationDuration: `${
+                    INTERVAL_MS - elapsedTimeRef.current
+                  }ms`,
+                }}
+              />
+            ) : idx === current && isPaused ? (
+              <span
+                className="testimonial-progress__fill paused"
+                style={{
+                  animationDuration: `${INTERVAL_MS}ms`,
+                  animationDelay: `-${elapsedTimeRef.current}ms`,
+                }}
               />
             ) : null}
           </span>

@@ -157,6 +157,12 @@
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
+
+/* Pause animation on hover */
+.testimonial-progress__fill.paused {
+  animation-play-state: paused;
+}
+
 @keyframes testimonial-progress-fill {
   from {
     width: 0%;
