@@ -30,7 +30,30 @@ export const metadata: Metadata = {
     "agence web pour TPE et PME",
   ],
   icons: {
-    icon: "/PawensLogo.svg",
+    icon: "/PawensLogo.png",
+  },
+  openGraph: {
+    title: "Pawens – Agence web pour TPE/PME",
+    description:
+      "Obtenez un site web professionnel personnalisé juste pour vous.",
+    url: "https://pawens.com",
+    siteName: "Pawens",
+    images: [
+      {
+        url: "https://pawens.com/openGraphImagePawens.webp",
+        width: 1200,
+        height: 630,
+        alt: "Pawens – Agence web",
+      },
+    ],
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pawens – Agence web pour TPE/PME",
+    description:
+      "Obtenez un site web professionnel personnalisé juste pour vous.",
+    images: ["https://pawens.com/openGraphImagePawens.webp"],
   },
 };
 
