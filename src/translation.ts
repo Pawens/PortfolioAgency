@@ -351,7 +351,7 @@ const translations = {
         {
           title: "Maintenance & Sécurité",
           list: [
-            { text: "Mise a jour des stacks" },
+            { text: "Mise à jour des stacks" },
             { text: "Veille et correction des nouvelles vulnérabilités" },
             { text: "Sauvegarde des données" },
           ],
@@ -360,7 +360,7 @@ const translations = {
     },
     review: {
       title: "ILS PARLENT DE NOUS",
-      seeGoogleReview: "VOIR TOUT LES AVIS",
+      seeGoogleReview: "VOIR TOUS LES AVIS",
     },
     faq: {
       title: "FAQ",
@@ -859,10 +859,10 @@ const translations = {
       bookCall: "Prenota una chiamata",
     },
     hero: {
-      creativeAgency: "L'AGENZIA CRREATIVA",
+      creativeAgency: "L'AGENZIA CREATIVA",
       for: "PER",
       you: "TE",
-      buttonHero: "OTTENI UN PREVENTIVO IN 48H",
+      buttonHero: "OTTIENI UN PREVENTIVO IN 48H",
       scroll: "SCORRI PER SCOPRIRE",
     },
     keyMetrics: {
