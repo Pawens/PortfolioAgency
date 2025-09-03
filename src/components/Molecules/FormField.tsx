@@ -10,6 +10,7 @@ type FormFieldProps = {
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => void;
   placeholder?: string;
+  required?: boolean;
 };
 
 const FormField = ({

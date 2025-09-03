@@ -15,6 +15,7 @@ const ContactSection = ({ language }: { language: Language }) => {
   });
 
   const [feedback, setFeedback] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
   const [offset, setOffset] = useState(0);
 
   useEffect(() => {
@@ -34,8 +35,26 @@ const ContactSection = ({ language }: { language: Language }) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
+  const isFormValid = () => {
+    return (
+      formData.name.trim() !== "" &&
+      formData.email.trim() !== "" &&
+      formData.message.trim() !== ""
+    );
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!isFormValid()) {
+      setFeedback(
+        t(language, "contact.validation") || "Please fill in all fields"
+      );
+      setTimeout(() => setFeedback(null), 3000);
+      return;
+    }
+
+    setIsLoading(true);
 
     try {
       await emailjs.send(
@@ -67,6 +86,8 @@ const ContactSection = ({ language }: { language: Language }) => {
       console.error("Erreur EmailJS ❌", error);
       setFeedback(t(language, "confirmationPopup.errorMessage"));
       setTimeout(() => setFeedback(null), 3000);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -93,6 +114,7 @@ const ContactSection = ({ language }: { language: Language }) => {
           value={formData.name}
           onChange={handleChange}
           placeholder={t(language, "contact.name")}
+          required
         />
         <FormField
           name="email"
@@ -100,6 +122,7 @@ const ContactSection = ({ language }: { language: Language }) => {
           value={formData.email}
           onChange={handleChange}
           placeholder={t(language, "contact.email")}
+          required
         />
         <FormField
           name="message"
@@ -115,7 +138,9 @@ const ContactSection = ({ language }: { language: Language }) => {
             className="mt-[10px] px-[100px]"
             type="submit"
           >
-            {t(language, "contact.send")}
+            {isLoading
+              ? t(language, "contact.sending") || "Sending..."
+              : t(language, "contact.send")}
           </ButtonDefault>
         </div>
       </form>

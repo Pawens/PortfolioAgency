@@ -414,8 +414,8 @@ const translations = {
     },
     contact: {
       title: "Contactez‑nous !",
-      name: "Nom",
-      email: "Email",
+      name: "Nom *",
+      email: "Email *",
       message: "Message",
       send: "Envoyer",
     },
