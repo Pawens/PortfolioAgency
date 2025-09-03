@@ -14,6 +14,7 @@ import WhoAreWe from "@/components/Organisms/server/WhoAreWe";
 import StickyHeader from "@/components/Organisms/client/StickyHeader";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { getLanguageFromSearchParams } from "@/utils/serverTranslations";
+import MainLayout from "@/components/Templates/MainLayout";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -21,40 +22,51 @@ type Props = {
 
 export default function Home({ searchParams }: Props) {
   const language = getLanguageFromSearchParams(searchParams);
+
+  // Define critical images to preload
+  const criticalImages = [
+    "/path/to/hero-image.jpg",
+    "/path/to/first-project-image.jpg",
+    "/path/to/logo.png",
+    // Add your most important images here
+  ];
+
   return (
     <LanguageProvider initialLanguage={language}>
-      <StickyHeader />
-      <main className="flex align-center justify-center flex-col">
-        <Hero language={language} />
-        <KeyMetricsServer language={language} />
-        <Customer language={language} />
-        <section className="relative" style={{ backgroundColor: "#010101" }}>
-          <div className="absolute inset-0 pointer-events-none">
-            <BackgroundProcess className="w-full h-full object-cover" />
-          </div>
-          <div className="relative z-10">
-            <Projects language={language} />
-            <Services language={language} />
-            <Process language={language} />
-            <Review language={language} />
-          </div>
-        </section>
+      <MainLayout criticalImages={criticalImages}>
+        <StickyHeader />
+        <main className="flex align-center justify-center flex-col">
+          <Hero language={language} />
+          <KeyMetricsServer language={language} />
+          <Customer language={language} />
+          <section className="relative" style={{ backgroundColor: "#010101" }}>
+            <div className="absolute inset-0 pointer-events-none">
+              <BackgroundProcess className="w-full h-full object-cover" />
+            </div>
+            <div className="relative z-10">
+              <Projects language={language} />
+              <Services language={language} />
+              <Process language={language} />
+              <Review language={language} />
+            </div>
+          </section>
 
-        <section className="relative bg-gradient-to-t from-[#193345] to-[var(--color-black)]">
-          <div
-            className="absolute z-10 pointer-events-none max-w-[100vw] overflow-hidden"
-            style={{ bottom: 0, left: 0 }}
-          >
-            <LogoFooter />
-          </div>
-          <div className="relative z-20">
-            <WhoAreWe language={language} />
-            <FaqSection language={language} />
-            <ContactSection language={language} />
-            <Footer />
-          </div>
-        </section>
-      </main>
+          <section className="relative bg-gradient-to-t from-[#193345] to-[var(--color-black)]">
+            <div
+              className="absolute z-10 pointer-events-none max-w-[100vw] overflow-hidden"
+              style={{ bottom: 0, left: 0 }}
+            >
+              <LogoFooter />
+            </div>
+            <div className="relative z-20">
+              <WhoAreWe language={language} />
+              <FaqSection language={language} />
+              <ContactSection language={language} />
+              <Footer />
+            </div>
+          </section>
+        </main>
+      </MainLayout>
     </LanguageProvider>
   );
 }
