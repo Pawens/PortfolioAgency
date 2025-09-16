@@ -1,0 +1,277 @@
+/* Pricing Section Styles */
+.pricing-card {
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+    0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pricing-card:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Popular plan special styling */
+.pricing-card.popular {
+  position: relative;
+  border-width: 3px;
+}
+
+.pricing-card.popular::before {
+  content: "";
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(
+    45deg,
+    var(--color-secondary),
+    transparent,
+    var(--color-secondary)
+  );
+  z-index: -1;
+  border-radius: 15px;
+  opacity: 0.3;
+  animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+/* Responsive design for pricing grid */
+@media (max-width: 1200px) {
+  .pricing-container {
+    padding: 0 3rem !important;
+  }
+
+  .pricing-grid {
+    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)) !important;
+    gap: 1.5rem !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .pricing-container {
+    padding: 0 1.5rem !important;
+  }
+
+  .pricing-grid {
+    grid-template-columns: 1fr !important;
+    gap: 1.5rem !important;
+    max-width: 24rem !important;
+  }
+
+  .pricing-card {
+    padding: 1.5rem !important;
+    min-height: 28rem !important;
+  }
+
+  .pricing-title {
+    font-size: 2.25rem !important;
+  }
+
+  #pricing {
+    padding: 3.5rem 0 !important;
+  }
+
+  .pricing-header {
+    margin-bottom: 2.5rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .pricing-card {
+    padding: 1.25rem !important;
+    min-height: 26rem !important;
+  }
+
+  .pricing-title {
+    font-size: 1.875rem !important;
+  }
+
+  .pricing-description {
+    font-size: 0.875rem !important;
+  }
+
+  #pricing {
+    padding: 2.5rem 0 !important;
+  }
+}
+
+/* Animation for pricing cards */
+.pricing-card {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.pricing-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.pricing-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.pricing-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Feature list styling */
+.pricing-card ul {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.pricing-card ul::-webkit-scrollbar {
+  display: none;
+}
+
+/* Button hover effects */
+.pricing-card button {
+  position: relative;
+  overflow: hidden;
+}
+
+.pricing-card button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.5s;
+}
+
+.pricing-card button:hover::before {
+  left: 100%;
+}
+
+/* Region Filter Styles */
+.region-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  max-width: 300px;
+  margin: 0 auto;
+}
+
+.region-filter-label {
+  color: var(--color-secondary);
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.region-filter-select {
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border: 1px solid white;
+  border-radius: 0.75rem;
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  font-size: 1rem;
+  font-weight: 500;
+  min-width: 200px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  /* Supprimer la flèche native */
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  
+  /* Ajouter une flèche personnalisée */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+}
+
+.region-filter-select:hover {
+  border-color: var(--color-secondary);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  transform: translateY(-1px);
+}
+
+.region-filter-select:focus {
+  border-color: var(--color-secondary);
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.3);
+}
+
+.region-filter-select option {
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  padding: 0.5rem;
+}
+
+/* Animation de barrage du prix */
+.price-strikethrough {
+  position: relative;
+  display: inline-block;
+}
+
+.price-strikethrough::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background-color: var(--color-accent);
+  transform: translateY(-50%);
+  transition: width 0.6s ease-in-out;
+  z-index: 1;
+}
+
+.price-strikethrough.animate::after {
+  width: 100%;
+}
+
+/* Animation d'apparition du nouveau prix */
+.new-price {
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s ease-in-out 0.3s;
+}
+
+.new-price.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animation du badge d'aide */
+.aid-badge {
+  opacity: 0;
+  transform: scale(0.8);
+  transition: all 0.4s ease-in-out 0.5s;
+}
+
+.aid-badge.show {
+  opacity: 1;
+  transform: scale(1);
+}

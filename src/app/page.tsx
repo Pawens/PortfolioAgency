@@ -10,10 +10,10 @@ import Process from "@/components/Organisms/server/Process";
 import Projects from "@/components/Organisms/server/Projects";
 import Review from "@/components/Organisms/server/Reviews";
 import Services from "@/components/Organisms/server/Services";
-import WhoAreWe from "@/components/Organisms/server/WhoAreWe";
 import StickyHeader from "@/components/Organisms/client/StickyHeader";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { getLanguageFromSearchParams } from "@/utils/serverTranslations";
+import PricingSection from "@/components/Organisms/server/PricingSection";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
@@ -48,7 +48,7 @@ export default function Home({ searchParams }: Props) {
             <LogoFooter />
           </div>
           <div className="relative z-20">
-            <WhoAreWe language={language} />
+            <PricingSection language={language} />
             <FaqSection language={language} />
             <ContactSection language={language} />
             <Footer />

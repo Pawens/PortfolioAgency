@@ -210,6 +210,232 @@ const translations = {
       successMessage: "Message sent successfully!",
       errorMessage: "Error while sending the message. Please try again.",
     },
+    pricing: {
+      title: "PRICING",
+      description: "Choose the plan that fits your needs",
+      perMonth: "/month",
+      selectPlan: "Choose this plan",
+      popular: "MOST POPULAR",
+      plans: [
+        {
+          name: "Essential",
+          price: "300",
+          features: [
+            {
+              name: "Custom showcase website",
+              included: true,
+            },
+            {
+              name: "Online + Hosting",
+              included: true,
+            },
+            {
+              name: "SEO optimized",
+              included: true,
+            },
+            {
+              name: "Security maintenance",
+              included: true,
+            },
+            {
+              name: "24/7 support available",
+              included: true,
+            },
+            {
+              name: "Usage training",
+              included: true,
+            },
+            {
+              name: "Up to 4 pages",
+              included: true,
+            },
+            {
+              name: "Dedicated designer",
+              included: false,
+            },
+            {
+              name: "Custom admin interface",
+              included: false,
+            },
+            {
+              name: "Multilingual translation",
+              included: false,
+            },
+            {
+              name: "Sync (Calendly, Planity, etc.)",
+              included: false,
+            },
+            {
+              name: "Blog/News system creation",
+              included: false,
+            },
+            {
+              name: "Dedicated marketing manager",
+              included: false,
+            },
+            {
+              name: "CRM, cash register sync, etc.",
+              included: false,
+            },
+            {
+              name: "3D modeling (e.g. apartment tour)",
+              included: false,
+            },
+          ],
+        },
+        {
+          name: "Pro",
+          price: "500",
+          features: [
+            {
+              name: "Custom showcase website",
+              included: true,
+            },
+            {
+              name: "Online + Hosting",
+              included: true,
+            },
+            {
+              name: "SEO optimized",
+              included: true,
+            },
+            {
+              name: "Security maintenance",
+              included: true,
+            },
+            {
+              name: "24/7 support available",
+              included: true,
+            },
+            {
+              name: "Usage training",
+              included: true,
+            },
+            {
+              name: "Up to 8 pages",
+              included: true,
+            },
+            {
+              name: "Dedicated designer",
+              included: true,
+            },
+            {
+              name: "Custom admin interface",
+              included: true,
+            },
+            {
+              name: "Multilingual translation",
+              included: true,
+            },
+            {
+              name: "Sync (Calendly, Planity, etc.)",
+              included: true,
+            },
+            {
+              name: "Blog/News system creation",
+              included: true,
+            },
+            {
+              name: "Dedicated marketing manager",
+              included: false,
+            },
+            {
+              name: "CRM, cash register sync, etc.",
+              included: false,
+            },
+            {
+              name: "3D modeling (e.g. apartment tour)",
+              included: false,
+            },
+          ],
+        },
+        {
+          name: "Business+",
+          price: "750",
+          features: [
+            {
+              name: "Custom showcase OR E-commerce website",
+              included: true,
+            },
+            {
+              name: "Online + Hosting",
+              included: true,
+            },
+            {
+              name: "SEO optimized",
+              included: true,
+            },
+            {
+              name: "Security maintenance",
+              included: true,
+            },
+            {
+              name: "24/7 support available",
+              included: true,
+            },
+            {
+              name: "Usage training",
+              included: true,
+            },
+            {
+              name: "Unlimited pages",
+              included: true,
+            },
+            {
+              name: "Dedicated designer",
+              included: true,
+            },
+            {
+              name: "Custom admin interface",
+              included: true,
+            },
+            {
+              name: "Multilingual translation",
+              included: true,
+            },
+            {
+              name: "Sync (Calendly, Planity, etc.)",
+              included: true,
+            },
+            {
+              name: "Blog/News system creation",
+              included: true,
+            },
+            {
+              name: "Dedicated marketing manager",
+              included: true,
+            },
+            {
+              name: "CRM, cash register sync, etc.",
+              included: true,
+            },
+            {
+              name: "3D modeling (e.g. apartment tour)",
+              included: true,
+            },
+          ],
+        },
+      ],
+    },
+    regionFilters: {
+      label: "Select your region",
+      regions: [
+        { value: "default", label: "Select your region" },
+        { value: "ile-de-france", label: "Île-de-France" },
+        { value: "nouvelle-aquitaine", label: "Nouvelle-Aquitaine" },
+        { value: "auvergne-rhone-alpes", label: "Auvergne-Rhône-Alpes" },
+        { value: "bretagne", label: "Brittany" },
+        { value: "pays-de-la-loire", label: "Pays de la Loire" },
+        { value: "occitanie", label: "Occitanie" },
+        { value: "centre-val-de-loire", label: "Centre-Val de Loire" },
+        { value: "grand-est", label: "Grand Est" },
+        { value: "hauts-de-france", label: "Hauts-de-France" },
+        { value: "corse", label: "Corsica" },
+        { value: "la-reunion", label: "La Réunion" },
+        { value: "guadeloupe", label: "Guadeloupe" },
+        { value: "martinique", label: "Martinique" },
+      ],
+    },
   },
 
   // French
@@ -422,6 +648,232 @@ const translations = {
     confirmationPopup: {
       successMessage: "Message envoyé avec succès !",
       errorMessage: "Erreur lors de l'envoi du message. Veuillez réessayer.",
+    },
+    pricing: {
+      title: "TARIFS",
+      description: "Choisissez le plan qui correspond à vos besoins",
+      perMonth: "/mois",
+      selectPlan: "Choisir ce plan",
+      popular: "LE PLUS POPULAIRE",
+      plans: [
+        {
+          name: "Essentiel",
+          price: "300",
+          features: [
+            {
+              name: "Site vitrine personnalisé",
+              included: true,
+            },
+            {
+              name: "Mise en ligne + Hébergement",
+              included: true,
+            },
+            {
+              name: "SEO optimisé",
+              included: true,
+            },
+            {
+              name: "Maintenance sécurité",
+              included: true,
+            },
+            {
+              name: "Support disponible 24/7",
+              included: true,
+            },
+            {
+              name: "Formation à l'utilisation",
+              included: true,
+            },
+            {
+              name: "Jusqu'à 4 pages",
+              included: true,
+            },
+            {
+              name: "Designer dédié",
+              included: false,
+            },
+            {
+              name: "Interface administrateur personnalisé",
+              included: false,
+            },
+            {
+              name: "Traduction multilingue",
+              included: false,
+            },
+            {
+              name: "Synchronisation (Calendly, Planity, etc.)",
+              included: false,
+            },
+            {
+              name: "Création d'un système de Blog/Actualité",
+              included: false,
+            },
+            {
+              name: "Responsable marketing dédié",
+              included: false,
+            },
+            {
+              name: "Synchronisation avec CRM, caisse, etc.",
+              included: false,
+            },
+            {
+              name: "Modélisation 3D (ex: visite appartement)",
+              included: false,
+            },
+          ],
+        },
+        {
+          name: "Pro",
+          price: "500",
+          features: [
+            {
+              name: "Site vitrine personnalisé",
+              included: true,
+            },
+            {
+              name: "Mise en ligne + Hébergement",
+              included: true,
+            },
+            {
+              name: "SEO optimisé",
+              included: true,
+            },
+            {
+              name: "Maintenance sécurité",
+              included: true,
+            },
+            {
+              name: "Support disponible 24/7",
+              included: true,
+            },
+            {
+              name: "Formation à l'utilisation",
+              included: true,
+            },
+            {
+              name: "Jusqu'à 8 pages",
+              included: true,
+            },
+            {
+              name: "Designer dédié",
+              included: true,
+            },
+            {
+              name: "Interface administrateur personnalisé",
+              included: true,
+            },
+            {
+              name: "Traduction multilingue",
+              included: true,
+            },
+            {
+              name: "Synchronisation (Calendly, Planity, etc.)",
+              included: true,
+            },
+            {
+              name: "Création d'un système de Blog/Actualité",
+              included: true,
+            },
+            {
+              name: "Responsable marketing dédié",
+              included: false,
+            },
+            {
+              name: "Synchronisation avec CRM, caisse, etc.",
+              included: false,
+            },
+            {
+              name: "Modélisation 3D (ex: visite appartement)",
+              included: false,
+            },
+          ],
+        },
+        {
+          name: "Business+",
+          price: "750",
+          features: [
+            {
+              name: "Site vitrine OU E-commerce personnalisé",
+              included: true,
+            },
+            {
+              name: "Mise en ligne + Hébergement",
+              included: true,
+            },
+            {
+              name: "SEO optimisé",
+              included: true,
+            },
+            {
+              name: "Maintenance sécurité",
+              included: true,
+            },
+            {
+              name: "Support disponible 24/7",
+              included: true,
+            },
+            {
+              name: "Formation à l'utilisation",
+              included: true,
+            },
+            {
+              name: "Aucune limite de pages",
+              included: true,
+            },
+            {
+              name: "Designer dédié",
+              included: true,
+            },
+            {
+              name: "Interface administrateur personnalisé",
+              included: true,
+            },
+            {
+              name: "Traduction multilingue",
+              included: true,
+            },
+            {
+              name: "Synchronisation (Calendly, Planity, etc.)",
+              included: true,
+            },
+            {
+              name: "Création d'un système de Blog/Actualité",
+              included: true,
+            },
+            {
+              name: "Responsable marketing dédié",
+              included: true,
+            },
+            {
+              name: "Synchronisation avec CRM, caisse, etc.",
+              included: true,
+            },
+            {
+              name: "Modélisation 3D (ex: visite appartement)",
+              included: true,
+            },
+          ],
+        },
+      ],
+    },
+    regionFilters: {
+      label: "Sélectionnez votre région",
+      regions: [
+        { value: "default", label: "Choisissez votre région" },
+        { value: "ile-de-france", label: "Île-de-France" },
+        { value: "nouvelle-aquitaine", label: "Nouvelle-Aquitaine" },
+        { value: "auvergne-rhone-alpes", label: "Auvergne-Rhône-Alpes" },
+        { value: "bretagne", label: "Bretagne" },
+        { value: "pays-de-la-loire", label: "Pays de la Loire" },
+        { value: "occitanie", label: "Occitanie" },
+        { value: "centre-val-de-loire", label: "Centre-Val de Loire" },
+        { value: "grand-est", label: "Grand Est" },
+        { value: "hauts-de-france", label: "Hauts-de-France" },
+        { value: "corse", label: "Corse" },
+        { value: "la-reunion", label: "La Réunion" },
+        { value: "guadeloupe", label: "Guadeloupe" },
+        { value: "martinique", label: "Martinique" },
+      ],
     },
   },
   // German
@@ -636,6 +1088,232 @@ const translations = {
       errorMessage:
         "Fehler beim Senden der Nachricht. Bitte versuchen Sie es erneut.",
     },
+    pricing: {
+      title: "PREISE",
+      description: "Wählen Sie den Plan, der Ihren Bedürfnissen entspricht",
+      perMonth: "/Monat",
+      selectPlan: "Diesen Plan wählen",
+      popular: "AM BELIEBTESTEN",
+      plans: [
+        {
+          name: "Essential",
+          price: "300",
+          features: [
+            {
+              name: "Personalisierte Showcase-Website",
+              included: true,
+            },
+            {
+              name: "Online + Hosting",
+              included: true,
+            },
+            {
+              name: "SEO-optimiert",
+              included: true,
+            },
+            {
+              name: "Sicherheitswartung",
+              included: true,
+            },
+            {
+              name: "24/7 Support verfügbar",
+              included: true,
+            },
+            {
+              name: "Nutzungsschulung",
+              included: true,
+            },
+            {
+              name: "Bis zu 4 Seiten",
+              included: true,
+            },
+            {
+              name: "Dedizierter Designer",
+              included: false,
+            },
+            {
+              name: "Personalisierte Admin-Oberfläche",
+              included: false,
+            },
+            {
+              name: "Mehrsprachige Übersetzung",
+              included: false,
+            },
+            {
+              name: "Synchronisation (Calendly, Planity, etc.)",
+              included: false,
+            },
+            {
+              name: "Blog/News-System erstellen",
+              included: false,
+            },
+            {
+              name: "Dedizierter Marketing-Manager",
+              included: false,
+            },
+            {
+              name: "CRM, Kasse Sync, etc.",
+              included: false,
+            },
+            {
+              name: "3D-Modellierung (z.B. Wohnungsbesichtigung)",
+              included: false,
+            },
+          ],
+        },
+        {
+          name: "Pro",
+          price: "500",
+          features: [
+            {
+              name: "Personalisierte Showcase-Website",
+              included: true,
+            },
+            {
+              name: "Online + Hosting",
+              included: true,
+            },
+            {
+              name: "SEO-optimiert",
+              included: true,
+            },
+            {
+              name: "Sicherheitswartung",
+              included: true,
+            },
+            {
+              name: "24/7 Support verfügbar",
+              included: true,
+            },
+            {
+              name: "Nutzungsschulung",
+              included: true,
+            },
+            {
+              name: "Bis zu 8 Seiten",
+              included: true,
+            },
+            {
+              name: "Dedizierter Designer",
+              included: true,
+            },
+            {
+              name: "Personalisierte Admin-Oberfläche",
+              included: true,
+            },
+            {
+              name: "Mehrsprachige Übersetzung",
+              included: true,
+            },
+            {
+              name: "Synchronisation (Calendly, Planity, etc.)",
+              included: true,
+            },
+            {
+              name: "Blog/News-System erstellen",
+              included: true,
+            },
+            {
+              name: "Dedizierter Marketing-Manager",
+              included: false,
+            },
+            {
+              name: "CRM, Kasse Sync, etc.",
+              included: false,
+            },
+            {
+              name: "3D-Modellierung (z.B. Wohnungsbesichtigung)",
+              included: false,
+            },
+          ],
+        },
+        {
+          name: "Business+",
+          price: "750",
+          features: [
+            {
+              name: "Personalisierte Showcase ODER E-Commerce Website",
+              included: true,
+            },
+            {
+              name: "Online + Hosting",
+              included: true,
+            },
+            {
+              name: "SEO-optimiert",
+              included: true,
+            },
+            {
+              name: "Sicherheitswartung",
+              included: true,
+            },
+            {
+              name: "24/7 Support verfügbar",
+              included: true,
+            },
+            {
+              name: "Nutzungsschulung",
+              included: true,
+            },
+            {
+              name: "Unbegrenzte Seiten",
+              included: true,
+            },
+            {
+              name: "Dedizierter Designer",
+              included: true,
+            },
+            {
+              name: "Personalisierte Admin-Oberfläche",
+              included: true,
+            },
+            {
+              name: "Mehrsprachige Übersetzung",
+              included: true,
+            },
+            {
+              name: "Synchronisation (Calendly, Planity, etc.)",
+              included: true,
+            },
+            {
+              name: "Blog/News-System erstellen",
+              included: true,
+            },
+            {
+              name: "Dedizierter Marketing-Manager",
+              included: true,
+            },
+            {
+              name: "CRM, Kasse Sync, etc.",
+              included: true,
+            },
+            {
+              name: "3D-Modellierung (z.B. Wohnungsbesichtigung)",
+              included: true,
+            },
+          ],
+        },
+      ],
+    },
+    regionFilters: {
+      label: "Wählen Sie Ihre Region",
+      regions: [
+        { value: "default", label: "Wählen Sie Ihre Region" },
+        { value: "ile-de-france", label: "Île-de-France" },
+        { value: "nouvelle-aquitaine", label: "Nouvelle-Aquitaine" },
+        { value: "auvergne-rhone-alpes", label: "Auvergne-Rhône-Alpes" },
+        { value: "bretagne", label: "Bretagne" },
+        { value: "pays-de-la-loire", label: "Pays de la Loire" },
+        { value: "occitanie", label: "Okzitanien" },
+        { value: "centre-val-de-loire", label: "Centre-Val de Loire" },
+        { value: "grand-est", label: "Grand Est" },
+        { value: "hauts-de-france", label: "Hauts-de-France" },
+        { value: "corse", label: "Korsika" },
+        { value: "la-reunion", label: "La Réunion" },
+        { value: "guadeloupe", label: "Guadeloupe" },
+        { value: "martinique", label: "Martinique" },
+      ],
+    },
   },
   // Spanish
   es: {
@@ -849,6 +1527,232 @@ const translations = {
       errorMessage:
         "Error al enviar el mensaje. Por favor, inténtelo de nuevo.",
     },
+    pricing: {
+      title: "PRECIOS",
+      description: "Elija el plan que se adapte a sus necesidades",
+      perMonth: "/mes",
+      selectPlan: "Elegir este plan",
+      popular: "MÁS POPULAR",
+      plans: [
+        {
+          name: "Esencial",
+          price: "300",
+          features: [
+            {
+              name: "Sitio web corporativo personalizado",
+              included: true,
+            },
+            {
+              name: "Puesta en línea + Hosting",
+              included: true,
+            },
+            {
+              name: "SEO optimizado",
+              included: true,
+            },
+            {
+              name: "Mantenimiento de seguridad",
+              included: true,
+            },
+            {
+              name: "Soporte disponible 24/7",
+              included: true,
+            },
+            {
+              name: "Formación de uso",
+              included: true,
+            },
+            {
+              name: "Hasta 4 páginas",
+              included: true,
+            },
+            {
+              name: "Diseñador dedicado",
+              included: false,
+            },
+            {
+              name: "Interfaz administrativa personalizada",
+              included: false,
+            },
+            {
+              name: "Traducción multilingüe",
+              included: false,
+            },
+            {
+              name: "Sincronización (Calendly, Planity, etc.)",
+              included: false,
+            },
+            {
+              name: "Creación de sistema Blog/Noticias",
+              included: false,
+            },
+            {
+              name: "Responsable de marketing dedicado",
+              included: false,
+            },
+            {
+              name: "Sincronización con CRM, caja, etc.",
+              included: false,
+            },
+            {
+              name: "Modelado 3D (ej: visita apartamento)",
+              included: false,
+            },
+          ],
+        },
+        {
+          name: "Pro",
+          price: "500",
+          features: [
+            {
+              name: "Sitio web corporativo personalizado",
+              included: true,
+            },
+            {
+              name: "Puesta en línea + Hosting",
+              included: true,
+            },
+            {
+              name: "SEO optimizado",
+              included: true,
+            },
+            {
+              name: "Mantenimiento de seguridad",
+              included: true,
+            },
+            {
+              name: "Soporte disponible 24/7",
+              included: true,
+            },
+            {
+              name: "Formación de uso",
+              included: true,
+            },
+            {
+              name: "Hasta 8 páginas",
+              included: true,
+            },
+            {
+              name: "Diseñador dedicado",
+              included: true,
+            },
+            {
+              name: "Interfaz administrativa personalizada",
+              included: true,
+            },
+            {
+              name: "Traducción multilingüe",
+              included: true,
+            },
+            {
+              name: "Sincronización (Calendly, Planity, etc.)",
+              included: true,
+            },
+            {
+              name: "Creación de sistema Blog/Noticias",
+              included: true,
+            },
+            {
+              name: "Responsable de marketing dedicado",
+              included: false,
+            },
+            {
+              name: "Sincronización con CRM, caja, etc.",
+              included: false,
+            },
+            {
+              name: "Modelado 3D (ej: visita apartamento)",
+              included: false,
+            },
+          ],
+        },
+        {
+          name: "Business+",
+          price: "750",
+          features: [
+            {
+              name: "Sitio corporativo O E-commerce personalizado",
+              included: true,
+            },
+            {
+              name: "Puesta en línea + Hosting",
+              included: true,
+            },
+            {
+              name: "SEO optimizado",
+              included: true,
+            },
+            {
+              name: "Mantenimiento de seguridad",
+              included: true,
+            },
+            {
+              name: "Soporte disponible 24/7",
+              included: true,
+            },
+            {
+              name: "Formación de uso",
+              included: true,
+            },
+            {
+              name: "Páginas ilimitadas",
+              included: true,
+            },
+            {
+              name: "Diseñador dedicado",
+              included: true,
+            },
+            {
+              name: "Interfaz administrativa personalizada",
+              included: true,
+            },
+            {
+              name: "Traducción multilingüe",
+              included: true,
+            },
+            {
+              name: "Sincronización (Calendly, Planity, etc.)",
+              included: true,
+            },
+            {
+              name: "Creación de sistema Blog/Noticias",
+              included: true,
+            },
+            {
+              name: "Responsable de marketing dedicado",
+              included: true,
+            },
+            {
+              name: "Sincronización con CRM, caja, etc.",
+              included: true,
+            },
+            {
+              name: "Modelado 3D (ej: visita apartamento)",
+              included: true,
+            },
+          ],
+        },
+      ],
+    },
+    regionFilters: {
+      label: "Selecciona tu región",
+      regions: [
+        { value: "default", label: "Selecciona tu región" },
+        { value: "ile-de-france", label: "Île-de-France" },
+        { value: "nouvelle-aquitaine", label: "Nueva Aquitania" },
+        { value: "auvergne-rhone-alpes", label: "Auvernia-Ródano-Alpes" },
+        { value: "bretagne", label: "Bretaña" },
+        { value: "pays-de-la-loire", label: "Países del Loira" },
+        { value: "occitanie", label: "Occitania" },
+        { value: "centre-val-de-loire", label: "Centro-Valle del Loira" },
+        { value: "grand-est", label: "Gran Este" },
+        { value: "hauts-de-france", label: "Altos de Francia" },
+        { value: "corse", label: "Córcega" },
+        { value: "la-reunion", label: "La Reunión" },
+        { value: "guadeloupe", label: "Guadalupe" },
+        { value: "martinique", label: "Martinica" },
+      ],
+    },
   },
   // Italian
   it: {
@@ -1060,6 +1964,232 @@ const translations = {
     confirmationPopup: {
       successMessage: "Messaggio inviato con successo!",
       errorMessage: "Errore durante l'invio del messaggio. Riprova.",
+    },
+    pricing: {
+      title: "PREZZI",
+      description: "Scegli il piano che si adatta alle tue esigenze",
+      perMonth: "/mese",
+      selectPlan: "Scegli questo piano",
+      popular: "PIÙ POPOLARE",
+      plans: [
+        {
+          name: "Essential",
+          price: "300",
+          features: [
+            {
+              name: "Sito web vetrina personalizzato",
+              included: true,
+            },
+            {
+              name: "Messa online + Hosting",
+              included: true,
+            },
+            {
+              name: "SEO ottimizzato",
+              included: true,
+            },
+            {
+              name: "Manutenzione sicurezza",
+              included: true,
+            },
+            {
+              name: "Supporto disponibile 24/7",
+              included: true,
+            },
+            {
+              name: "Formazione all'uso",
+              included: true,
+            },
+            {
+              name: "Fino a 4 pagine",
+              included: true,
+            },
+            {
+              name: "Designer dedicato",
+              included: false,
+            },
+            {
+              name: "Interfaccia amministrativa personalizzata",
+              included: false,
+            },
+            {
+              name: "Traduzione multilingue",
+              included: false,
+            },
+            {
+              name: "Sincronizzazione (Calendly, Planity, ecc.)",
+              included: false,
+            },
+            {
+              name: "Creazione sistema Blog/Notizie",
+              included: false,
+            },
+            {
+              name: "Responsabile marketing dedicato",
+              included: false,
+            },
+            {
+              name: "Sincronizzazione con CRM, cassa, ecc.",
+              included: false,
+            },
+            {
+              name: "Modellazione 3D (es: visita appartamento)",
+              included: false,
+            },
+          ],
+        },
+        {
+          name: "Pro",
+          price: "500",
+          features: [
+            {
+              name: "Sito web vetrina personalizzato",
+              included: true,
+            },
+            {
+              name: "Messa online + Hosting",
+              included: true,
+            },
+            {
+              name: "SEO ottimizzato",
+              included: true,
+            },
+            {
+              name: "Manutenzione sicurezza",
+              included: true,
+            },
+            {
+              name: "Supporto disponibile 24/7",
+              included: true,
+            },
+            {
+              name: "Formazione all'uso",
+              included: true,
+            },
+            {
+              name: "Fino a 8 pagine",
+              included: true,
+            },
+            {
+              name: "Designer dedicato",
+              included: true,
+            },
+            {
+              name: "Interfaccia amministrativa personalizzata",
+              included: true,
+            },
+            {
+              name: "Traduzione multilingue",
+              included: true,
+            },
+            {
+              name: "Sincronizzazione (Calendly, Planity, ecc.)",
+              included: true,
+            },
+            {
+              name: "Creazione sistema Blog/Notizie",
+              included: true,
+            },
+            {
+              name: "Responsabile marketing dedicato",
+              included: false,
+            },
+            {
+              name: "Sincronizzazione con CRM, cassa, ecc.",
+              included: false,
+            },
+            {
+              name: "Modellazione 3D (es: visita appartamento)",
+              included: false,
+            },
+          ],
+        },
+        {
+          name: "Business+",
+          price: "750",
+          features: [
+            {
+              name: "Sito vetrina O E-commerce personalizzato",
+              included: true,
+            },
+            {
+              name: "Messa online + Hosting",
+              included: true,
+            },
+            {
+              name: "SEO ottimizzato",
+              included: true,
+            },
+            {
+              name: "Manutenzione sicurezza",
+              included: true,
+            },
+            {
+              name: "Supporto disponibile 24/7",
+              included: true,
+            },
+            {
+              name: "Formazione all'uso",
+              included: true,
+            },
+            {
+              name: "Pagine illimitate",
+              included: true,
+            },
+            {
+              name: "Designer dedicato",
+              included: true,
+            },
+            {
+              name: "Interfaccia amministrativa personalizzata",
+              included: true,
+            },
+            {
+              name: "Traduzione multilingue",
+              included: true,
+            },
+            {
+              name: "Sincronizzazione (Calendly, Planity, ecc.)",
+              included: true,
+            },
+            {
+              name: "Creazione sistema Blog/Notizie",
+              included: true,
+            },
+            {
+              name: "Responsabile marketing dedicato",
+              included: true,
+            },
+            {
+              name: "Sincronizzazione con CRM, cassa, ecc.",
+              included: true,
+            },
+            {
+              name: "Modellazione 3D (es: visita appartamento)",
+              included: true,
+            },
+          ],
+        },
+      ],
+    },
+    regionFilters: {
+      label: "Seleziona la tua regione",
+      regions: [
+        { value: "default", label: "Seleziona la tua regione" },
+        { value: "ile-de-france", label: "Île-de-France" },
+        { value: "nouvelle-aquitaine", label: "Nuova Aquitania" },
+        { value: "auvergne-rhone-alpes", label: "Alvernia-Rodano-Alpi" },
+        { value: "bretagne", label: "Bretagna" },
+        { value: "pays-de-la-loire", label: "Paesi della Loira" },
+        { value: "occitanie", label: "Occitania" },
+        { value: "centre-val-de-loire", label: "Centro-Valle della Loira" },
+        { value: "grand-est", label: "Grand Est" },
+        { value: "hauts-de-france", label: "Alti di Francia" },
+        { value: "corse", label: "Corsica" },
+        { value: "la-reunion", label: "La Riunione" },
+        { value: "guadeloupe", label: "Guadalupa" },
+        { value: "martinique", label: "Martinica" },
+      ],
     },
   },
 };
