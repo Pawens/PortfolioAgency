@@ -38,7 +38,9 @@ export default function PricingSection({ language }: PricingSectionProps) {
       className="text-[var(--color-secondary)]"
       style={{
         padding: "5.5rem 0",
-        background: "url('/backgroundDarkToLight.webp') center/cover",
+        backgroundImage: "url('/backgroundDarkToLight.webp')",
+        backgroundPosition: "center",
+        backgroundSize: "cover",
         backgroundColor: "var(--color-primary)", // fallback
       }}
     >
@@ -100,6 +102,7 @@ export default function PricingSection({ language }: PricingSectionProps) {
                 }
                 aidAmount={priceCalculation.aidAmount}
                 aidPercentage={priceCalculation.aidPercentage}
+                selectedRegion={selectedRegion}
               />
             );
           })}

@@ -170,13 +170,15 @@
 }
 
 /* Region Filter Styles */
-.region-filter {
+.region-filter-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.75rem;
   max-width: 300px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2000;
 }
 
 .region-filter-label {
@@ -194,39 +196,78 @@
   color: var(--color-secondary);
   font-size: 1rem;
   font-weight: 500;
-  min-width: 200px;
+  min-width: 220px;
   cursor: pointer;
   transition: all 0.3s ease;
   outline: none;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+
   /* Supprimer la flèche native */
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
-  
-  /* Ajouter une flèche personnalisée */
-  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+
+  /* Forcer le dropdown à s'afficher vers le bas */
+  position: relative;
+  vertical-align: top;
+
+  /* Ajouter une flèche personnalisée pointant vers le bas */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
   background-repeat: no-repeat;
   background-position: right 1rem center;
   background-size: 1rem;
 }
 
 .region-filter-select:hover {
-  border-color: var(--color-secondary);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
-  transform: translateY(-1px);
+  border-color: var(--color-accent);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
 }
 
 .region-filter-select:focus {
-  border-color: var(--color-secondary);
-  box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.3);
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2), 0 6px 12px rgba(0, 0, 0, 0.2);
+  /* Garder la flèche blanche au focus */
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='M6 9l6 6 6-6'/%3e%3c/svg%3e");
+  /* Force le z-index pour le dropdown */
+  position: relative;
+  z-index: 9999;
 }
 
+/* Amélioration des options du select */
 .region-filter-select option {
   background-color: var(--color-primary);
   color: var(--color-secondary);
-  padding: 0.5rem;
+  padding: 1rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  border: none;
+  margin: 0;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.region-filter-select option:hover {
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+}
+
+.region-filter-select option:checked {
+  background-color: var(--color-accent);
+  color: var(--color-primary);
+  font-weight: 600;
+}
+
+/* Style pour le select ouvert (amélioration visuelle) */
+.region-filter-select:focus-within {
+  border-color: var(--color-accent);
+  transform: translateY(-1px);
+}
+
+/* Amélioration du contraste pour les options */
+.region-filter-select option:first-child {
+  color: var(--color-secondary-opa50);
+  font-style: italic;
 }
 
 /* Animation de barrage du prix */
@@ -274,4 +315,169 @@
 .aid-badge.show {
   opacity: 1;
   transform: scale(1);
+}
+
+/* Custom Dropdown Styles */
+.custom-dropdown {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  max-width: 300px;
+  z-index: 1000;
+}
+
+.custom-dropdown.open {
+  z-index: 99999;
+}
+
+.custom-dropdown-trigger {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 1rem;
+  border: 1px solid white;
+  border-radius: 0.75rem;
+  background-color: var(--color-primary);
+  color: var(--color-secondary);
+  font-size: 1rem;
+  font-weight: 500;
+  min-width: 220px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  outline: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.custom-dropdown-trigger:hover {
+  border-color: var(--color-accent);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+.custom-dropdown-trigger:focus {
+  border-color: var(--color-accent);
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.2), 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.custom-dropdown-text {
+  flex: 1;
+  text-align: left;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-dropdown-arrow {
+  margin-left: 0.5rem;
+  color: white;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.custom-dropdown-arrow.open {
+  transform: rotate(180deg);
+}
+
+.custom-dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  margin-top: 0.5rem;
+  background-color: var(--color-primary);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+  animation: dropdownFadeIn 0.2s ease-out;
+  overflow: hidden;
+}
+
+.custom-dropdown-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.custom-dropdown-option {
+  padding: 0.75rem 1rem;
+  color: var(--color-secondary);
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.custom-dropdown-option:last-child {
+  border-bottom: none;
+}
+
+.custom-dropdown-option:hover {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.custom-dropdown-option.selected {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: var(--color-secondary);
+  font-weight: 600;
+  position: relative;
+}
+
+.custom-dropdown-option.selected::after {
+  content: "✓";
+  position: absolute;
+  right: 1rem;
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+.custom-dropdown-option.selected:hover {
+  background-color: var(--color-accent);
+  color: white;
+}
+
+.custom-dropdown-option.selected:hover::after {
+  color: white;
+}
+
+/* Animation for dropdown appearance */
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .custom-dropdown-trigger {
+    min-width: 180px;
+    font-size: 0.9rem;
+    padding: 0.6rem 2rem 0.6rem 0.8rem;
+  }
+
+  .custom-dropdown-option {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .custom-dropdown-trigger {
+    min-width: 160px;
+    font-size: 0.85rem;
+  }
+
+  .custom-dropdown-option {
+    font-size: 0.85rem;
+  }
 }

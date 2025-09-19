@@ -1,3 +1,5 @@
+import CustomDropdown from "./CustomDropdown";
+
 interface RegionFilterProps {
   selectedRegion: string;
   onRegionChange: (region: string) => void;
@@ -12,22 +14,15 @@ export default function RegionFilter({
   label,
 }: RegionFilterProps) {
   return (
-    <div className="region-filter">
-      <label htmlFor="region-select" className="region-filter-label">
-        {label}
-      </label>
-      <select
-        id="region-select"
+    <div className="region-filter-container">
+      <label className="region-filter-label">{label}</label>
+      <CustomDropdown
+        options={regions}
         value={selectedRegion}
-        onChange={(e) => onRegionChange(e.target.value)}
-        className="region-filter-select"
-      >
-        {regions.map((region) => (
-          <option key={region.value} value={region.value}>
-            {region.label}
-          </option>
-        ))}
-      </select>
+        onChange={onRegionChange}
+        placeholder="Sélectionnez votre région"
+        className="region-filter-dropdown"
+      />
     </div>
   );
 }

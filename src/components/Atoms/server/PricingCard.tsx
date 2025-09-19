@@ -1,3 +1,8 @@
+"use client";
+
+import { useState, useEffect } from "react";
+import CountUp from "react-countup";
+
 interface Feature {
   name: string;
   included: boolean;
@@ -14,6 +19,7 @@ interface PricingCardProps {
   originalPrice?: string;
   aidAmount?: number;
   aidPercentage?: number;
+  selectedRegion?: string; // Pour détecter les changements de région
 }
 
 export default function PricingCard({
@@ -27,7 +33,15 @@ export default function PricingCard({
   originalPrice,
   aidAmount,
   aidPercentage,
+  selectedRegion,
 }: PricingCardProps) {
+  const [countKey, setCountKey] = useState(0);
+  const currentPrice = parseInt(price);
+
+  // Déclenchement de l'animation quand la région change
+  useEffect(() => {
+    setCountKey((prev) => prev + 1); // Force le re-render de CountUp à chaque changement de région
+  }, [selectedRegion]);
   return (
     <div
       className={`pricing-card relative flex flex-col transition-all duration-300 hover:scale-105 ${
@@ -39,9 +53,11 @@ export default function PricingCard({
         padding: "2rem",
         minHeight: "32rem",
         borderRadius: "40px",
-        background: isPopular
-          ? "url('/backgroundLightToDark.webp') center/cover"
+        backgroundImage: isPopular
+          ? "url('/backgroundLightToDark.webp')"
           : undefined,
+        backgroundPosition: isPopular ? "50% 20%" : undefined,
+        backgroundSize: isPopular ? "cover" : undefined,
       }}
     >
       {isPopular && (
@@ -82,11 +98,24 @@ export default function PricingCard({
               </span>
             </div>
 
-            {/* Prix avec aide */}
+            {/* Prix avec aide - animé */}
             <div className="flex items-baseline">
-              <span className="font-bold text-[2rem] text-[var(--color-accent)]">
-                €{price}
-              </span>
+              <CountUp
+                key={countKey}
+                start={0}
+                end={currentPrice}
+                duration={1.5}
+                prefix="€"
+                useEasing={true}
+                preserveValue={true}
+              >
+                {({ countUpRef }) => (
+                  <span
+                    ref={countUpRef}
+                    className="font-bold text-[2rem] text-[var(--color-accent)]"
+                  />
+                )}
+              </CountUp>
               <span
                 className="ml-[0.5rem] text-[1rem] text-[var(--color-secondary-opa50)]"
                 style={{ opacity: 0.7 }}
@@ -109,11 +138,24 @@ export default function PricingCard({
             </div>
           </div>
         ) : (
-          // Prix normal sans aide
+          // Prix normal sans aide - animé
           <div className="flex items-baseline">
-            <span className="font-bold text-[2rem] text-[var(--color-secondary)]">
-              €{price}
-            </span>
+            <CountUp
+              key={countKey}
+              start={0}
+              end={currentPrice}
+              duration={1.5}
+              prefix="€"
+              useEasing={true}
+              preserveValue={true}
+            >
+              {({ countUpRef }) => (
+                <span
+                  ref={countUpRef}
+                  className="font-bold text-[2rem] text-[var(--color-secondary)]"
+                />
+              )}
+            </CountUp>
             <span
               className="ml-[0.5rem] text-[1rem] text-[var(--color-secondary-opa50)]"
               style={{ opacity: 0.7 }}
