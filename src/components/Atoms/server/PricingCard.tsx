@@ -38,14 +38,14 @@ export default function PricingCard({
 }: PricingCardProps) {
   const [animationKey, setAnimationKey] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
-  
+
   // Amélioration de la conversion du prix avec validation
   const currentPrice = useMemo(() => {
     const parsed = parseFloat(price);
     const validPrice = isNaN(parsed) ? 0 : parsed;
     return validPrice;
   }, [price]);
-  
+
   const { setPrefilledMessage, startTypewriterAnimation } = useContactForm();
 
   // Gestion de l'hydratation - très importante pour éviter les erreurs
@@ -89,8 +89,8 @@ export default function PricingCard({
   return (
     <div
       className={`pricing-card relative flex flex-col transition-all duration-300 cursor-pointer ${
-        isPopular 
-          ? "scale-105 hover:scale-[1.07]" 
+        isPopular
+          ? "scale-105 hover:scale-[1.07]"
           : "hover:scale-[1.02] bg-[var(--color-black)] border-1 border-[var(--color-secondary)]"
       }`}
       style={{
@@ -150,13 +150,17 @@ export default function PricingCard({
                   end={currentPrice}
                   duration={1.5}
                   prefix="€"
-                  useEasing={true}
+                  useEasing
                   preserveValue={false}
                   separator=""
-                  className="font-bold text-[2rem]"
-                />
+                  redraw
+                >
+                  {({ countUpRef }) => (
+                    <span ref={countUpRef} className="font-bold text-[2rem]" />
+                  )}
+                </CountUp>
               ) : (
-                <span 
+                <span
                   className="font-bold text-[2rem]"
                   suppressHydrationWarning
                 >
@@ -193,13 +197,20 @@ export default function PricingCard({
                 end={currentPrice}
                 duration={1.5}
                 prefix="€"
-                useEasing={true}
+                useEasing
                 preserveValue={false}
                 separator=""
-                className="font-bold text-[2rem] text-[var(--color-secondary)]"
-              />
+                redraw
+              >
+                {({ countUpRef }) => (
+                  <span
+                    ref={countUpRef}
+                    className="font-bold text-[2rem] text-[var(--color-secondary)]"
+                  />
+                )}
+              </CountUp>
             ) : (
-              <span 
+              <span
                 className="font-bold text-[2rem] text-[var(--color-secondary)]"
                 suppressHydrationWarning
               >

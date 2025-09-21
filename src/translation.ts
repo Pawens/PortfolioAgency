@@ -187,16 +187,6 @@ const translations = {
           answer:
             "Yes, we can take care of hosting and registering your domain name. We’ll recommend the best solution for your needs and handle the technical setup to ensure optimal performance from day one.",
         },
-        {
-          question: "How does payment work?",
-          answer:
-            "We usually request a deposit at the start of the project, with the balance due upon delivery. Depending on your budget, we can also offer installment payment options.",
-        },
-        {
-          question: "Do you provide support after launch?",
-          answer:
-            "We remain available after launch to fix any bugs at no extra cost. However, for adding new features, we’ll provide a personalized quote for the additional work.",
-        },
       ],
     },
     contact: {
@@ -626,16 +616,6 @@ const translations = {
           answer:
             "Oui, nous pouvons nous occuper de l’hébergement et de l’enregistrement de votre nom de domaine. Nous vous conseillons la meilleure solution en fonction de vos besoins et nous nous chargeons de la configuration technique pour garantir un fonctionnement optimal dès le lancement.",
         },
-        {
-          question: "Comment se passe le paiement ?",
-          answer:
-            "Nous demandons généralement un acompte au début du projet, puis le solde est réglé à la livraison. Selon votre budget, nous pouvons également proposer des facilités de paiement en plusieurs fois.",
-        },
-        {
-          question: "Proposez-vous un suivi après la mise en ligne ?",
-          answer:
-            "Nous restons disponibles après la mise en ligne pour toute correction de bug sans frais supplémentaires. En revanche, pour l’ajout de nouvelles fonctionnalités, nous établirons un devis personnalisé pour cette nouvelle prestation.",
-        },
       ],
     },
     contact: {
@@ -1063,16 +1043,6 @@ const translations = {
           question: "Bieten Sie Hosting und Domainregistrierung an?",
           answer:
             "Ja, wir kümmern uns um Hosting und die Registrierung Ihrer Domain. Wir empfehlen die beste Lösung entsprechend Ihren Bedürfnissen und übernehmen die technische Einrichtung für optimale Leistung ab dem Start.",
-        },
-        {
-          question: "Wie funktioniert die Bezahlung?",
-          answer:
-            "Wir verlangen in der Regel eine Anzahlung zu Beginn des Projekts, der Restbetrag wird bei Lieferung fällig. Je nach Budget können wir auch Ratenzahlungen anbieten.",
-        },
-        {
-          question: "Bieten Sie Support nach dem Launch?",
-          answer:
-            "Wir bleiben nach dem Launch verfügbar, um Fehler kostenlos zu beheben. Für neue Funktionen erstellen wir jedoch ein individuelles Angebot.",
         },
       ],
     },
@@ -1503,16 +1473,6 @@ const translations = {
           answer:
             "Sí, podemos encargarnos del hosting y del registro de su dominio. Le aconsejaremos la mejor solución según sus necesidades y gestionaremos la configuración técnica para garantizar un funcionamiento óptimo desde el inicio.",
         },
-        {
-          question: "¿Cómo funciona el pago?",
-          answer:
-            "Normalmente pedimos un anticipo al inicio del proyecto y el resto se paga en la entrega. Según su presupuesto, también podemos ofrecer facilidades de pago en varias cuotas.",
-        },
-        {
-          question: "¿Ofrecen soporte después del lanzamiento?",
-          answer:
-            "Permanecemos disponibles después del lanzamiento para corregir errores sin coste adicional. Para nuevas funcionalidades, elaboraremos un presupuesto personalizado para ese servicio.",
-        },
       ],
     },
     contact: {
@@ -1941,16 +1901,6 @@ const translations = {
           question: "Offrite hosting e dominio?",
           answer:
             "Sì, possiamo occuparci dell’hosting e della registrazione del tuo dominio. Ti consiglieremo la soluzione migliore in base alle tue esigenze e gestiremo la configurazione tecnica per garantirti un funzionamento ottimale dal lancio.",
-        },
-        {
-          question: "Come avviene il pagamento?",
-          answer:
-            "Di solito chiediamo un acconto all'inizio del progetto e il saldo alla consegna. In base al budget, possiamo anche offrire pagamenti rateizzati.",
-        },
-        {
-          question: "Offrite supporto dopo il lancio?",
-          answer:
-            "Restiamo disponibili dopo il lancio per correggere eventuali bug senza costi aggiuntivi. Per nuove funzionalità invece prepareremo un preventivo personalizzato.",
         },
       ],
     },

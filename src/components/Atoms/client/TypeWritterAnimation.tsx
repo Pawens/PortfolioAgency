@@ -32,9 +32,12 @@ export default function TypeWritterAnimation({
   }, [inView, text, speed]);
 
   return (
-    <span ref={ref} className="typewriter" aria-label={text}>
-      {display}
-      <span className="cursor" />
-    </span>
+    <>
+      <span ref={ref} className="typewriter" aria-hidden="true">
+        {display}
+        <span className="cursor" aria-hidden="true" />
+      </span>
+      <span className="sr-only">{text}</span>
+    </>
   );
 }

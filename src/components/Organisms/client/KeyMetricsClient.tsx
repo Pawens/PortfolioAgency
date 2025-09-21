@@ -22,6 +22,7 @@ export default function KeyMetricsClient() {
   const { language } = useLanguage();
   const [metrics, setMetrics] = useState<Metric[]>([]);
   const [loading, setLoading] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setLoading(true);
@@ -43,6 +44,11 @@ export default function KeyMetricsClient() {
       .finally(() => setLoading(false));
   }, [language]);
 
+  // Ensure the DOM is mounted before initializing CountUp to avoid null targets on first render
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   if (loading) return <p>Chargement…</p>;
 
   return (
@@ -55,16 +61,29 @@ export default function KeyMetricsClient() {
 
         return (
           <div key={m.id} className={`flex flex-col ${alignClass}`}>
-            <CountUp
-              start={0}
-              end={m.value}
-              duration={2}
-              prefix={prefix}
-              suffix={suffix}
-              enableScrollSpy
-              scrollSpyOnce
-              className="keymetrics-count text-[38px] font-bold text-[var(--color-primary)]"
-            />
+            {mounted ? (
+              <CountUp
+                start={0}
+                end={m.value}
+                duration={2}
+                prefix={prefix}
+                suffix={suffix}
+                enableScrollSpy
+                scrollSpyOnce
+                redraw
+              >
+                {({ countUpRef }) => (
+                  <span
+                    ref={countUpRef}
+                    className="keymetrics-count text-[38px] font-bold text-[var(--color-primary)]"
+                  />
+                )}
+              </CountUp>
+            ) : (
+              <span className="keymetrics-count text-[38px] font-bold text-[var(--color-primary)]">
+                {`${prefix}${m.value}${suffix}`}
+              </span>
+            )}
             <span className="text-[14px] text-[var(--color-black)]">
               {m.label}
             </span>
