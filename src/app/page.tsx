@@ -14,7 +14,7 @@ import StickyHeader from "@/components/Organisms/client/StickyHeader";
 import { LanguageProvider } from "@/context/LanguageContext";
 import { ContactFormProvider } from "@/context/ContactFormContext";
 import { getLanguageFromSearchParams } from "@/utils/serverTranslations";
-import PricingSection from "@/components/Organisms/server/PricingSection";
+import PricingSection from "@/components/Organisms/client/PricingSection";
 
 type Props = {
   searchParams: { [key: string]: string | string[] | undefined };
