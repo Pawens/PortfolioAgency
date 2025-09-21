@@ -1,12 +1,23 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import PricingCard from "@/components/Atoms/server/PricingCard";
+import dynamic from "next/dynamic";
 import RegionFilter from "@/components/Atoms/server/RegionFilter";
 import { Language } from "@/context/LanguageContext";
 import { getTranslations, t } from "@/utils/serverTranslations";
 import { calculateRegionalPrice } from "@/utils/RegionalPricing";
 import "@/assets/styles/pricing.css";
+
+// Import dynamique pour éviter l'hydratation
+const PricingCardClient = dynamic(
+  () => import("@/components/Atoms/client/PricingCardClient"),
+  { 
+    ssr: false,
+    loading: () => (
+      <div className="pricing-card-skeleton animate-pulse bg-gray-200 rounded-lg" style={{ minHeight: "32rem" }} />
+    )
+  }
+);
 
 interface PricingSectionProps {
   language: Language;
@@ -132,7 +143,7 @@ export default function PricingSection({ language }: PricingSectionProps) {
             );
 
             return (
-              <PricingCard
+              <PricingCardClient
                 key={index}
                 name={plan.name}
                 price={priceCalculation.finalMonthlyPrice.toString()}

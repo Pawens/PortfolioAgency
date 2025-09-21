@@ -14,21 +14,20 @@ interface PricingCardProps {
   price: string;
   features: Feature[];
   perMonth: string;
-  buttonText?: string; // Temporairement optionnel
+  buttonText?: string;
   popularText?: string;
   isPopular?: boolean;
   originalPrice?: string;
   aidAmount?: number;
   aidPercentage?: number;
-  selectedRegion?: string; // Pour détecter les changements de région
+  selectedRegion?: string;
 }
 
-export default function PricingCard({
+export default function PricingCardClient({
   name,
   price,
   features,
   perMonth,
-  // buttonText, // Temporairement désactivé
   popularText = "POPULAR",
   isPopular = false,
   originalPrice,
@@ -37,32 +36,19 @@ export default function PricingCard({
   selectedRegion,
 }: PricingCardProps) {
   const [animationKey, setAnimationKey] = useState(0);
-  const [isMounted, setIsMounted] = useState(false);
   
-  // Amélioration de la conversion du prix avec validation
+  // Conversion du prix
   const currentPrice = useMemo(() => {
     const parsed = parseFloat(price);
-    const validPrice = isNaN(parsed) ? 0 : parsed;
-    return validPrice;
+    return isNaN(parsed) ? 0 : parsed;
   }, [price]);
   
   const { setPrefilledMessage, startTypewriterAnimation } = useContactForm();
 
-  // Gestion de l'hydratation - très importante pour éviter les erreurs
-  useEffect(() => {
-    // Petit délai pour s'assurer que l'hydratation est complète
-    const timer = setTimeout(() => {
-      setIsMounted(true);
-    }, 100);
-    return () => clearTimeout(timer);
-  }, []);
-
   // Déclenchement de l'animation quand la région change
   useEffect(() => {
-    if (isMounted) {
-      setAnimationKey((prev) => prev + 1);
-    }
-  }, [selectedRegion, isMounted]);
+    setAnimationKey((prev) => prev + 1);
+  }, [selectedRegion]);
 
   const handleCardClick = useCallback(() => {
     setPrefilledMessage(price, name, originalPrice, aidPercentage);
@@ -86,6 +72,7 @@ export default function PricingCard({
     setPrefilledMessage,
     startTypewriterAnimation,
   ]);
+
   return (
     <div
       className={`pricing-card relative flex flex-col transition-all duration-300 cursor-pointer ${
@@ -141,9 +128,9 @@ export default function PricingCard({
               </span>
             </div>
 
-            {/* Prix avec aide - animé seulement côté client */}
-            <div className="flex items-baseline" suppressHydrationWarning>
-              {isMounted && currentPrice > 0 ? (
+            {/* Prix avec aide */}
+            <div className="flex items-baseline">
+              {currentPrice > 0 ? (
                 <CountUp
                   key={animationKey}
                   start={0}
@@ -151,15 +138,11 @@ export default function PricingCard({
                   duration={1.5}
                   prefix="€"
                   useEasing={true}
-                  preserveValue={false}
                   separator=""
                   className="font-bold text-[2rem]"
                 />
               ) : (
-                <span 
-                  className="font-bold text-[2rem]"
-                  suppressHydrationWarning
-                >
+                <span className="font-bold text-[2rem]">
                   €{price}
                 </span>
               )}
@@ -184,9 +167,9 @@ export default function PricingCard({
             </div>
           </div>
         ) : (
-          // Prix normal sans aide - animé seulement côté client
-          <div className="flex items-baseline" suppressHydrationWarning>
-            {isMounted && currentPrice > 0 ? (
+          // Prix normal sans aide
+          <div className="flex items-baseline">
+            {currentPrice > 0 ? (
               <CountUp
                 key={animationKey}
                 start={0}
@@ -194,15 +177,11 @@ export default function PricingCard({
                 duration={1.5}
                 prefix="€"
                 useEasing={true}
-                preserveValue={false}
                 separator=""
                 className="font-bold text-[2rem] text-[var(--color-secondary)]"
               />
             ) : (
-              <span 
-                className="font-bold text-[2rem] text-[var(--color-secondary)]"
-                suppressHydrationWarning
-              >
+              <span className="font-bold text-[2rem] text-[var(--color-secondary)]">
                 €{price}
               </span>
             )}
@@ -275,18 +254,6 @@ export default function PricingCard({
           </li>
         ))}
       </ul>
-
-      {/* Bouton temporairement désactivé */}
-      {/* <div className="mt-[2rem]">
-        <button
-          className="w-full font-medium text-[1rem] rounded-[8px] transition-all duration-300 hover:scale-105 bg-[var(--color-secondary)] text-[var(--color-primary)] hover:bg-[var(--color-white)]"
-          style={{
-            padding: "0.875rem 1.5rem",
-          }}
-        >
-          {buttonText}
-        </button>
-      </div> */}
     </div>
   );
 }
