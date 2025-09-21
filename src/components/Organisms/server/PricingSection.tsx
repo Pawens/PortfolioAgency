@@ -23,14 +23,21 @@ interface Plan {
   features: PlanFeature[];
 }
 
+interface PricingData {
+  plans: Plan[];
+}
+
+interface RegionData {
+  regions: Array<{ value: string; label: string }>;
+  label: string;
+}
+
 export default function PricingSection({ language }: PricingSectionProps) {
   const [selectedRegion, setSelectedRegion] = useState("default");
 
   const translations = getTranslations(language);
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const pricingData = (translations as any).pricing;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const regionData = (translations as any).regionFilters;
+  const pricingData = (translations as Record<string, unknown>).pricing as PricingData;
+  const regionData = (translations as Record<string, unknown>).regionFilters as RegionData;
 
   return (
     <section
