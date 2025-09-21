@@ -131,9 +131,6 @@ export default function PricingSection({ language }: PricingSectionProps) {
               selectedRegion
             );
 
-            // Debug: vérifier les valeurs
-            console.log('Plan:', plan.name, 'Base price:', basePrice, 'Final price:', priceCalculation.finalMonthlyPrice, 'Region:', selectedRegion);
-
             return (
               <PricingCard
                 key={index}

@@ -41,9 +41,8 @@ export default function PricingCard({
   
   // Amélioration de la conversion du prix avec validation
   const currentPrice = useMemo(() => {
-    const parsed = parseInt(price);
+    const parsed = parseFloat(price);
     const validPrice = isNaN(parsed) ? 0 : parsed;
-    console.log('Prix reçu:', price, 'Prix converti:', validPrice); // Debug
     return validPrice;
   }, [price]);
   
@@ -140,7 +139,7 @@ export default function PricingCard({
 
             {/* Prix avec aide - animé seulement côté client */}
             <div className="flex items-baseline">
-              {isMounted ? (
+              {isMounted && currentPrice > 0 ? (
                 <CountUp
                   key={animationKey}
                   start={0}
@@ -149,6 +148,7 @@ export default function PricingCard({
                   prefix="€"
                   useEasing={true}
                   preserveValue={false}
+                  separator=""
                 >
                   {({ countUpRef }) => (
                     <span 
@@ -187,7 +187,7 @@ export default function PricingCard({
         ) : (
           // Prix normal sans aide - animé seulement côté client
           <div className="flex items-baseline">
-            {isMounted ? (
+            {isMounted && currentPrice > 0 ? (
               <CountUp
                 key={animationKey}
                 start={0}
@@ -196,6 +196,7 @@ export default function PricingCard({
                 prefix="€"
                 useEasing={true}
                 preserveValue={false}
+                separator=""
               >
                 {({ countUpRef }) => (
                   <span

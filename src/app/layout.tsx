@@ -5,6 +5,10 @@ import "./reset.css";
 
 export const metadata: Metadata = {
   title: "Pawens",
+  metadataBase: new URL("https://pawens.com"),
+  alternates: {
+    canonical: "https://pawens.com",
+  },
   description:
     "Création de sites web sur mesure pour TPE & PME – Développeur web spécialisé en sites vitrines et e-commerce performants. Design personnalisé, UX optimisée, SEO avancé pour un meilleur référencement Google. Profitez d’une approche transparente et d’un accompagnement complet : analyse des besoins, développement, optimisation SEO, maintenance et sécurité. Boostez votre visibilité en ligne dès aujourd’hui !",
   keywords: [
