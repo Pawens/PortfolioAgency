@@ -11,6 +11,7 @@ type FormFieldProps = {
   ) => void;
   placeholder?: string;
   required?: boolean;
+  readOnly?: boolean;
 };
 
 const FormField = ({

@@ -38,7 +38,7 @@ export default function PricingSection({ language }: PricingSectionProps) {
       className="text-[var(--color-secondary)]"
       style={{
         padding: "5.5rem 0",
-        backgroundImage: "url('/backgroundDarkToLight.webp')",
+        backgroundImage: "url('/backgroundCardSection.webp')",
         backgroundPosition: "center",
         backgroundSize: "cover",
         backgroundColor: "var(--color-primary)", // fallback

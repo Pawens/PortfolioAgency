@@ -6,6 +6,8 @@ import FormField from "@/components/Molecules/FormField";
 import { Language, t } from "@/utils/serverTranslations";
 import emailjs from "@emailjs/browser";
 import React, { useEffect, useState } from "react";
+import { useContactForm } from "@/context/ContactFormContext";
+import { useTypewriter } from "@/hooks/useTypewriter";
 
 const ContactSection = ({ language }: { language: Language }) => {
   const [formData, setFormData] = useState({
@@ -17,6 +19,22 @@ const ContactSection = ({ language }: { language: Language }) => {
   const [feedback, setFeedback] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
   const [offset, setOffset] = useState(0);
+  const { prefilledMessage, clearMessage, isAnimationReady } = useContactForm();
+
+  const {
+    displayText: typedMessage,
+    startTyping,
+    resetTyping,
+    isTyping,
+  } = useTypewriter({
+    text: prefilledMessage,
+    speed: 6,
+    startDelay: 100,
+    enabled: isAnimationReady,
+    onComplete: () => {
+      setFormData((prev) => ({ ...prev, message: prefilledMessage }));
+    },
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -27,6 +45,24 @@ const ContactSection = ({ language }: { language: Language }) => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  // Effet pour démarrer l'animation typewriter quand c'est prêt
+  useEffect(() => {
+    if (isAnimationReady && prefilledMessage) {
+      // Reset le message dans le form avant de démarrer l'animation
+      setFormData((prev) => ({ ...prev, message: "" }));
+      resetTyping();
+      startTyping();
+    }
+  }, [isAnimationReady, prefilledMessage, startTyping, resetTyping]);
+
+  // Effet pour pré-remplir le message sans animation si pas d'animation en cours
+  // Commenté pour éviter l'affichage prématuré du texte
+  // useEffect(() => {
+  //   if (prefilledMessage && !isAnimationReady && !isTyping) {
+  //     setFormData((prev) => ({ ...prev, message: prefilledMessage }));
+  //   }
+  // }, [prefilledMessage, isAnimationReady, isTyping]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -81,6 +117,7 @@ const ContactSection = ({ language }: { language: Language }) => {
 
       setFeedback(t(language, "confirmationPopup.successMessage"));
       setFormData({ name: "", email: "", message: "" });
+      clearMessage(); // Nettoie le message pré-rempli après envoi réussi
       setTimeout(() => setFeedback(null), 3000);
     } catch (error) {
       console.error("Erreur EmailJS ❌", error);
@@ -127,9 +164,10 @@ const ContactSection = ({ language }: { language: Language }) => {
         <FormField
           name="message"
           type="textarea"
-          value={formData.message}
-          onChange={handleChange}
+          value={isTyping ? typedMessage : formData.message}
+          onChange={!isTyping ? handleChange : undefined}
           placeholder={t(language, "contact.message")}
+          readOnly={isTyping}
         />
 
         <div className="mt-6">

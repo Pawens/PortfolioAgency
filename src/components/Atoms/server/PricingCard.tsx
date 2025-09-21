@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import CountUp from "react-countup";
+import { useContactForm } from "@/context/ContactFormContext";
 
 interface Feature {
   name: string;
@@ -37,28 +38,51 @@ export default function PricingCard({
 }: PricingCardProps) {
   const [countKey, setCountKey] = useState(0);
   const currentPrice = parseInt(price);
+  const { setPrefilledMessage, startTypewriterAnimation } = useContactForm();
 
   // Déclenchement de l'animation quand la région change
   useEffect(() => {
     setCountKey((prev) => prev + 1); // Force le re-render de CountUp à chaque changement de région
   }, [selectedRegion]);
+
+  const handleCardClick = useCallback(() => {
+    setPrefilledMessage(price, name, originalPrice, aidPercentage);
+
+    const contactSection = document.getElementById("contact");
+    if (contactSection) {
+      contactSection.scrollIntoView({
+        behavior: "smooth",
+        block: "start",
+      });
+
+      setTimeout(() => {
+        startTypewriterAnimation();
+      }, 1000);
+    }
+  }, [
+    price,
+    name,
+    originalPrice,
+    aidPercentage,
+    setPrefilledMessage,
+    startTypewriterAnimation,
+  ]);
   return (
     <div
-      className={`pricing-card relative flex flex-col transition-all duration-300 hover:scale-105 ${
-        isPopular
-          ? "scale-105"
-          : "bg-[var(--color-primary)] border-1 border-[var(--color-secondary)]"
+      className={`pricing-card relative flex flex-col transition-all duration-300 cursor-pointer ${
+        isPopular 
+          ? "scale-105 hover:scale-[1.07]" 
+          : "hover:scale-[1.02] bg-[var(--color-black)] border-1 border-[var(--color-secondary)]"
       }`}
       style={{
         padding: "2rem",
         minHeight: "32rem",
         borderRadius: "40px",
-        backgroundImage: isPopular
-          ? "url('/backgroundLightToDark.webp')"
-          : undefined,
+        backgroundImage: isPopular ? "url('/backgroundCard.webp')" : undefined,
         backgroundPosition: isPopular ? "50% 20%" : undefined,
         backgroundSize: isPopular ? "cover" : undefined,
       }}
+      onClick={handleCardClick}
     >
       {isPopular && (
         <div
@@ -110,10 +134,7 @@ export default function PricingCard({
                 preserveValue={true}
               >
                 {({ countUpRef }) => (
-                  <span
-                    ref={countUpRef}
-                    className="font-bold text-[2rem] text-[var(--color-accent)]"
-                  />
+                  <span ref={countUpRef} className="font-bold text-[2rem]" />
                 )}
               </CountUp>
               <span
@@ -128,8 +149,7 @@ export default function PricingCard({
             <div
               className="mt-[0.5rem] px-[1rem] py-[0.25rem] rounded-full"
               style={{
-                backgroundColor: "var(--color-accent)",
-                color: "var(--color-primary)",
+                color: "var(--color-secondary-opa50)",
               }}
             >
               <span className="text-[0.75rem] font-medium">
@@ -167,7 +187,6 @@ export default function PricingCard({
       </div>
 
       <ul className="flex-1 flex flex-col gap-[0.2rem]">
-        {" "}
         {features.map((feature, index) => (
           <li key={index} className="flex items-center">
             <div
