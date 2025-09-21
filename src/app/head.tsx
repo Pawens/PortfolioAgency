@@ -3,12 +3,12 @@ export default function Head() {
     <>
       <link
         rel="icon"
-        href="/PawensLogo.ico"
+        href="/iconPawens.ico"
         sizes="32x32"
         type="image/x-icon"
       />
-      <link rel="shortcut icon" href="/PawensLogo.ico" type="image/x-icon" />
-      <link rel="icon" href="/PawensLogo.png" type="image/png" />
+      <link rel="shortcut icon" href="/iconPawens.ico" type="image/x-icon" />
+      <link rel="icon" href="/iconPawens.png" type="image/png" />
     </>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import CountUp from "react-countup";
 import { useContactForm } from "@/context/ContactFormContext";
 
@@ -38,7 +38,15 @@ export default function PricingCard({
 }: PricingCardProps) {
   const [animationKey, setAnimationKey] = useState(0);
   const [isMounted, setIsMounted] = useState(false);
-  const currentPrice = parseInt(price);
+  
+  // Amélioration de la conversion du prix avec validation
+  const currentPrice = useMemo(() => {
+    const parsed = parseInt(price);
+    const validPrice = isNaN(parsed) ? 0 : parsed;
+    console.log('Prix reçu:', price, 'Prix converti:', validPrice); // Debug
+    return validPrice;
+  }, [price]);
+  
   const { setPrefilledMessage, startTypewriterAnimation } = useContactForm();
 
   // Gestion de l'hydratation - très importante pour éviter les erreurs
