@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import PricingCard from "@/components/Atoms/server/PricingCard";
 import RegionFilter from "@/components/Atoms/server/RegionFilter";
 import { Language } from "@/context/LanguageContext";
@@ -34,10 +34,49 @@ interface RegionData {
 
 export default function PricingSection({ language }: PricingSectionProps) {
   const [selectedRegion, setSelectedRegion] = useState("default");
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Gestion de l'hydratation pour éviter les erreurs
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const translations = getTranslations(language);
   const pricingData = (translations as Record<string, unknown>).pricing as PricingData;
   const regionData = (translations as Record<string, unknown>).regionFilters as RegionData;
+
+  // Afficher un placeholder pendant l'hydratation
+  if (!isMounted) {
+    return (
+      <section
+        id="pricing"
+        className="text-[var(--color-secondary)]"
+        style={{
+          padding: "5.5rem 0",
+          backgroundImage: "url('/backgroundCardSection.webp')",
+          backgroundPosition: "center",
+          backgroundSize: "cover",
+          backgroundColor: "var(--color-primary)",
+        }}
+      >
+        <div
+          className="pricing-container"
+          style={{ maxWidth: "80rem", margin: "0 auto" }}
+        >
+          <div
+            className="pricing-header text-center"
+            style={{ marginBottom: "4rem" }}
+          >
+            <p className="pricing-description text-[1.2rem] text-white">
+              {t(language, "pricing.description")}
+            </p>
+          </div>
+          {/* Placeholder minimal pendant l'hydratation */}
+          <div style={{ minHeight: "400px" }} />
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section
