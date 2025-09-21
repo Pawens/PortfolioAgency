@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import CountUp from "react-countup";
 import { useContactForm } from "@/context/ContactFormContext";
 
 interface Feature {
@@ -36,22 +35,13 @@ export default function PricingCard({
   aidPercentage,
   selectedRegion,
 }: PricingCardProps) {
-  const [countKey, setCountKey] = useState(0);
-  const [isMounted, setIsMounted] = useState(false);
-  const currentPrice = parseInt(price);
+  const [animationKey, setAnimationKey] = useState(0);
   const { setPrefilledMessage, startTypewriterAnimation } = useContactForm();
-
-  // Gestion de l'hydratation
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   // Déclenchement de l'animation quand la région change
   useEffect(() => {
-    if (isMounted) {
-      setCountKey((prev) => prev + 1); // Force le re-render de CountUp à chaque changement de région
-    }
-  }, [selectedRegion, isMounted]);
+    setAnimationKey((prev) => prev + 1);
+  }, [selectedRegion]);
 
   const handleCardClick = useCallback(() => {
     setPrefilledMessage(price, name, originalPrice, aidPercentage);
@@ -130,25 +120,15 @@ export default function PricingCard({
               </span>
             </div>
 
-            {/* Prix avec aide - animé */}
+            {/* Prix avec aide - simple */}
             <div className="flex items-baseline">
-              {isMounted ? (
-                <CountUp
-                  key={countKey}
-                  start={0}
-                  end={currentPrice}
-                  duration={1.5}
-                  prefix="€"
-                  useEasing={true}
-                  preserveValue={false}
-                >
-                  {({ countUpRef }) => (
-                    <span ref={countUpRef} className="font-bold text-[2rem]" />
-                  )}
-                </CountUp>
-              ) : (
-                <span className="font-bold text-[2rem]">€{price}</span>
-              )}
+              <span 
+                key={animationKey}
+                className="font-bold text-[2rem] transition-all duration-300"
+                suppressHydrationWarning={true}
+              >
+                €{price}
+              </span>
               <span
                 className="ml-[0.5rem] text-[1rem] text-[var(--color-secondary-opa50)]"
                 style={{ opacity: 0.7 }}
@@ -170,30 +150,15 @@ export default function PricingCard({
             </div>
           </div>
         ) : (
-          // Prix normal sans aide - animé
+          // Prix normal sans aide - simple
           <div className="flex items-baseline">
-            {isMounted ? (
-              <CountUp
-                key={countKey}
-                start={0}
-                end={currentPrice}
-                duration={1.5}
-                prefix="€"
-                useEasing={true}
-                preserveValue={false}
-              >
-                {({ countUpRef }) => (
-                  <span
-                    ref={countUpRef}
-                    className="font-bold text-[2rem] text-[var(--color-secondary)]"
-                  />
-                )}
-              </CountUp>
-            ) : (
-              <span className="font-bold text-[2rem] text-[var(--color-secondary)]">
-                €{price}
-              </span>
-            )}
+            <span
+              key={animationKey}
+              className="font-bold text-[2rem] text-[var(--color-secondary)] transition-all duration-300"
+              suppressHydrationWarning={true}
+            >
+              €{price}
+            </span>
             <span
               className="ml-[0.5rem] text-[1rem] text-[var(--color-secondary-opa50)]"
               style={{ opacity: 0.7 }}
