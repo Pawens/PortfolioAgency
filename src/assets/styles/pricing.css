@@ -66,6 +66,7 @@
     grid-template-columns: 1fr !important;
     gap: 1.5rem !important;
     max-width: 24rem !important;
+    gap: 4.5rem !important;
   }
 
   .pricing-card {

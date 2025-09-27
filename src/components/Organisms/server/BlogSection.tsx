@@ -5,7 +5,7 @@ import { getTranslations } from "@/utils/serverTranslations";
 
 export default function BlogSection({ articles, language }: BlogPageProps) {
   const translations = getTranslations(language);
-  
+
   return (
     <section className="blog-section py-[64px] px-[24px] mx-auto bg-[var(--color-primary)]">
       {/* Navigation */}

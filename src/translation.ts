@@ -429,7 +429,8 @@ const translations = {
     },
     blogSection: {
       title: "Our Articles",
-      description: "Discover our latest articles about web development, design and technology trends.",
+      description:
+        "Discover our latest articles about web development, design and technology trends.",
     },
   },
 
@@ -863,7 +864,8 @@ const translations = {
     },
     blogSection: {
       title: "Nos articles",
-      description: "Découvrez nos derniers articles sur le développement web, le design et les tendances technologiques.",
+      description:
+        "Découvrez nos derniers articles sur le développement web, le design et les tendances technologiques.",
     },
   },
   // German
@@ -1296,7 +1298,8 @@ const translations = {
     },
     blogSection: {
       title: "Unsere Artikel",
-      description: "Entdecken Sie unsere neuesten Artikel über Webentwicklung, Design und Technologie-Trends.",
+      description:
+        "Entdecken Sie unsere neuesten Artikel über Webentwicklung, Design und Technologie-Trends.",
     },
   },
   // Spanish
@@ -1729,7 +1732,8 @@ const translations = {
     },
     blogSection: {
       title: "Nuestros Artículos",
-      description: "Descubre nuestros últimos artículos sobre desarrollo web, diseño y tendencias tecnológicas.",
+      description:
+        "Descubre nuestros últimos artículos sobre desarrollo web, diseño y tendencias tecnológicas.",
     },
   },
   // Italian
@@ -2161,7 +2165,8 @@ const translations = {
     },
     blogSection: {
       title: "I Nostri Articoli",
-      description: "Scopri i nostri ultimi articoli su sviluppo web, design e tendenze tecnologiche.",
+      description:
+        "Scopri i nostri ultimi articoli su sviluppo web, design e tendenze tecnologiche.",
     },
   },
 };
