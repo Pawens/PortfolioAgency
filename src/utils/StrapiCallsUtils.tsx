@@ -74,3 +74,35 @@ export async function getProjectData(documentId: string, lang: string) {
 
   return res.json();
 }
+
+export async function getBlogArticlesData(lang: string) {
+  console.log(`Fetching blog articles for language: ${lang}`);
+
+  const res = await fetch(
+    `${process.env.BASE_URL}/api/articles?populate=*&locale=${lang}`,
+    {
+      next: { revalidate: 86400 },
+    }
+  );
+
+  if (!res.ok) throw new Error("Failed to fetch blog articles");
+
+  return res.json();
+}
+
+export async function getBlogArticleData(documentId: string, lang: string) {
+  console.log(
+    `Fetching blog article details for documentId: ${documentId} in language: ${lang}`
+  );
+
+  const res = await fetch(
+    `${process.env.BASE_URL}/api/articles/${documentId}?populate=*&locale=${lang}`,
+    {
+      next: { revalidate: 86400 },
+    }
+  );
+
+  if (!res.ok) throw new Error("Failed to fetch blog article details");
+
+  return res.json();
+}

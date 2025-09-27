@@ -4,6 +4,7 @@ const translations = {
     header: {
       projects: "Projects",
       services: "Services",
+      blog: "Blog",
       contact: "Contact",
       bookCall: "Book a call",
     },
@@ -426,6 +427,10 @@ const translations = {
         { value: "martinique", label: "Martinique" },
       ],
     },
+    blogSection: {
+      title: "Our Articles",
+      description: "Discover our latest articles about web development, design and technology trends.",
+    },
   },
 
   // French
@@ -433,6 +438,7 @@ const translations = {
     header: {
       projects: "Projets",
       services: "Services",
+      blog: "Blog",
       contact: "Contact",
       bookCall: "Réserver un appel",
     },
@@ -854,6 +860,10 @@ const translations = {
         { value: "guadeloupe", label: "Guadeloupe" },
         { value: "martinique", label: "Martinique" },
       ],
+    },
+    blogSection: {
+      title: "Nos articles",
+      description: "Découvrez nos derniers articles sur le développement web, le design et les tendances technologiques.",
     },
   },
   // German
@@ -1284,6 +1294,10 @@ const translations = {
         { value: "martinique", label: "Martinique" },
       ],
     },
+    blogSection: {
+      title: "Unsere Artikel",
+      description: "Entdecken Sie unsere neuesten Artikel über Webentwicklung, Design und Technologie-Trends.",
+    },
   },
   // Spanish
   es: {
@@ -1713,6 +1727,10 @@ const translations = {
         { value: "martinique", label: "Martinica" },
       ],
     },
+    blogSection: {
+      title: "Nuestros Artículos",
+      description: "Descubre nuestros últimos artículos sobre desarrollo web, diseño y tendencias tecnológicas.",
+    },
   },
   // Italian
   it: {
@@ -2140,6 +2158,10 @@ const translations = {
         { value: "guadeloupe", label: "Guadalupa" },
         { value: "martinique", label: "Martinica" },
       ],
+    },
+    blogSection: {
+      title: "I Nostri Articoli",
+      description: "Scopri i nostri ultimi articoli su sviluppo web, design e tendenze tecnologiche.",
     },
   },
 };
