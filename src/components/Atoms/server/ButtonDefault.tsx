@@ -26,7 +26,7 @@ function ButtonDefault({
     footer:
       "footer-variant w-[88px] h-[88px] bg-transparent transition-[width] duration-[0.33s] ease-in-out cursor-pointer flex items-center justify-center",
     review:
-      "flex items-center justify-center gap-[16px] p-[12px] text-[14px] border border-[var(--color-secondary)] text-[var(--color-secondary)] [&_svg]:fill-[var(--color-secondary)] transition-colors duration-300 group-hover:text-[var(--color-primary)] group [&_svg]:transition-colors [&_svg]:duration-300 group-hover:[&_svg]:fill-[var(--color-primary)]",
+      "flex items-center justify-center gap-[16px] px-[16px] py-[12px] min-h-[48px] text-[14px] text-[var(--color-secondary)] [&_svg]:fill-[var(--color-secondary)] transition-colors duration-300 group-hover:text-[var(--color-primary)] group [&_svg]:transition-colors [&_svg]:duration-300 group-hover:[&_svg]:fill-[var(--color-primary)]",
   };
 
   const computedAriaLabel =
@@ -42,6 +42,21 @@ function ButtonDefault({
         <span className="relative z-10 transition-colors duration-300 group-hover:text-[var(--color-primary)]">
           {children}
         </span>
+      </a>
+    );
+  }
+
+  // For review variant with href, render as an anchor tag instead of button with nested link
+  if (variant === "review" && href) {
+    return (
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={`${baseClasses} focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-secondary)] ${className} ${variantClasses[variant]}`}
+        aria-label={computedAriaLabel || "View all reviews on Google Maps"}
+      >
+        {children}
       </a>
     );
   }
@@ -64,17 +79,8 @@ function ButtonDefault({
         />
       ) : null}
 
-      {variant === "footer" || variant === "review" ? (
+      {variant === "footer" ? (
         <div className={variantClasses[variant] + " relative z-50"}>
-          {href && variant === "review" ? (
-            <a
-              href={href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="absolute inset-0 z-10 block w-full h-full"
-              aria-label="View all reviews on Google Maps"
-            />
-          ) : null}
           {children}
         </div>
       ) : (

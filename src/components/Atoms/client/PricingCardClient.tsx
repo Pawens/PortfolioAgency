@@ -227,10 +227,10 @@ export default function PricingCardClient({
               className={`text-[0.875rem] ${
                 feature.included
                   ? "text-[var(--color-secondary)]"
-                  : "text-[var(--color-secondary-opa50)]"
+                  : "text-[var(--color-secondary)]"
               }`}
               style={{
-                opacity: feature.included ? 1 : 0.5,
+                opacity: feature.included ? 1 : 0.7,
               }}
             >
               {feature.name}
