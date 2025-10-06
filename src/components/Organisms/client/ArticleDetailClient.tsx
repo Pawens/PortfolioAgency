@@ -188,7 +188,7 @@ export default function ArticleDetailClient({
               style={{
                 maxHeight: "70vh",
                 overflowY: "auto",
-                backgroundColor: "rgba(0, 0, 0, 0.2)",
+                backgroundColor: "rgba(255, 255, 255, 0.1)",
                 backdropFilter: "blur(8px)",
                 borderRadius: "8px",
                 padding: "24px",
