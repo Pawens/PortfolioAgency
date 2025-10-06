@@ -172,10 +172,7 @@ export default function PricingCardClient({
             <span className="font-bold text-[2rem] text-[var(--color-secondary)]">
               €{displayPrice}
             </span>
-            <span
-              className="ml-[0.5rem] text-[1rem] text-[var(--color-secondary-opa50)]"
-              style={{ opacity: 0.7 }}
-            >
+            <span className="ml-[0.5rem] text-[1rem] text-[var(--color-secondary)]">
               {perMonth}
             </span>
           </div>

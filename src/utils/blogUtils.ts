@@ -5,7 +5,7 @@ import type { Language } from "./serverTranslations";
  */
 export function formatBlogDate(dateString: string, language: Language): string {
   const date = new Date(dateString);
-  
+
   const options: Intl.DateTimeFormatOptions = {
     year: "numeric",
     month: "long",
@@ -38,7 +38,10 @@ export function stripHtmlTags(html: string): string {
 /**
  * Create excerpt from article content
  */
-export function createExcerpt(content: string, maxLength: number = 160): string {
+export function createExcerpt(
+  content: string,
+  maxLength: number = 160
+): string {
   const plainText = stripHtmlTags(content);
   if (plainText.length <= maxLength) return plainText;
   return plainText.substring(0, maxLength).trim() + "...";
@@ -47,7 +50,10 @@ export function createExcerpt(content: string, maxLength: number = 160): string 
 /**
  * Generate blog article URL
  */
-export function generateBlogUrl(documentId: string, language: Language): string {
+export function generateBlogUrl(
+  documentId: string,
+  language: Language
+): string {
   const langParam = language !== "Fr" ? `?lang=${language.toLowerCase()}` : "";
   return `/blog/${documentId}${langParam}`;
 }
@@ -85,6 +91,7 @@ export function getBlogTranslations(language: Language) {
       noArticles: "Aucun article trouvé",
       loadingArticles: "Chargement des articles...",
       errorLoadingArticles: "Erreur lors du chargement des articles",
+      tableOfContents: "Sommaire",
     },
     En: {
       readMore: "Read more",
@@ -96,6 +103,7 @@ export function getBlogTranslations(language: Language) {
       noArticles: "No articles found",
       loadingArticles: "Loading articles...",
       errorLoadingArticles: "Error loading articles",
+      tableOfContents: "Table of Contents",
     },
     Es: {
       readMore: "Leer más",
@@ -107,6 +115,7 @@ export function getBlogTranslations(language: Language) {
       noArticles: "No se encontraron artículos",
       loadingArticles: "Cargando artículos...",
       errorLoadingArticles: "Error al cargar artículos",
+      tableOfContents: "Tabla de contenidos",
     },
     De: {
       readMore: "Weiterlesen",
@@ -118,6 +127,7 @@ export function getBlogTranslations(language: Language) {
       noArticles: "Keine Artikel gefunden",
       loadingArticles: "Artikel werden geladen...",
       errorLoadingArticles: "Fehler beim Laden der Artikel",
+      tableOfContents: "Inhaltsverzeichnis",
     },
     It: {
       readMore: "Leggi di più",
@@ -129,6 +139,7 @@ export function getBlogTranslations(language: Language) {
       noArticles: "Nessun articolo trovato",
       loadingArticles: "Caricamento articoli...",
       errorLoadingArticles: "Errore nel caricamento degli articoli",
+      tableOfContents: "Indice",
     },
   };
 
