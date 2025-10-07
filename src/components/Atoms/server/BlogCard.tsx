@@ -80,9 +80,9 @@ export default function BlogCard({
             </div>
 
             {/* Titre */}
-            <h3 className="text-[16px] font-bold text-[var(--color-primary)] mb-[10px] leading-[1.4] line-clamp-2 hover:opacity-80 transition-all duration-[300ms]">
+            <h2 className="text-[16px] font-bold text-[var(--color-primary)] mb-[10px] leading-[1.4] line-clamp-2 hover:opacity-80 transition-all duration-[300ms]">
               {article.title}
-            </h3>
+            </h2>
 
             {/* Excerpt */}
             <p className="text-[13px] text-[var(--color-primary)] mb-[12px] leading-[1.4] line-clamp-3 opacity-80">
